@@ -1,0 +1,36 @@
+aid: apache-couchdb
+name: Apache CouchDB
+description: >-
+  Apache CouchDB is an open-source document-oriented NoSQL database that uses JSON for data storage, JavaScript for MapReduce queries, and a RESTful HTTP/JSON API for all database operations. It provides built-in replication and offline-first capabilities.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Database
+  - NoSQL
+  - Document Store
+  - JSON
+  - REST
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-couchdb:apache-couchdb-http-api
+    name: Apache CouchDB HTTP API
+    description: >-
+      CouchDB exposes a complete RESTful HTTP API for all database operations including document CRUD, database management, replication, design documents, views, Mango queries, and cluster administration.
+    humanURL: https://docs.couchdb.org/en/stable/api/index.html
+    tags:
+      - REST
+      - HTTP
+      - Database
+      - JSON
+    properties:
+      - type: Documentation
+        url: https://docs.couchdb.org/en/stable/api/index.html
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
