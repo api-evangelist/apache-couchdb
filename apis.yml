@@ -8,9 +8,9 @@ access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Database
-  - NoSQL
   - Document Store
   - JSON
+  - NoSQL
   - REST
 created: '2026-03-16'
 modified: '2026-03-16'
@@ -24,10 +24,10 @@ apis:
       CouchDB exposes a complete RESTful HTTP API for all database operations including document CRUD, database management, replication, design documents, views, Mango queries, and cluster administration.
     humanURL: https://docs.couchdb.org/en/stable/api/index.html
     tags:
-      - REST
-      - HTTP
       - Database
+      - HTTP
       - JSON
+      - REST
     properties:
       - type: Documentation
         url: https://docs.couchdb.org/en/stable/api/index.html
