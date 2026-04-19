@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json",
+  "name": "CreateIndexRequest",
+  "description": "Request to create a Mango index",
+  "type": "object",
+  "properties": {
+    "index": {
+      "type": "object",
+      "description": "Index definition",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "description": "Fields to index"
+        }
+      }
+    },
+    "ddoc": {
+      "type": "string",
+      "description": "Design document name to use for the index",
+      "example": "idx-status-type"
+    },
+    "name": {
+      "type": "string",
+      "description": "Index name",
+      "example": "idx-status-type"
+    },
+    "type": {
+      "type": "string",
+      "description": "Index type",
+      "enum": [
+        "json",
+        "text"
+      ],
+      "default": "json",
+      "example": "json"
+    }
+  }
+}

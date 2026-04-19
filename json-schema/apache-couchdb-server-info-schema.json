@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json",
+  "title": "ServerInfo",
+  "description": "CouchDB server meta information",
+  "type": "object",
+  "properties": {
+    "couchdb": {
+      "type": "string",
+      "description": "Always \"Welcome\"",
+      "example": "Welcome"
+    },
+    "version": {
+      "type": "string",
+      "description": "CouchDB version number",
+      "example": "3.5.1"
+    },
+    "git_sha": {
+      "type": "string",
+      "description": "Git commit SHA of the build",
+      "example": "abc1234"
+    },
+    "uuid": {
+      "type": "string",
+      "description": "Server-wide unique identifier",
+      "example": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+    },
+    "vendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "The Apache Software Foundation"
+        }
+      }
+    }
+  }
+}

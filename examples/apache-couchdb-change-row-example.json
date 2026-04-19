@@ -1,0 +1,15 @@
+{
+  "seq": "5000-abc123",
+  "id": "doc001",
+  "changes": [
+    {
+      "rev": "2-def456"
+    }
+  ],
+  "deleted": false,
+  "doc": {
+    "_id": "doc001",
+    "_rev": "1-abc123def456",
+    "_deleted": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "docs": [
+    {
+      "_id": "doc001",
+      "_rev": "1-abc123def456"
+    }
+  ],
+  "new_edits": true
+}

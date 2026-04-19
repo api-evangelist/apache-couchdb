@@ -1,0 +1,294 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "couchdb": {
+      "@id": "couchdb:couchdb",
+      "@type": "xsd:string"
+    },
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ServerInfo": "couchdb:ServerInfo",
+    "ClusterSetupResponse": "couchdb:ClusterSetupResponse",
+    "ChangeRow": "couchdb:ChangeRow",
+    "Document": "couchdb:Document",
+    "AllDocsResponse": "couchdb:AllDocsResponse",
+    "ErrorResponse": "couchdb:ErrorResponse",
+    "ViewResponse": "couchdb:ViewResponse",
+    "CreateIndexRequest": "couchdb:CreateIndexRequest",
+    "DocumentInput": "couchdb:DocumentInput",
+    "KeysRequest": "couchdb:KeysRequest",
+    "SessionInfo": "couchdb:SessionInfo",
+    "FindResponse": "couchdb:FindResponse",
+    "IndexesResponse": "couchdb:IndexesResponse",
+    "FindRequest": "couchdb:FindRequest",
+    "WriteResponse": "couchdb:WriteResponse",
+    "ChangesResponse": "couchdb:ChangesResponse",
+    "BulkDocsRequest": "couchdb:BulkDocsRequest",
+    "ReplicationResponse": "couchdb:ReplicationResponse",
+    "DocRow": "couchdb:DocRow",
+    "DatabaseInfo": "couchdb:DatabaseInfo",
+    "ReplicationRequest": "couchdb:ReplicationRequest",
+    "OkResponse": "couchdb:OkResponse",
+    "CreateIndexResponse": "couchdb:CreateIndexResponse",
+    "SessionRequest": "couchdb:SessionRequest",
+    "Deleted": {
+      "@id": "couchdb:_deleted",
+      "@type": "xsd:boolean"
+    },
+    "Id": {
+      "@id": "couchdb:_id",
+      "@type": "xsd:string"
+    },
+    "Rev": {
+      "@id": "couchdb:_rev",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "couchdb:active",
+      "@type": "xsd:integer"
+    },
+    "authenticationHandlers": {
+      "@id": "couchdb:authentication_handlers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "bookmark": {
+      "@id": "couchdb:bookmark",
+      "@type": "xsd:string"
+    },
+    "changes": {
+      "@id": "couchdb:changes",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "continuous": {
+      "@id": "couchdb:continuous",
+      "@type": "xsd:boolean"
+    },
+    "createTarget": {
+      "@id": "couchdb:create_target",
+      "@type": "xsd:boolean"
+    },
+    "dbName": {
+      "@id": "couchdb:db_name",
+      "@type": "xsd:string"
+    },
+    "ddoc": {
+      "@id": "couchdb:ddoc",
+      "@type": "xsd:string"
+    },
+    "deleted": {
+      "@id": "couchdb:deleted",
+      "@type": "xsd:boolean"
+    },
+    "doc": {
+      "@id": "couchdb:doc",
+      "@type": "@id"
+    },
+    "docCount": {
+      "@id": "couchdb:doc_count",
+      "@type": "xsd:integer"
+    },
+    "docDelCount": {
+      "@id": "couchdb:doc_del_count",
+      "@type": "xsd:integer"
+    },
+    "docIds": {
+      "@id": "couchdb:doc_ids",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "docs": {
+      "@id": "couchdb:docs",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "error": {
+      "@id": "couchdb:error",
+      "@type": "xsd:string"
+    },
+    "external": {
+      "@id": "couchdb:external",
+      "@type": "xsd:integer"
+    },
+    "fields": {
+      "@id": "couchdb:fields",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "file": {
+      "@id": "couchdb:file",
+      "@type": "xsd:integer"
+    },
+    "filter": {
+      "@id": "couchdb:filter",
+      "@type": "xsd:string"
+    },
+    "gitSha": {
+      "@id": "couchdb:git_sha",
+      "@type": "xsd:string"
+    },
+    "history": {
+      "@id": "couchdb:history",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "id": {
+      "@id": "couchdb:id",
+      "@type": "xsd:string"
+    },
+    "index": {
+      "@id": "couchdb:index",
+      "@type": "@id"
+    },
+    "indexes": {
+      "@id": "couchdb:indexes",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "info": {
+      "@id": "couchdb:info",
+      "@type": "@id"
+    },
+    "key": {
+      "@id": "couchdb:key",
+      "@type": "xsd:string"
+    },
+    "keys": {
+      "@id": "couchdb:keys",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "lastSeq": {
+      "@id": "couchdb:last_seq",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "couchdb:limit",
+      "@type": "xsd:integer"
+    },
+    "name": "schema:name",
+    "newEdits": {
+      "@id": "couchdb:new_edits",
+      "@type": "xsd:boolean"
+    },
+    "offset": {
+      "@id": "couchdb:offset",
+      "@type": "xsd:integer"
+    },
+    "ok": {
+      "@id": "couchdb:ok",
+      "@type": "xsd:boolean"
+    },
+    "password": {
+      "@id": "couchdb:password",
+      "@type": "xsd:string"
+    },
+    "pending": {
+      "@id": "couchdb:pending",
+      "@type": "xsd:integer"
+    },
+    "reason": {
+      "@id": "couchdb:reason",
+      "@type": "xsd:string"
+    },
+    "result": {
+      "@id": "couchdb:result",
+      "@type": "xsd:string"
+    },
+    "results": {
+      "@id": "couchdb:results",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "rev": {
+      "@id": "couchdb:rev",
+      "@type": "xsd:string"
+    },
+    "roles": {
+      "@id": "couchdb:roles",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "rows": {
+      "@id": "couchdb:rows",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "selector": {
+      "@id": "couchdb:selector",
+      "@type": "@id"
+    },
+    "seq": {
+      "@id": "couchdb:seq",
+      "@type": "xsd:string"
+    },
+    "sessionId": {
+      "@id": "couchdb:session_id",
+      "@type": "xsd:string"
+    },
+    "sizes": {
+      "@id": "couchdb:sizes",
+      "@type": "@id"
+    },
+    "skip": {
+      "@id": "couchdb:skip",
+      "@type": "xsd:integer"
+    },
+    "sort": {
+      "@id": "couchdb:sort",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "source": {
+      "@id": "couchdb:source",
+      "@type": "xsd:string"
+    },
+    "sourceLastSeq": {
+      "@id": "couchdb:source_last_seq",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "couchdb:state",
+      "@type": "xsd:string"
+    },
+    "target": {
+      "@id": "couchdb:target",
+      "@type": "xsd:string"
+    },
+    "totalRows": {
+      "@id": "couchdb:total_rows",
+      "@type": "xsd:integer"
+    },
+    "type": {
+      "@id": "couchdb:type",
+      "@type": "xsd:string"
+    },
+    "updateSeq": {
+      "@id": "couchdb:update_seq",
+      "@type": "xsd:string"
+    },
+    "userCtx": {
+      "@id": "couchdb:userCtx",
+      "@type": "@id"
+    },
+    "uuid": {
+      "@id": "couchdb:uuid",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "couchdb:value",
+      "@type": "@id"
+    },
+    "vendor": {
+      "@id": "couchdb:vendor",
+      "@type": "@id"
+    },
+    "version": "schema:version",
+    "warning": {
+      "@id": "couchdb:warning",
+      "@type": "xsd:string"
+    }
+  }
+}

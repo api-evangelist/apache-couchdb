@@ -1,0 +1,18 @@
+{
+  "selector": {
+    "type": "product",
+    "status": "active"
+  },
+  "fields": [
+    "_id",
+    "name"
+  ],
+  "limit": 25,
+  "skip": 0,
+  "sort": [
+    {
+      "name": "asc"
+    }
+  ],
+  "bookmark": "g1AAAABleJzLYWBg"
+}

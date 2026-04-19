@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json",
+  "title": "AllDocsResponse",
+  "description": "Response from _all_docs or bulk get",
+  "type": "object",
+  "properties": {
+    "total_rows": {
+      "type": "integer",
+      "description": "Total number of documents in the database",
+      "example": 1250
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Number of skipped rows",
+      "example": 0
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "title": "DocRow",
+        "type": "object",
+        "description": "A row in an _all_docs response",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Document ID",
+            "example": "doc001"
+          },
+          "key": {
+            "type": "string",
+            "description": "Row key",
+            "example": "doc001"
+          },
+          "value": {
+            "type": "object",
+            "description": "Row value containing revision info",
+            "properties": {
+              "rev": {
+                "type": "string",
+                "example": "1-abc123"
+              }
+            }
+          },
+          "doc": {
+            "$ref": "#/components/schemas/Document"
+          }
+        }
+      }
+    }
+  }
+}

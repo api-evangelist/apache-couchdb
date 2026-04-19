@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json",
+  "title": "DatabaseInfo",
+  "description": "Information about a CouchDB database",
+  "type": "object",
+  "properties": {
+    "db_name": {
+      "type": "string",
+      "description": "Database name",
+      "example": "mydb"
+    },
+    "doc_count": {
+      "type": "integer",
+      "description": "Number of non-deleted documents",
+      "example": 1250
+    },
+    "doc_del_count": {
+      "type": "integer",
+      "description": "Number of deleted documents (tombstones)",
+      "example": 42
+    },
+    "update_seq": {
+      "type": "string",
+      "description": "Current update sequence",
+      "example": "5000-abc123"
+    },
+    "sizes": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "integer",
+          "description": "Disk file size in bytes",
+          "example": 4096000
+        },
+        "external": {
+          "type": "integer",
+          "description": "Uncompressed data size in bytes",
+          "example": 2048000
+        },
+        "active": {
+          "type": "integer",
+          "description": "Active data size in bytes",
+          "example": 3000000
+        }
+      }
+    }
+  }
+}

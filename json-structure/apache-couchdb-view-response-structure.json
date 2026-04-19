@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json",
+  "name": "ViewResponse",
+  "description": "MapReduce view query results",
+  "type": "object",
+  "properties": {
+    "total_rows": {
+      "type": "int32",
+      "description": "Total number of rows in the view",
+      "example": 150
+    },
+    "offset": {
+      "type": "int32",
+      "description": "Number of skipped rows",
+      "example": 0
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "doc001"
+          },
+          "key": {
+            "description": "Emitted key from the map function",
+            "example": "active"
+          },
+          "value": {
+            "description": "Emitted value from the map or reduce function",
+            "example": 1
+          },
+          "doc": {
+            "name": "Document",
+            "type": "object",
+            "description": "A CouchDB document with system fields and user-defined fields",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Document ID",
+                "example": "doc001"
+              },
+              "_rev": {
+                "type": "string",
+                "description": "Current revision ID (major-hash format)",
+                "example": "1-abc123def456"
+              },
+              "_deleted": {
+                "type": "boolean",
+                "description": "Present and true for deleted (tombstone) documents",
+                "example": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json",
+  "name": "DocumentInput",
+  "description": "Input for creating or updating a CouchDB document",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Optional document ID (auto-generated if omitted for POST)",
+      "example": "doc001"
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Required for updates \u2014 current revision ID",
+      "example": "1-abc123def456"
+    }
+  }
+}

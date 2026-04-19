@@ -1,0 +1,16 @@
+{
+  "total_rows": 150,
+  "offset": 0,
+  "rows": [
+    {
+      "id": "doc001",
+      "key": "active",
+      "value": 1,
+      "doc": {
+        "_id": "doc001",
+        "_rev": "1-abc123def456",
+        "_deleted": false
+      }
+    }
+  ]
+}

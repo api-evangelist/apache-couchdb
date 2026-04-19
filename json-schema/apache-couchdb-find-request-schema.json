@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json",
+  "title": "FindRequest",
+  "description": "Mango query request",
+  "type": "object",
+  "properties": {
+    "selector": {
+      "type": "object",
+      "description": "Mango selector (JSON query expression)",
+      "example": {
+        "type": "product",
+        "status": "active"
+      }
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Fields to return in results",
+      "example": [
+        "_id",
+        "name"
+      ]
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Maximum number of results",
+      "default": 25,
+      "example": 25
+    },
+    "skip": {
+      "type": "integer",
+      "description": "Number of results to skip",
+      "default": 0,
+      "example": 0
+    },
+    "sort": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Sort order specification",
+      "example": [
+        {
+          "name": "asc"
+        }
+      ]
+    },
+    "bookmark": {
+      "type": "string",
+      "description": "Bookmark for pagination from previous query",
+      "example": "g1AAAABleJzLYWBg"
+    }
+  },
+  "required": [
+    "selector"
+  ]
+}

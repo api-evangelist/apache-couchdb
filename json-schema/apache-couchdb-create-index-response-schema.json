@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json",
+  "title": "CreateIndexResponse",
+  "description": "Response from creating a Mango index",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "created or exists",
+      "enum": [
+        "created",
+        "exists"
+      ],
+      "example": "created"
+    },
+    "id": {
+      "type": "string",
+      "description": "Design document ID",
+      "example": "_design/idx-status-type"
+    },
+    "name": {
+      "type": "string",
+      "description": "Index name",
+      "example": "idx-status-type"
+    }
+  }
+}

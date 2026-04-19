@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json",
+  "name": "DatabaseInfo",
+  "description": "Information about a CouchDB database",
+  "type": "object",
+  "properties": {
+    "db_name": {
+      "type": "string",
+      "description": "Database name",
+      "example": "mydb"
+    },
+    "doc_count": {
+      "type": "int32",
+      "description": "Number of non-deleted documents",
+      "example": 1250
+    },
+    "doc_del_count": {
+      "type": "int32",
+      "description": "Number of deleted documents (tombstones)",
+      "example": 42
+    },
+    "update_seq": {
+      "type": "string",
+      "description": "Current update sequence",
+      "example": "5000-abc123"
+    },
+    "sizes": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "int32",
+          "description": "Disk file size in bytes",
+          "example": 4096000
+        },
+        "external": {
+          "type": "int32",
+          "description": "Uncompressed data size in bytes",
+          "example": 2048000
+        },
+        "active": {
+          "type": "int32",
+          "description": "Active data size in bytes",
+          "example": 3000000
+        }
+      }
+    }
+  }
+}

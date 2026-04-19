@@ -1,0 +1,11 @@
+{
+  "total_rows": 2,
+  "indexes": [
+    {
+      "ddoc": "_design/idx-status",
+      "name": "idx-status",
+      "type": "json",
+      "def": {}
+    }
+  ]
+}

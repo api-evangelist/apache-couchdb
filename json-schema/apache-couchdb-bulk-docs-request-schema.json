@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json",
+  "title": "BulkDocsRequest",
+  "description": "Request body for _bulk_docs",
+  "type": "object",
+  "properties": {
+    "docs": {
+      "type": "array",
+      "items": {
+        "title": "DocumentInput",
+        "type": "object",
+        "description": "Input for creating or updating a CouchDB document",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Optional document ID (auto-generated if omitted for POST)",
+            "example": "doc001"
+          },
+          "_rev": {
+            "type": "string",
+            "description": "Required for updates \u2014 current revision ID",
+            "example": "1-abc123def456"
+          }
+        }
+      },
+      "description": "Array of documents to create, update, or delete"
+    },
+    "new_edits": {
+      "type": "boolean",
+      "description": "If false, allow insertion of conflicting revisions (for replication)",
+      "default": true,
+      "example": true
+    }
+  }
+}

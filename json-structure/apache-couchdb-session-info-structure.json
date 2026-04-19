@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json",
+  "name": "SessionInfo",
+  "description": "Current session information",
+  "type": "object",
+  "properties": {
+    "ok": {
+      "type": "boolean",
+      "example": true
+    },
+    "userCtx": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "admin"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "_admin"
+          ]
+        }
+      }
+    },
+    "info": {
+      "type": "object",
+      "properties": {
+        "authentication_handlers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "cookie",
+            "default"
+          ]
+        }
+      }
+    }
+  }
+}

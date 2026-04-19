@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json",
+  "name": "ErrorResponse",
+  "description": "Standard CouchDB error response",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error type code",
+      "example": "not_found"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable error description",
+      "example": "Database does not exist."
+    }
+  }
+}

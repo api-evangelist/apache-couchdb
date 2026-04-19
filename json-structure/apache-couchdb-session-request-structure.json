@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json",
+  "name": "SessionRequest",
+  "description": "Authentication credentials for session creation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "CouchDB username",
+      "example": "admin"
+    },
+    "password": {
+      "type": "string",
+      "description": "CouchDB password",
+      "example": "secretpassword"
+    }
+  },
+  "required": [
+    "name",
+    "password"
+  ]
+}

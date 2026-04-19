@@ -1,0 +1,248 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Apache CouchDB Document Management
+  description: Workflow capability for managing CouchDB documents, databases, and queries. Combines document CRUD, Mango queries, changes feed, and replication for developers and data engineers.
+  tags:
+  - Apache
+  - CouchDB
+  - Database
+  - Document Store
+  - Mango
+  - NoSQL
+  - Replication
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    COUCHDB_USER: COUCHDB_USER
+    COUCHDB_PASSWORD: COUCHDB_PASSWORD
+capability:
+  consumes:
+  - import: couchdb
+    location: ./shared/couchdb-http-api.yaml
+  exposes:
+  - type: rest
+    port: 8081
+    namespace: couchdb-document-management-api
+    description: Unified REST API for CouchDB document and database management.
+    resources:
+    - path: /v1/databases
+      name: databases
+      description: Database operations
+      operations:
+      - method: GET
+        name: list-databases
+        description: List all databases
+        call: couchdb.get-all-dbs
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: create-database
+        description: Create a new database
+        call: couchdb.create-database
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}/documents
+      name: documents
+      description: Document operations
+      operations:
+      - method: GET
+        name: list-documents
+        description: List documents in a database
+        call: couchdb.get-all-docs
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: query-documents
+        description: Query documents with Mango
+        call: couchdb.find-documents
+        with:
+          db: rest.db
+          selector: rest.selector
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}/changes
+      name: changes
+      description: Changes feed
+      operations:
+      - method: GET
+        name: get-changes
+        description: Get changes feed
+        call: couchdb.get-changes
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/replication
+      name: replication
+      description: Replication
+      operations:
+      - method: POST
+        name: replicate
+        description: Start replication
+        call: couchdb.replicate
+        with:
+          source: rest.source
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: couchdb-document-management-mcp
+    transport: http
+    description: MCP server for AI-assisted CouchDB document database management.
+    tools:
+    - name: list-databases
+      description: List all databases in CouchDB
+      hints:
+        readOnly: true
+        openWorld: true
+      call: couchdb.get-all-dbs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-database
+      description: Create a new CouchDB database
+      hints:
+        readOnly: false
+      call: couchdb.create-database
+      with:
+        db: tools.db
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-database
+      description: Get info about a database
+      hints:
+        readOnly: true
+      call: couchdb.get-database-info
+      with:
+        db: tools.db
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-documents
+      description: List documents in a database
+      hints:
+        readOnly: true
+      call: couchdb.get-all-docs
+      with:
+        db: tools.db
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-document
+      description: Get a document by ID
+      hints:
+        readOnly: true
+      call: couchdb.get-document
+      with:
+        db: tools.db
+        docid: tools.docid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: save-document
+      description: Create or update a document
+      hints:
+        readOnly: false
+        idempotent: true
+      call: couchdb.create-or-update-document
+      with:
+        db: tools.db
+        docid: tools.docid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-document
+      description: Delete a document
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: couchdb.delete-document
+      with:
+        db: tools.db
+        docid: tools.docid
+        rev: tools.rev
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-documents
+      description: Query documents with a Mango selector
+      hints:
+        readOnly: true
+      call: couchdb.find-documents
+      with:
+        db: tools.db
+        selector: tools.selector
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-index
+      description: Create a query index for faster Mango queries
+      hints:
+        readOnly: false
+        idempotent: true
+      call: couchdb.create-index
+      with:
+        db: tools.db
+        index: tools.index
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-changes
+      description: Get the changes feed to track database updates
+      hints:
+        readOnly: true
+      call: couchdb.get-changes
+      with:
+        db: tools.db
+        since: tools.since
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replicate
+      description: Replicate data between CouchDB instances
+      hints:
+        readOnly: false
+        openWorld: true
+      call: couchdb.replicate
+      with:
+        source: tools.source
+        target: tools.target
+        continuous: tools.continuous
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-server-info
+      description: Get CouchDB server version and status
+      hints:
+        readOnly: true
+        openWorld: true
+      call: couchdb.get-server-info
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-session
+      description: Get current authentication session info
+      hints:
+        readOnly: true
+      call: couchdb.get-session
+      outputParameters:
+      - type: object
+        mapping: $.

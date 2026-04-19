@@ -1,0 +1,609 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Apache CouchDB HTTP API
+  description: Complete RESTful HTTP API for Apache CouchDB covering document CRUD, Mango queries, replication, and cluster management.
+  tags:
+  - Apache
+  - CouchDB
+  - Database
+  - Document Store
+  - NoSQL
+  - Replication
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    COUCHDB_USER: COUCHDB_USER
+    COUCHDB_PASSWORD: COUCHDB_PASSWORD
+capability:
+  consumes:
+  - type: http
+    namespace: couchdb
+    baseUri: http://localhost:5984
+    description: Apache CouchDB REST API
+    authentication:
+      type: basic
+      username: '{{COUCHDB_USER}}'
+      password: '{{COUCHDB_PASSWORD}}'
+    resources:
+    - name: server
+      path: /
+      description: Server information and utilities
+      operations:
+      - name: get-server-info
+        method: GET
+        description: Get server info and version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-all-dbs
+        method: GET
+        description: List all databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database
+      path: /{db}
+      description: Database management
+      operations:
+      - name: get-database-info
+        method: GET
+        description: Get database info
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-database
+        method: PUT
+        description: Create a database
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-database
+        method: DELETE
+        description: Delete a database
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-all-docs
+        method: GET
+        description: List all documents
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: include_docs
+          in: query
+          type: boolean
+          required: false
+          description: Include document bodies
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Max results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: documents
+      path: /{db}/{docid}
+      description: Document CRUD operations
+      operations:
+      - name: get-document
+        method: GET
+        description: Retrieve a document by ID
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: docid
+          in: path
+          type: string
+          required: true
+          description: Document ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-or-update-document
+        method: PUT
+        description: Create or update a document
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: docid
+          in: path
+          type: string
+          required: true
+          description: Document ID
+        body:
+          type: json
+          data:
+            _rev: '{{tools.rev}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-document
+        method: DELETE
+        description: Delete a document
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: docid
+          in: path
+          type: string
+          required: true
+          description: Document ID
+        - name: rev
+          in: query
+          type: string
+          required: true
+          description: Current revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mango
+      path: /{db}/_find
+      description: Mango declarative query API
+      operations:
+      - name: find-documents
+        method: POST
+        description: Query documents with Mango selector
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        body:
+          type: json
+          data:
+            selector: '{{tools.selector}}'
+            limit: '{{tools.limit}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-index
+        method: POST
+        description: Create a Mango index
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        body:
+          type: json
+          data:
+            index: '{{tools.index}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: replication
+      path: /_replicate
+      description: Replication management
+      operations:
+      - name: replicate
+        method: POST
+        description: Start a replication task
+        body:
+          type: json
+          data:
+            source: '{{tools.source}}'
+            target: '{{tools.target}}'
+            continuous: '{{tools.continuous}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: changes
+      path: /{db}/_changes
+      description: Database changes feed
+      operations:
+      - name: get-changes
+        method: GET
+        description: Get database changes feed
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: since
+          in: query
+          type: string
+          required: false
+          description: Start sequence
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Max changes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: authentication
+      path: /_session
+      description: Session authentication
+      operations:
+      - name: get-session
+        method: GET
+        description: Get current session info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-session
+        method: POST
+        description: Authenticate and create session
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            password: '{{tools.password}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: couchdb-api
+    description: Unified REST API for Apache CouchDB document and database management.
+    resources:
+    - path: /v1/server
+      name: server
+      description: Server info
+      operations:
+      - method: GET
+        name: get-server-info
+        description: Get server information
+        call: couchdb.get-server-info
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases
+      name: databases
+      description: List all databases
+      operations:
+      - method: GET
+        name: get-all-dbs
+        description: List all databases
+        call: couchdb.get-all-dbs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}
+      name: database
+      description: Database operations
+      operations:
+      - method: GET
+        name: get-database-info
+        description: Get database info
+        call: couchdb.get-database-info
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: create-database
+        description: Create database
+        call: couchdb.create-database
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-database
+        description: Delete database
+        call: couchdb.delete-database
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}/documents
+      name: documents
+      description: List documents
+      operations:
+      - method: GET
+        name: get-all-docs
+        description: List all documents
+        call: couchdb.get-all-docs
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}/documents/{docid}
+      name: document
+      description: Document CRUD
+      operations:
+      - method: GET
+        name: get-document
+        description: Get document
+        call: couchdb.get-document
+        with:
+          db: rest.db
+          docid: rest.docid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: create-or-update-document
+        description: Create or update document
+        call: couchdb.create-or-update-document
+        with:
+          db: rest.db
+          docid: rest.docid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-document
+        description: Delete document
+        call: couchdb.delete-document
+        with:
+          db: rest.db
+          docid: rest.docid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}/query
+      name: query
+      description: Mango query
+      operations:
+      - method: POST
+        name: find-documents
+        description: Find documents with Mango query
+        call: couchdb.find-documents
+        with:
+          db: rest.db
+          selector: rest.selector
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/databases/{db}/changes
+      name: changes
+      description: Changes feed
+      operations:
+      - method: GET
+        name: get-changes
+        description: Get database changes
+        call: couchdb.get-changes
+        with:
+          db: rest.db
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/replication
+      name: replication
+      description: Replication
+      operations:
+      - method: POST
+        name: replicate
+        description: Start replication
+        call: couchdb.replicate
+        with:
+          source: rest.source
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: couchdb-mcp
+    transport: http
+    description: MCP server for AI-assisted CouchDB document database management.
+    tools:
+    - name: get-server-info
+      description: Get CouchDB server information and version
+      hints:
+        readOnly: true
+        openWorld: true
+      call: couchdb.get-server-info
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-databases
+      description: List all databases in the CouchDB instance
+      hints:
+        readOnly: true
+        openWorld: true
+      call: couchdb.get-all-dbs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-database
+      description: Get info about a specific database
+      hints:
+        readOnly: true
+        openWorld: false
+      call: couchdb.get-database-info
+      with:
+        db: tools.db
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-database
+      description: Create a new CouchDB database
+      hints:
+        readOnly: false
+        openWorld: false
+      call: couchdb.create-database
+      with:
+        db: tools.db
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-database
+      description: Delete a CouchDB database and all its documents
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: couchdb.delete-database
+      with:
+        db: tools.db
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-documents
+      description: List all documents in a database
+      hints:
+        readOnly: true
+        openWorld: false
+      call: couchdb.get-all-docs
+      with:
+        db: tools.db
+        include_docs: tools.include_docs
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-document
+      description: Retrieve a document by ID from a database
+      hints:
+        readOnly: true
+        openWorld: false
+      call: couchdb.get-document
+      with:
+        db: tools.db
+        docid: tools.docid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-or-update-document
+      description: Create or update a document in a database
+      hints:
+        readOnly: false
+        idempotent: true
+      call: couchdb.create-or-update-document
+      with:
+        db: tools.db
+        docid: tools.docid
+        rev: tools.rev
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-document
+      description: Delete a document from a database by ID and revision
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: couchdb.delete-document
+      with:
+        db: tools.db
+        docid: tools.docid
+        rev: tools.rev
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-documents
+      description: Find documents using a Mango (JSON) selector query
+      hints:
+        readOnly: true
+        openWorld: false
+      call: couchdb.find-documents
+      with:
+        db: tools.db
+        selector: tools.selector
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-index
+      description: Create a Mango index to optimize query performance
+      hints:
+        readOnly: false
+        idempotent: true
+      call: couchdb.create-index
+      with:
+        db: tools.db
+        index: tools.index
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-changes
+      description: Retrieve the changes feed for a database
+      hints:
+        readOnly: true
+        openWorld: false
+      call: couchdb.get-changes
+      with:
+        db: tools.db
+        since: tools.since
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replicate
+      description: Start a replication task between source and target databases
+      hints:
+        readOnly: false
+        openWorld: true
+      call: couchdb.replicate
+      with:
+        source: tools.source
+        target: tools.target
+        continuous: tools.continuous
+      outputParameters:
+      - type: object
+        mapping: $.

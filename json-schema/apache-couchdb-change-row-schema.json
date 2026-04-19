@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json",
+  "title": "ChangeRow",
+  "description": "A single change record in the changes feed",
+  "type": "object",
+  "properties": {
+    "seq": {
+      "type": "string",
+      "description": "Update sequence number",
+      "example": "5000-abc123"
+    },
+    "id": {
+      "type": "string",
+      "description": "Document ID that was changed",
+      "example": "doc001"
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rev": {
+            "type": "string",
+            "example": "2-def456"
+          }
+        }
+      }
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "True if this change is a deletion",
+      "example": false
+    },
+    "doc": {
+      "title": "Document",
+      "type": "object",
+      "description": "A CouchDB document with system fields and user-defined fields",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Document ID",
+          "example": "doc001"
+        },
+        "_rev": {
+          "type": "string",
+          "description": "Current revision ID (major-hash format)",
+          "example": "1-abc123def456"
+        },
+        "_deleted": {
+          "type": "boolean",
+          "description": "Present and true for deleted (tombstone) documents",
+          "example": false
+        }
+      }
+    }
+  }
+}

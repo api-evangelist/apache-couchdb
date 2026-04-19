@@ -1,0 +1,10 @@
+{
+  "source": "http://localhost:5984/sourcedb",
+  "target": "http://remotehost:5984/targetdb",
+  "continuous": false,
+  "create_target": true,
+  "filter": "myapp/by_type",
+  "doc_ids": [
+    "example-doc_ids"
+  ]
+}

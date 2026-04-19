@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json",
+  "name": "ReplicationResponse",
+  "description": "Result of a replication request",
+  "type": "object",
+  "properties": {
+    "ok": {
+      "type": "boolean",
+      "example": true
+    },
+    "session_id": {
+      "type": "string",
+      "example": "abc123def456"
+    },
+    "source_last_seq": {
+      "type": "string",
+      "example": "5000-abc123"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string"
+          },
+          "docs_written": {
+            "type": "int32"
+          },
+          "doc_write_failures": {
+            "type": "int32"
+          }
+        }
+      }
+    }
+  }
+}

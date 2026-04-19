@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json",
+  "name": "WriteResponse",
+  "description": "Response from a document write operation",
+  "type": "object",
+  "properties": {
+    "ok": {
+      "type": "boolean",
+      "example": true
+    },
+    "id": {
+      "type": "string",
+      "description": "Document ID",
+      "example": "doc001"
+    },
+    "rev": {
+      "type": "string",
+      "description": "New revision ID",
+      "example": "1-abc123def456"
+    }
+  }
+}

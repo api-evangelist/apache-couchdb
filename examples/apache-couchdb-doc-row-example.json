@@ -1,0 +1,12 @@
+{
+  "id": "doc001",
+  "key": "doc001",
+  "value": {
+    "rev": "1-abc123"
+  },
+  "doc": {
+    "_id": "doc001",
+    "_rev": "1-abc123def456",
+    "_deleted": false
+  }
+}

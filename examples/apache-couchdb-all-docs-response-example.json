@@ -1,0 +1,14 @@
+{
+  "total_rows": 1250,
+  "offset": 0,
+  "rows": [
+    {
+      "id": "doc001",
+      "key": "doc001",
+      "value": {
+        "rev": "1-abc123"
+      },
+      "doc": "example-doc"
+    }
+  ]
+}

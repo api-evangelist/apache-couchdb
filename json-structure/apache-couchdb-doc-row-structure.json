@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json",
+  "name": "DocRow",
+  "description": "A row in an _all_docs response",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Document ID",
+      "example": "doc001"
+    },
+    "key": {
+      "type": "string",
+      "description": "Row key",
+      "example": "doc001"
+    },
+    "value": {
+      "type": "object",
+      "description": "Row value containing revision info",
+      "properties": {
+        "rev": {
+          "type": "string",
+          "example": "1-abc123"
+        }
+      }
+    },
+    "doc": {
+      "name": "Document",
+      "type": "object",
+      "description": "A CouchDB document with system fields and user-defined fields",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Document ID",
+          "example": "doc001"
+        },
+        "_rev": {
+          "type": "string",
+          "description": "Current revision ID (major-hash format)",
+          "example": "1-abc123def456"
+        },
+        "_deleted": {
+          "type": "boolean",
+          "description": "Present and true for deleted (tombstone) documents",
+          "example": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,278 @@
+vocabulary: 1.0.0
+info:
+  provider: Apache CouchDB
+  description: Vocabulary and taxonomy for Apache CouchDB, the open-source distributed document-oriented NoSQL database with a RESTful HTTP API.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - namespace: couchdb-http-api
+    version: 3.5.1
+    baseUrl: http://localhost:5984
+    status: active
+    description: Full RESTful HTTP API for all CouchDB operations
+  resources:
+  - name: server
+    description: Server-level info and utilities
+    actions:
+    - get-info
+    - list-all-dbs
+    apis:
+    - couchdb-http-api
+  - name: database
+    description: Database management
+    actions:
+    - create
+    - get
+    - delete
+    - list-docs
+    apis:
+    - couchdb-http-api
+  - name: document
+    description: JSON document CRUD
+    actions:
+    - get
+    - create
+    - update
+    - delete
+    - bulk-create
+    - bulk-get
+    apis:
+    - couchdb-http-api
+  - name: mango-query
+    description: Declarative JSON query (Mango)
+    actions:
+    - find
+    - create-index
+    - list-indexes
+    - delete-index
+    apis:
+    - couchdb-http-api
+  - name: view
+    description: MapReduce views in design documents
+    actions:
+    - query
+    - create
+    - update
+    apis:
+    - couchdb-http-api
+  - name: changes
+    description: Database changes feed
+    actions:
+    - get-normal
+    - get-longpoll
+    - get-continuous
+    apis:
+    - couchdb-http-api
+  - name: replication
+    description: Data replication tasks
+    actions:
+    - start
+    - monitor
+    - cancel
+    apis:
+    - couchdb-http-api
+  - name: session
+    description: Authentication session
+    actions:
+    - get
+    - create
+    - delete
+    apis:
+    - couchdb-http-api
+  - name: cluster
+    description: Cluster membership and setup
+    actions:
+    - get-setup
+    - configure
+    apis:
+    - couchdb-http-api
+  actions:
+  - name: get
+    description: Retrieve a single resource by ID
+    http_method: GET
+    pattern: read
+  - name: list
+    description: List multiple resources
+    http_method: GET
+    pattern: read
+  - name: create
+    description: Create a new resource
+    http_method: PUT/POST
+    pattern: write
+  - name: update
+    description: Update an existing resource
+    http_method: PUT
+    pattern: write
+  - name: delete
+    description: Delete a resource
+    http_method: DELETE
+    pattern: destructive
+  - name: find
+    description: Query with a Mango selector
+    http_method: POST
+    pattern: read
+  - name: replicate
+    description: Copy data between databases
+    http_method: POST
+    pattern: write
+  - name: bulk-docs
+    description: Create/update/delete multiple documents
+    http_method: POST
+    pattern: write
+  schemas:
+    core:
+    - Document
+    - DatabaseInfo
+    - ServerInfo
+    - WriteResponse
+    - ErrorResponse
+    querying:
+    - FindRequest
+    - FindResponse
+    - CreateIndexRequest
+    - IndexesResponse
+    changes:
+    - ChangesResponse
+    - ChangeRow
+    replication:
+    - ReplicationRequest
+    - ReplicationResponse
+    auth:
+    - SessionInfo
+    - SessionRequest
+    - OkResponse
+    views:
+    - ViewResponse
+    - AllDocsResponse
+    - DocRow
+  parameters:
+    pagination:
+    - limit
+    - skip
+    - bookmark
+    identifiers:
+    - db
+    - docid
+    - ddoc
+    - view
+    filtering:
+    - startkey
+    - endkey
+    - key
+    - filter
+    - selector
+    changes:
+    - feed
+    - since
+    - include_docs
+    document:
+    - rev
+    - attachments
+    - new_edits
+  enums:
+    feed_types:
+    - normal
+    - longpoll
+    - continuous
+    - eventsource
+    cluster_states:
+    - cluster_disabled
+    - single_node_disabled
+    - single_node_enabled
+    - cluster_enabled
+    - cluster_finished
+  authentication:
+    schemes:
+    - HTTP Basic
+    - Cookie (AuthSession)
+    - Proxy Auth
+    notes: CouchDB supports HTTP Basic auth and cookie-based session auth via POST /_session
+capability:
+  workflows:
+  - name: CouchDB Document Management
+    file: capabilities/couchdb-document-management.yaml
+    description: Full document lifecycle management with Mango queries, changes feed, and replication
+    apis:
+    - couchdb-http-api
+    tool_count: 13
+    personas:
+    - Developer
+    - Data Engineer
+  personas:
+  - id: developer
+    name: Developer
+    description: Builds applications using CouchDB as the document store via the HTTP API or SDK
+  - id: data-engineer
+    name: Data Engineer
+    description: Manages data pipelines, replication, and changes feed integrations with CouchDB
+  - id: dba
+    name: Database Administrator
+    description: Manages CouchDB cluster configuration, authentication, and performance
+  domains:
+  - name: Document Storage
+    description: Storing and retrieving JSON documents with MVCC
+  - name: Querying
+    description: Mango selectors, MapReduce views, and full-text search
+  - name: Synchronization
+    description: Replication and offline-first data sync via the Couch Replication Protocol
+  - name: Event Streaming
+    description: Database changes feed for event-driven architectures
+  namespaces:
+  - name: couchdb
+    type: consumed
+    baseUri: http://localhost:5984
+  - name: couchdb-document-management-api
+    type: rest
+    port: 8081
+  - name: couchdb-document-management-mcp
+    type: mcp
+    port: 9091
+  binds:
+  - COUCHDB_USER
+  - COUCHDB_PASSWORD
+crossReference:
+- resource: document
+  operations:
+  - get
+  - create
+  - update
+  - delete
+  - bulk-docs
+  workflows:
+  - CouchDB Document Management
+  personas:
+  - developer
+  - data-engineer
+- resource: mango-query
+  operations:
+  - find
+  - create-index
+  workflows:
+  - CouchDB Document Management
+  personas:
+  - developer
+- resource: replication
+  operations:
+  - replicate
+  workflows:
+  - CouchDB Document Management
+  personas:
+  - data-engineer
+  - dba
+- resource: changes
+  operations:
+  - get-normal
+  - get-continuous
+  workflows:
+  - CouchDB Document Management
+  personas:
+  - developer
+  - data-engineer
+- resource: cluster
+  operations:
+  - get-setup
+  - configure
+  workflows: []
+  personas:
+  - dba

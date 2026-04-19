@@ -1,0 +1,17 @@
+{
+  "last_seq": "5000-abc123",
+  "pending": 0,
+  "results": [
+    {
+      "seq": "5000-abc123",
+      "id": "doc001",
+      "changes": [
+        {
+          "rev": {}
+        }
+      ],
+      "deleted": false,
+      "doc": "example-doc"
+    }
+  ]
+}

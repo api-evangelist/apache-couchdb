@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json",
+  "title": "ChangesResponse",
+  "description": "Database changes feed response",
+  "type": "object",
+  "properties": {
+    "last_seq": {
+      "type": "string",
+      "description": "Last sequence number in this response",
+      "example": "5000-abc123"
+    },
+    "pending": {
+      "type": "integer",
+      "description": "Number of changes still pending",
+      "example": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "title": "ChangeRow",
+        "type": "object",
+        "description": "A single change record in the changes feed",
+        "properties": {
+          "seq": {
+            "type": "string",
+            "description": "Update sequence number",
+            "example": "5000-abc123"
+          },
+          "id": {
+            "type": "string",
+            "description": "Document ID that was changed",
+            "example": "doc001"
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "rev": {
+                  "type": "string",
+                  "example": "2-def456"
+                }
+              }
+            }
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "True if this change is a deletion",
+            "example": false
+          },
+          "doc": {
+            "$ref": "#/components/schemas/Document"
+          }
+        }
+      }
+    }
+  }
+}

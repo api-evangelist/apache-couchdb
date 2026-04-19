@@ -1,0 +1,1556 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP API
+  description: >-
+    Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management,
+    database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds,
+    authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+  - url: http://localhost:5984
+    description: Local CouchDB instance (default port)
+  - url: https://{host}:6984
+    description: Remote CouchDB instance (HTTPS)
+    variables:
+      host:
+        default: couchdb.example.com
+        description: CouchDB server hostname
+tags:
+  - name: Server
+    description: Server-level information and utilities
+  - name: Database
+    description: Database management operations
+  - name: Documents
+    description: Document CRUD and bulk operations
+  - name: Design Documents
+    description: Design documents, views, and indexes
+  - name: Mango
+    description: Mango declarative JSON query API
+  - name: Replication
+    description: Replication management
+  - name: Changes
+    description: Database changes feed
+  - name: Authentication
+    description: Session and authentication management
+  - name: Cluster
+    description: Cluster membership and configuration
+paths:
+  /:
+    get:
+      operationId: getServerInfo
+      summary: Apache CouchDB Get Server Information
+      description: Returns meta information about the CouchDB server instance including version, features, and vendor info.
+      tags:
+        - Server
+      responses:
+        '200':
+          description: Server information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerInfo'
+              examples:
+                GetServerInfo200Example:
+                  summary: Default getServerInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    couchdb: Welcome
+                    version: "3.5.1"
+                    git_sha: abc1234
+                    uuid: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6
+                    vendor:
+                      name: The Apache Software Foundation
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /_all_dbs:
+    get:
+      operationId: getAllDbs
+      summary: Apache CouchDB Get All Databases
+      description: Returns a list of all databases in the CouchDB instance.
+      tags:
+        - Server
+      parameters:
+        - name: descending
+          in: query
+          description: Return databases in descending order.
+          schema:
+            type: boolean
+            default: false
+          example: false
+        - name: limit
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+          example: 25
+        - name: skip
+          in: query
+          description: Number of results to skip before returning.
+          schema:
+            type: integer
+            default: 0
+          example: 0
+      responses:
+        '200':
+          description: List of database names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                GetAllDbs200Example:
+                  summary: Default getAllDbs 200 response
+                  x-microcks-default: true
+                  value:
+                    - _replicator
+                    - _users
+                    - mydb
+                    - products
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /_session:
+    get:
+      operationId: getSession
+      summary: Apache CouchDB Get Session Information
+      description: Returns information about the current user's authentication session.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Session information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+              examples:
+                GetSession200Example:
+                  summary: Default getSession 200 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    userCtx:
+                      name: admin
+                      roles:
+                        - _admin
+                    info:
+                      authentication_handlers:
+                        - cookie
+                        - default
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSession
+      summary: Apache CouchDB Create Authentication Session
+      description: Creates a new authentication session cookie. Equivalent to HTTP Basic Auth login.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionRequest'
+            examples:
+              CreateSessionRequestExample:
+                summary: Default createSession request
+                x-microcks-default: true
+                value:
+                  name: admin
+                  password: secretpassword
+      responses:
+        '200':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+              examples:
+                CreateSession200Example:
+                  summary: Default createSession 200 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    name: admin
+                    roles:
+                      - _admin
+        '401':
+          description: Unauthorized — invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSession
+      summary: Apache CouchDB Delete Authentication Session
+      description: Ends the current authentication session (logout).
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Session deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}:
+    get:
+      operationId: getDatabaseInfo
+      summary: Apache CouchDB Get Database Information
+      description: Returns information about the named database including document count, disk size, and update sequence.
+      tags:
+        - Database
+      parameters:
+        - $ref: '#/components/parameters/db'
+      responses:
+        '200':
+          description: Database information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseInfo'
+              examples:
+                GetDatabaseInfo200Example:
+                  summary: Default getDatabaseInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    db_name: mydb
+                    doc_count: 1250
+                    doc_del_count: 42
+                    update_seq: "5000-abc123"
+                    sizes:
+                      file: 4096000
+                      external: 2048000
+                      active: 3000000
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createDatabase
+      summary: Apache CouchDB Create Database
+      description: Creates a new database with the given name.
+      tags:
+        - Database
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - name: q
+          in: query
+          description: Number of shards for this database.
+          schema:
+            type: integer
+            default: 8
+          example: 8
+        - name: n
+          in: query
+          description: Number of replicas for each shard.
+          schema:
+            type: integer
+            default: 3
+          example: 3
+      responses:
+        '201':
+          description: Database created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: Invalid database name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '412':
+          description: Database already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDatabase
+      summary: Apache CouchDB Delete Database
+      description: Deletes the specified database and all documents within it.
+      tags:
+        - Database
+      parameters:
+        - $ref: '#/components/parameters/db'
+      responses:
+        '200':
+          description: Database deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/_all_docs:
+    get:
+      operationId: getAllDocs
+      summary: Apache CouchDB Get All Documents
+      description: Returns a built-in view of all documents in the database, supporting key ranges, pagination, and inline document bodies.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - name: include_docs
+          in: query
+          description: Include the document body for each row.
+          schema:
+            type: boolean
+            default: false
+          example: true
+        - name: limit
+          in: query
+          description: Maximum number of rows to return.
+          schema:
+            type: integer
+          example: 25
+        - name: skip
+          in: query
+          description: Number of rows to skip.
+          schema:
+            type: integer
+            default: 0
+          example: 0
+        - name: startkey
+          in: query
+          description: Start key for filtering rows.
+          schema:
+            type: string
+          example: '"doc001"'
+        - name: endkey
+          in: query
+          description: End key for filtering rows.
+          schema:
+            type: string
+          example: '"doc999"'
+        - name: descending
+          in: query
+          description: Return rows in reverse order.
+          schema:
+            type: boolean
+            default: false
+          example: false
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllDocsResponse'
+              examples:
+                GetAllDocs200Example:
+                  summary: Default getAllDocs 200 response
+                  x-microcks-default: true
+                  value:
+                    total_rows: 1250
+                    offset: 0
+                    rows:
+                      - id: doc001
+                        key: doc001
+                        value:
+                          rev: "1-abc123"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: bulkGetDocs
+      summary: Apache CouchDB Bulk Get Documents
+      description: Fetches multiple documents by their IDs in a single request.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - name: include_docs
+          in: query
+          description: Include full document body.
+          schema:
+            type: boolean
+            default: true
+          example: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeysRequest'
+            examples:
+              BulkGetDocsRequestExample:
+                summary: Default bulkGetDocs request
+                x-microcks-default: true
+                value:
+                  keys:
+                    - doc001
+                    - doc002
+                    - doc003
+      responses:
+        '200':
+          description: Bulk document results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllDocsResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/{docid}:
+    get:
+      operationId: getDocument
+      summary: Apache CouchDB Get Document
+      description: Retrieves a document by its ID from the specified database.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - $ref: '#/components/parameters/docid'
+        - name: rev
+          in: query
+          description: Specific revision ID to retrieve.
+          schema:
+            type: string
+          example: "1-abc123def456"
+        - name: attachments
+          in: query
+          description: Include attachment data inline (Base64 encoded).
+          schema:
+            type: boolean
+            default: false
+          example: false
+      responses:
+        '200':
+          description: Document retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+              examples:
+                GetDocument200Example:
+                  summary: Default getDocument 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: doc001
+                    _rev: "1-abc123def456"
+                    name: Example Document
+                    type: product
+                    status: active
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createOrUpdateDocument
+      summary: Apache CouchDB Create or Update Document
+      description: Creates a new document or updates an existing one. For updates, the document must include the current _rev value.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - $ref: '#/components/parameters/docid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentInput'
+            examples:
+              CreateOrUpdateDocumentRequestExample:
+                summary: Default createOrUpdateDocument request
+                x-microcks-default: true
+                value:
+                  name: Example Document
+                  type: product
+                  status: active
+      responses:
+        '201':
+          description: Document created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteResponse'
+              examples:
+                CreateOrUpdateDocument201Example:
+                  summary: Default createOrUpdateDocument 201 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    id: doc001
+                    rev: "1-abc123def456"
+        '409':
+          description: Conflict — revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDocument
+      summary: Apache CouchDB Delete Document
+      description: Marks a document as deleted by creating a tombstone revision. Requires the current revision via the rev query parameter.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - $ref: '#/components/parameters/docid'
+        - name: rev
+          in: query
+          required: true
+          description: Current revision of the document.
+          schema:
+            type: string
+          example: "1-abc123def456"
+      responses:
+        '200':
+          description: Document deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteResponse'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict — revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/_bulk_docs:
+    post:
+      operationId: bulkDocs
+      summary: Apache CouchDB Bulk Document Operations
+      description: Creates, updates, or deletes multiple documents in a single request.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkDocsRequest'
+            examples:
+              BulkDocsRequestExample:
+                summary: Default bulkDocs request
+                x-microcks-default: true
+                value:
+                  docs:
+                    - _id: doc001
+                      name: First Document
+                      type: product
+                    - _id: doc002
+                      name: Second Document
+                      type: product
+      responses:
+        '201':
+          description: Bulk operation results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WriteResponse'
+              examples:
+                BulkDocs201Example:
+                  summary: Default bulkDocs 201 response
+                  x-microcks-default: true
+                  value:
+                    - ok: true
+                      id: doc001
+                      rev: "1-abc123"
+                    - ok: true
+                      id: doc002
+                      rev: "1-def456"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/_find:
+    post:
+      operationId: findDocuments
+      summary: Apache CouchDB Find Documents (Mango Query)
+      description: Executes a Mango (declarative JSON) query against the database to find documents matching specified criteria.
+      tags:
+        - Mango
+      parameters:
+        - $ref: '#/components/parameters/db'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindRequest'
+            examples:
+              FindDocumentsRequestExample:
+                summary: Default findDocuments request
+                x-microcks-default: true
+                value:
+                  selector:
+                    type: product
+                    status: active
+                  fields:
+                    - _id
+                    - name
+                    - status
+                  limit: 25
+                  sort:
+                    - name: asc
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindResponse'
+              examples:
+                FindDocuments200Example:
+                  summary: Default findDocuments 200 response
+                  x-microcks-default: true
+                  value:
+                    docs:
+                      - _id: doc001
+                        name: Example Product
+                        status: active
+                    bookmark: g1AAAABleJzLYWBg
+                    warning: null
+        '400':
+          description: Invalid query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/_index:
+    get:
+      operationId: getIndexes
+      summary: Apache CouchDB Get Mango Indexes
+      description: Returns a list of all indexes defined for the database.
+      tags:
+        - Mango
+      parameters:
+        - $ref: '#/components/parameters/db'
+      responses:
+        '200':
+          description: List of indexes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexesResponse'
+              examples:
+                GetIndexes200Example:
+                  summary: Default getIndexes 200 response
+                  x-microcks-default: true
+                  value:
+                    total_rows: 2
+                    indexes:
+                      - ddoc: _design/idx-status
+                        name: idx-status
+                        type: json
+                        def:
+                          fields:
+                            - status: asc
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createIndex
+      summary: Apache CouchDB Create Mango Index
+      description: Creates a new Mango index on the specified fields to optimize query performance.
+      tags:
+        - Mango
+      parameters:
+        - $ref: '#/components/parameters/db'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIndexRequest'
+            examples:
+              CreateIndexRequestExample:
+                summary: Default createIndex request
+                x-microcks-default: true
+                value:
+                  index:
+                    fields:
+                      - status
+                      - type
+                  name: idx-status-type
+                  type: json
+      responses:
+        '200':
+          description: Index created or exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIndexResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/_changes:
+    get:
+      operationId: getChanges
+      summary: Apache CouchDB Get Database Changes
+      description: Returns a sorted list of changes made to documents in the database, including design documents. The changes feed supports long-polling, continuous, and event-source modes.
+      tags:
+        - Changes
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - name: feed
+          in: query
+          description: Type of changes feed to use.
+          schema:
+            type: string
+            enum:
+              - normal
+              - longpoll
+              - continuous
+              - eventsource
+            default: normal
+          example: normal
+        - name: since
+          in: query
+          description: Start sequence number or 'now' for only new changes.
+          schema:
+            type: string
+          example: "0"
+        - name: limit
+          in: query
+          description: Maximum number of changes to return.
+          schema:
+            type: integer
+          example: 25
+        - name: include_docs
+          in: query
+          description: Include the document body for each change row.
+          schema:
+            type: boolean
+            default: false
+          example: false
+        - name: filter
+          in: query
+          description: Filter function name (e.g., _doc_ids, _design).
+          schema:
+            type: string
+          example: _doc_ids
+      responses:
+        '200':
+          description: Changes feed results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangesResponse'
+              examples:
+                GetChanges200Example:
+                  summary: Default getChanges 200 response
+                  x-microcks-default: true
+                  value:
+                    last_seq: "5000-abc123"
+                    pending: 0
+                    results:
+                      - seq: "5000-abc123"
+                        id: doc001
+                        changes:
+                          - rev: "2-def456"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /_replicate:
+    post:
+      operationId: replicate
+      summary: Apache CouchDB Replicate Database
+      description: Initiates a replication task between a source and target database. Can be transient (one-time) or persistent (via _replicator database).
+      tags:
+        - Replication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplicationRequest'
+            examples:
+              ReplicateRequestExample:
+                summary: Default replicate request
+                x-microcks-default: true
+                value:
+                  source: http://localhost:5984/sourcedb
+                  target: http://remotehost:5984/targetdb
+                  continuous: false
+                  create_target: true
+      responses:
+        '200':
+          description: Replication completed or started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationResponse'
+              examples:
+                Replicate200Example:
+                  summary: Default replicate 200 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    session_id: abc123def456
+                    source_last_seq: "5000-abc123"
+                    replication_id_version: 4
+                    history:
+                      - session_id: abc123def456
+                        docs_written: 1250
+                        doc_write_failures: 0
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /{db}/_design/{ddoc}/_view/{view}:
+    get:
+      operationId: getView
+      summary: Apache CouchDB Get View Results
+      description: Executes a MapReduce view defined in a design document and returns the results.
+      tags:
+        - Design Documents
+      parameters:
+        - $ref: '#/components/parameters/db'
+        - name: ddoc
+          in: path
+          required: true
+          description: Design document name (without _design/ prefix).
+          schema:
+            type: string
+          example: products
+        - name: view
+          in: path
+          required: true
+          description: View name within the design document.
+          schema:
+            type: string
+          example: by_status
+        - name: include_docs
+          in: query
+          description: Include the full document body for each row.
+          schema:
+            type: boolean
+            default: false
+          example: false
+        - name: limit
+          in: query
+          description: Maximum number of rows to return.
+          schema:
+            type: integer
+          example: 25
+        - name: key
+          in: query
+          description: Return only rows matching the specified key.
+          schema:
+            type: string
+          example: '"active"'
+        - name: reduce
+          in: query
+          description: Execute the reduce function.
+          schema:
+            type: boolean
+          example: false
+      responses:
+        '200':
+          description: View results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewResponse'
+              examples:
+                GetView200Example:
+                  summary: Default getView 200 response
+                  x-microcks-default: true
+                  value:
+                    total_rows: 150
+                    offset: 0
+                    rows:
+                      - id: doc001
+                        key: active
+                        value: 1
+        '404':
+          description: Design document or view not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /_cluster_setup:
+    get:
+      operationId: getClusterSetup
+      summary: Apache CouchDB Get Cluster Setup Status
+      description: Returns the current status of the cluster setup process.
+      tags:
+        - Cluster
+      responses:
+        '200':
+          description: Cluster setup state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterSetupResponse'
+              examples:
+                GetClusterSetup200Example:
+                  summary: Default getClusterSetup 200 response
+                  x-microcks-default: true
+                  value:
+                    state: cluster_enabled
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session
+
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
+    docid:
+      name: docid
+      in: path
+      required: true
+      description: Document ID.
+      schema:
+        type: string
+      example: doc001
+
+  schemas:
+    ServerInfo:
+      title: ServerInfo
+      type: object
+      description: CouchDB server meta information
+      properties:
+        couchdb:
+          type: string
+          description: Always "Welcome"
+          example: Welcome
+        version:
+          type: string
+          description: CouchDB version number
+          example: "3.5.1"
+        git_sha:
+          type: string
+          description: Git commit SHA of the build
+          example: abc1234
+        uuid:
+          type: string
+          description: Server-wide unique identifier
+          example: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6
+        vendor:
+          type: object
+          properties:
+            name:
+              type: string
+              example: The Apache Software Foundation
+
+    DatabaseInfo:
+      title: DatabaseInfo
+      type: object
+      description: Information about a CouchDB database
+      properties:
+        db_name:
+          type: string
+          description: Database name
+          example: mydb
+        doc_count:
+          type: integer
+          description: Number of non-deleted documents
+          example: 1250
+        doc_del_count:
+          type: integer
+          description: Number of deleted documents (tombstones)
+          example: 42
+        update_seq:
+          type: string
+          description: Current update sequence
+          example: "5000-abc123"
+        sizes:
+          type: object
+          properties:
+            file:
+              type: integer
+              description: Disk file size in bytes
+              example: 4096000
+            external:
+              type: integer
+              description: Uncompressed data size in bytes
+              example: 2048000
+            active:
+              type: integer
+              description: Active data size in bytes
+              example: 3000000
+
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: "1-abc123def456"
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+
+    DocumentInput:
+      title: DocumentInput
+      type: object
+      description: Input for creating or updating a CouchDB document
+      properties:
+        _id:
+          type: string
+          description: Optional document ID (auto-generated if omitted for POST)
+          example: doc001
+        _rev:
+          type: string
+          description: Required for updates — current revision ID
+          example: "1-abc123def456"
+
+    AllDocsResponse:
+      title: AllDocsResponse
+      type: object
+      description: Response from _all_docs or bulk get
+      properties:
+        total_rows:
+          type: integer
+          description: Total number of documents in the database
+          example: 1250
+        offset:
+          type: integer
+          description: Number of skipped rows
+          example: 0
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocRow'
+
+    DocRow:
+      title: DocRow
+      type: object
+      description: A row in an _all_docs response
+      properties:
+        id:
+          type: string
+          description: Document ID
+          example: doc001
+        key:
+          type: string
+          description: Row key
+          example: doc001
+        value:
+          type: object
+          description: Row value containing revision info
+          properties:
+            rev:
+              type: string
+              example: "1-abc123"
+        doc:
+          $ref: '#/components/schemas/Document'
+
+    BulkDocsRequest:
+      title: BulkDocsRequest
+      type: object
+      description: Request body for _bulk_docs
+      properties:
+        docs:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentInput'
+          description: Array of documents to create, update, or delete
+        new_edits:
+          type: boolean
+          description: If false, allow insertion of conflicting revisions (for replication)
+          default: true
+          example: true
+
+    KeysRequest:
+      title: KeysRequest
+      type: object
+      description: Request body for POST _all_docs with specific keys
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          description: Array of document IDs to retrieve
+          example:
+            - doc001
+            - doc002
+
+    FindRequest:
+      title: FindRequest
+      type: object
+      description: Mango query request
+      properties:
+        selector:
+          type: object
+          description: Mango selector (JSON query expression)
+          example:
+            type: product
+            status: active
+        fields:
+          type: array
+          items:
+            type: string
+          description: Fields to return in results
+          example:
+            - _id
+            - name
+        limit:
+          type: integer
+          description: Maximum number of results
+          default: 25
+          example: 25
+        skip:
+          type: integer
+          description: Number of results to skip
+          default: 0
+          example: 0
+        sort:
+          type: array
+          items:
+            type: object
+          description: Sort order specification
+          example:
+            - name: asc
+        bookmark:
+          type: string
+          description: Bookmark for pagination from previous query
+          example: g1AAAABleJzLYWBg
+      required:
+        - selector
+
+    FindResponse:
+      title: FindResponse
+      type: object
+      description: Mango query results
+      properties:
+        docs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: Array of matching documents
+        bookmark:
+          type: string
+          description: Bookmark for retrieving the next set of results
+          example: g1AAAABleJzLYWBg
+        warning:
+          type: string
+          description: Warning if query is not optimally indexed
+          example: No matching index found, create an index to optimize query time.
+
+    CreateIndexRequest:
+      title: CreateIndexRequest
+      type: object
+      description: Request to create a Mango index
+      properties:
+        index:
+          type: object
+          description: Index definition
+          properties:
+            fields:
+              type: array
+              items:
+                oneOf:
+                  - type: string
+                  - type: object
+              description: Fields to index
+        ddoc:
+          type: string
+          description: Design document name to use for the index
+          example: idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+        type:
+          type: string
+          description: Index type
+          enum:
+            - json
+            - text
+          default: json
+          example: json
+
+    CreateIndexResponse:
+      title: CreateIndexResponse
+      type: object
+      description: Response from creating a Mango index
+      properties:
+        result:
+          type: string
+          description: created or exists
+          enum:
+            - created
+            - exists
+          example: created
+        id:
+          type: string
+          description: Design document ID
+          example: _design/idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+
+    IndexesResponse:
+      title: IndexesResponse
+      type: object
+      description: List of Mango indexes for a database
+      properties:
+        total_rows:
+          type: integer
+          description: Number of indexes
+          example: 2
+        indexes:
+          type: array
+          items:
+            type: object
+            properties:
+              ddoc:
+                type: string
+                example: _design/idx-status
+              name:
+                type: string
+                example: idx-status
+              type:
+                type: string
+                example: json
+              def:
+                type: object
+
+    ChangesResponse:
+      title: ChangesResponse
+      type: object
+      description: Database changes feed response
+      properties:
+        last_seq:
+          type: string
+          description: Last sequence number in this response
+          example: "5000-abc123"
+        pending:
+          type: integer
+          description: Number of changes still pending
+          example: 0
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeRow'
+
+    ChangeRow:
+      title: ChangeRow
+      type: object
+      description: A single change record in the changes feed
+      properties:
+        seq:
+          type: string
+          description: Update sequence number
+          example: "5000-abc123"
+        id:
+          type: string
+          description: Document ID that was changed
+          example: doc001
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              rev:
+                type: string
+                example: "2-def456"
+        deleted:
+          type: boolean
+          description: True if this change is a deletion
+          example: false
+        doc:
+          $ref: '#/components/schemas/Document'
+
+    ViewResponse:
+      title: ViewResponse
+      type: object
+      description: MapReduce view query results
+      properties:
+        total_rows:
+          type: integer
+          description: Total number of rows in the view
+          example: 150
+        offset:
+          type: integer
+          description: Number of skipped rows
+          example: 0
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: doc001
+              key:
+                description: Emitted key from the map function
+                example: active
+              value:
+                description: Emitted value from the map or reduce function
+                example: 1
+              doc:
+                $ref: '#/components/schemas/Document'
+
+    ReplicationRequest:
+      title: ReplicationRequest
+      type: object
+      description: Replication task parameters
+      properties:
+        source:
+          type: string
+          description: Source database URL or name
+          example: http://localhost:5984/sourcedb
+        target:
+          type: string
+          description: Target database URL or name
+          example: http://remotehost:5984/targetdb
+        continuous:
+          type: boolean
+          description: Keep the replication running continuously
+          default: false
+          example: false
+        create_target:
+          type: boolean
+          description: Create the target database if it does not exist
+          default: false
+          example: true
+        filter:
+          type: string
+          description: Filter function name to limit replicated documents
+          example: myapp/by_type
+        doc_ids:
+          type: array
+          items:
+            type: string
+          description: List of document IDs to replicate
+      required:
+        - source
+        - target
+
+    ReplicationResponse:
+      title: ReplicationResponse
+      type: object
+      description: Result of a replication request
+      properties:
+        ok:
+          type: boolean
+          example: true
+        session_id:
+          type: string
+          example: abc123def456
+        source_last_seq:
+          type: string
+          example: "5000-abc123"
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              session_id:
+                type: string
+              docs_written:
+                type: integer
+              doc_write_failures:
+                type: integer
+
+    SessionInfo:
+      title: SessionInfo
+      type: object
+      description: Current session information
+      properties:
+        ok:
+          type: boolean
+          example: true
+        userCtx:
+          type: object
+          properties:
+            name:
+              type: string
+              example: admin
+            roles:
+              type: array
+              items:
+                type: string
+              example:
+                - _admin
+        info:
+          type: object
+          properties:
+            authentication_handlers:
+              type: array
+              items:
+                type: string
+              example:
+                - cookie
+                - default
+
+    SessionRequest:
+      title: SessionRequest
+      type: object
+      description: Authentication credentials for session creation
+      properties:
+        name:
+          type: string
+          description: CouchDB username
+          example: admin
+        password:
+          type: string
+          description: CouchDB password
+          example: secretpassword
+      required:
+        - name
+        - password
+
+    OkResponse:
+      title: OkResponse
+      type: object
+      description: Simple success acknowledgement
+      properties:
+        ok:
+          type: boolean
+          example: true
+        name:
+          type: string
+          description: Username (for session responses)
+          example: admin
+        roles:
+          type: array
+          items:
+            type: string
+          example:
+            - _admin
+
+    WriteResponse:
+      title: WriteResponse
+      type: object
+      description: Response from a document write operation
+      properties:
+        ok:
+          type: boolean
+          example: true
+        id:
+          type: string
+          description: Document ID
+          example: doc001
+        rev:
+          type: string
+          description: New revision ID
+          example: "1-abc123def456"
+
+    ClusterSetupResponse:
+      title: ClusterSetupResponse
+      type: object
+      description: Cluster setup status
+      properties:
+        state:
+          type: string
+          description: Cluster setup state
+          enum:
+            - cluster_disabled
+            - single_node_disabled
+            - single_node_enabled
+            - cluster_enabled
+            - cluster_finished
+          example: cluster_enabled
+
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+
+security:
+  - basicAuth: []
+  - cookieAuth: []

@@ -1,0 +1,10 @@
+{
+  "index": {
+    "fields": [
+      "example-fields"
+    ]
+  },
+  "ddoc": "idx-status-type",
+  "name": "idx-status-type",
+  "type": "json"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json",
+  "name": "ClusterSetupResponse",
+  "description": "Cluster setup status",
+  "type": "object",
+  "properties": {
+    "state": {
+      "type": "string",
+      "description": "Cluster setup state",
+      "enum": [
+        "cluster_disabled",
+        "single_node_disabled",
+        "single_node_enabled",
+        "cluster_enabled",
+        "cluster_finished"
+      ],
+      "example": "cluster_enabled"
+    }
+  }
+}

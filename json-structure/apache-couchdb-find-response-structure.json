@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json",
+  "name": "FindResponse",
+  "description": "Mango query results",
+  "type": "object",
+  "properties": {
+    "docs": {
+      "type": "array",
+      "items": {
+        "name": "Document",
+        "type": "object",
+        "description": "A CouchDB document with system fields and user-defined fields",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Document ID",
+            "example": "doc001"
+          },
+          "_rev": {
+            "type": "string",
+            "description": "Current revision ID (major-hash format)",
+            "example": "1-abc123def456"
+          },
+          "_deleted": {
+            "type": "boolean",
+            "description": "Present and true for deleted (tombstone) documents",
+            "example": false
+          }
+        }
+      },
+      "description": "Array of matching documents"
+    },
+    "bookmark": {
+      "type": "string",
+      "description": "Bookmark for retrieving the next set of results",
+      "example": "g1AAAABleJzLYWBg"
+    },
+    "warning": {
+      "type": "string",
+      "description": "Warning if query is not optimally indexed",
+      "example": "No matching index found, create an index to optimize query time."
+    }
+  }
+}

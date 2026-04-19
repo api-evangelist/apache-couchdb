@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "session_id": "abc123def456",
+  "source_last_seq": "5000-abc123",
+  "history": [
+    {
+      "session_id": "example-session_id",
+      "docs_written": 464,
+      "doc_write_failures": 804
+    }
+  ]
+}
