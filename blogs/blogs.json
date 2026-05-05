@@ -1,0 +1,13 @@
+{
+  "repo": "apache-couchdb",
+  "feeds": [
+    {
+      "source": "https://blog.couchdb.org/",
+      "feed_url": "https://blog.couchdb.org/feed/",
+      "saved": 5,
+      "title": "CouchDB Blog"
+    }
+  ],
+  "post_count": 5,
+  "fetched": "2026-05-03T23:22:05Z"
+}
