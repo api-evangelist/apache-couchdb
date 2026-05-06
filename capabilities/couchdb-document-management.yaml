@@ -1,7 +1,8 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
   label: Apache CouchDB Document Management
-  description: Workflow capability for managing CouchDB documents, databases, and queries. Combines document CRUD, Mango queries, changes feed, and replication for developers and data engineers.
+  description: Workflow capability for managing CouchDB documents, databases, and queries. Combines document CRUD, Mango queries,
+    changes feed, and replication for developers and data engineers.
   tags:
   - Apache
   - CouchDB
@@ -11,7 +12,7 @@ info:
   - NoSQL
   - Replication
   created: '2026-04-19'
-  modified: '2026-04-19'
+  modified: '2026-05-06'
 binds:
 - namespace: env
   keys:
@@ -19,8 +20,287 @@ binds:
     COUCHDB_PASSWORD: COUCHDB_PASSWORD
 capability:
   consumes:
-  - import: couchdb
-    location: ./shared/couchdb-http-api.yaml
+  - type: http
+    namespace: couchdb
+    baseUri: http://localhost:5984
+    description: Apache CouchDB REST API
+    authentication:
+      type: basic
+      username: '{{COUCHDB_USER}}'
+      password: '{{COUCHDB_PASSWORD}}'
+    resources:
+    - name: server
+      path: /
+      description: Server information and utilities
+      operations:
+      - name: get-server-info
+        method: GET
+        description: Get server info and version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-all-dbs
+        method: GET
+        description: List all databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database
+      path: /{db}
+      description: Database management
+      operations:
+      - name: get-database-info
+        method: GET
+        description: Get database info
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-database
+        method: PUT
+        description: Create a database
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-database
+        method: DELETE
+        description: Delete a database
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-all-docs
+        method: GET
+        description: List all documents
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: include_docs
+          in: query
+          type: boolean
+          required: false
+          description: Include document bodies
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Max results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: documents
+      path: /{db}/{docid}
+      description: Document CRUD operations
+      operations:
+      - name: get-document
+        method: GET
+        description: Retrieve a document by ID
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: docid
+          in: path
+          type: string
+          required: true
+          description: Document ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-or-update-document
+        method: PUT
+        description: Create or update a document
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: docid
+          in: path
+          type: string
+          required: true
+          description: Document ID
+        body:
+          type: json
+          data:
+            _rev: '{{tools.rev}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-document
+        method: DELETE
+        description: Delete a document
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: docid
+          in: path
+          type: string
+          required: true
+          description: Document ID
+        - name: rev
+          in: query
+          type: string
+          required: true
+          description: Current revision
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mango
+      path: /{db}/_find
+      description: Mango declarative query API
+      operations:
+      - name: find-documents
+        method: POST
+        description: Query documents with Mango selector
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        body:
+          type: json
+          data:
+            selector: '{{tools.selector}}'
+            limit: '{{tools.limit}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-index
+        method: POST
+        description: Create a Mango index
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        body:
+          type: json
+          data:
+            index: '{{tools.index}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: replication
+      path: /_replicate
+      description: Replication management
+      operations:
+      - name: replicate
+        method: POST
+        description: Start a replication task
+        body:
+          type: json
+          data:
+            source: '{{tools.source}}'
+            target: '{{tools.target}}'
+            continuous: '{{tools.continuous}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: changes
+      path: /{db}/_changes
+      description: Database changes feed
+      operations:
+      - name: get-changes
+        method: GET
+        description: Get database changes feed
+        inputParameters:
+        - name: db
+          in: path
+          type: string
+          required: true
+          description: Database name
+        - name: since
+          in: query
+          type: string
+          required: false
+          description: Start sequence
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Max changes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: authentication
+      path: /_session
+      description: Session authentication
+      operations:
+      - name: get-session
+        method: GET
+        description: Get current session info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-session
+        method: POST
+        description: Authenticate and create session
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            password: '{{tools.password}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
   - type: rest
     port: 8081
