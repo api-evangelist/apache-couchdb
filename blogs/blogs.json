@@ -4,10 +4,10 @@
     {
       "source": "https://blog.couchdb.org/",
       "feed_url": "https://blog.couchdb.org/feed/",
-      "saved": 5,
-      "title": "CouchDB Blog"
+      "title": "CouchDB Blog",
+      "saved": 1
     }
   ],
-  "post_count": 5,
-  "fetched": "2026-05-03T23:22:05Z"
+  "post_count": 6,
+  "fetched": "2026-05-09T20:17:51Z"
 }
