@@ -245,6 +245,8 @@ maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/apache-couchdb
 - type: Portal
   url: https://couchdb.apache.org/
 - type: Documentation
