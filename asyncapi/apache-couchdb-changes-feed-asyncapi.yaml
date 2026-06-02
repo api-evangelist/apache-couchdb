@@ -1,0 +1,571 @@
+asyncapi: 2.6.0
+info:
+  title: Apache CouchDB _changes Feed
+  version: 1.0.0
+  description: |
+    AsyncAPI 2.6 description of the Apache CouchDB database `_changes` feed.
+
+    CouchDB exposes a per-database, append-only stream of document mutations at
+    `GET /{db}/_changes` (and `POST /{db}/_changes` for `_doc_ids` / `_selector`
+    filters with large payloads). The endpoint supports four `feed` modes:
+
+      - `normal`       — one-shot JSON response of past changes.
+      - `longpoll`     — request blocks until at least one change is available,
+                         then returns a single JSON envelope identical to `normal`.
+      - `continuous`   — long-lived HTTP response; one JSON change row per line.
+      - `eventsource`  — long-lived HTTP response in Server-Sent Events format.
+
+    All four modes emit the same logical "change row" payload (`seq`, `id`,
+    `changes`, optional `deleted`, optional `doc`). The `normal` and `longpoll`
+    modes additionally wrap rows in a `{results, last_seq, pending}` envelope.
+
+    Modeled directly from the official CouchDB documentation; nothing here is
+    invented beyond what the docs describe.
+  contact:
+    name: Apache CouchDB
+    url: https://docs.couchdb.org/en/stable/api/database/changes.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  externalDocs:
+    description: CouchDB _changes feed reference
+    url: https://docs.couchdb.org/en/stable/api/database/changes.html
+  tags:
+    - name: changes
+    - name: feed
+    - name: sse
+    - name: longpoll
+    - name: continuous
+
+defaultContentType: application/json
+
+servers:
+  production:
+    url: '{scheme}://{host}:{port}'
+    protocol: https
+    description: A CouchDB node. Host, port, and scheme depend on deployment.
+    variables:
+      scheme:
+        enum:
+          - http
+          - https
+        default: https
+      host:
+        default: localhost
+        description: CouchDB host or load balancer.
+      port:
+        default: '5984'
+        description: CouchDB HTTP port (default 5984; 6984 for HTTPS).
+    security:
+      - basic: []
+      - cookie: []
+      - proxy: []
+
+channels:
+  '{db}/_changes#feed=normal':
+    description: |
+      One-shot mode. The server collects all past changes since `since` (or `0`)
+      and returns them in a single JSON envelope. Connection closes after the
+      response body is fully written.
+    parameters:
+      db:
+        $ref: '#/components/parameters/db'
+    bindings:
+      http:
+        type: request
+        method: GET
+        query:
+          type: object
+          properties:
+            feed:
+              type: string
+              const: normal
+            since:
+              $ref: '#/components/schemas/SequenceId'
+            limit:
+              type: integer
+              minimum: 0
+            include_docs:
+              type: boolean
+              default: false
+            attachments:
+              type: boolean
+              default: false
+            att_encoding_info:
+              type: boolean
+              default: false
+            conflicts:
+              type: boolean
+              default: false
+            descending:
+              type: boolean
+              default: false
+            filter:
+              type: string
+              description: 'Reference to a filter: `ddoc/filter`, `_doc_ids`, `_selector`, `_design`, or `_view`.'
+            doc_ids:
+              type: array
+              items:
+                type: string
+              description: Used with `filter=_doc_ids`. As JSON array (GET) or request body (POST).
+            style:
+              type: string
+              enum:
+                - main_only
+                - all_docs
+              default: main_only
+            view:
+              type: string
+              description: Required when `filter=_view`. Refers to a design document map function.
+            seq_interval:
+              type: integer
+              minimum: 1
+              description: Only emit `seq` on every Nth row to reduce payload size.
+    subscribe:
+      operationId: receiveChangesNormal
+      summary: Receive all past changes in one JSON envelope.
+      message:
+        $ref: '#/components/messages/ChangesEnvelope'
+
+  '{db}/_changes#feed=longpoll':
+    description: |
+      Long-poll mode. Request blocks until at least one change has occurred (or
+      `timeout` is reached). The response shape is identical to `normal`: a
+      single `{results, last_seq, pending}` envelope. The connection closes
+      after the response is sent. Clients reissue requests with the returned
+      `last_seq` to continue.
+    parameters:
+      db:
+        $ref: '#/components/parameters/db'
+    bindings:
+      http:
+        type: request
+        method: GET
+        query:
+          type: object
+          properties:
+            feed:
+              type: string
+              const: longpoll
+            since:
+              $ref: '#/components/schemas/SequenceId'
+            limit:
+              type: integer
+              minimum: 0
+            heartbeat:
+              type: integer
+              minimum: 0
+              description: Milliseconds between empty heartbeat lines while waiting for a change.
+            timeout:
+              type: integer
+              minimum: 0
+              description: Maximum milliseconds the server will wait for a change before responding empty.
+            include_docs:
+              type: boolean
+              default: false
+            attachments:
+              type: boolean
+              default: false
+            att_encoding_info:
+              type: boolean
+              default: false
+            conflicts:
+              type: boolean
+              default: false
+            descending:
+              type: boolean
+              default: false
+            filter:
+              type: string
+            doc_ids:
+              type: array
+              items:
+                type: string
+            style:
+              type: string
+              enum:
+                - main_only
+                - all_docs
+              default: main_only
+            view:
+              type: string
+            seq_interval:
+              type: integer
+              minimum: 1
+    subscribe:
+      operationId: receiveChangesLongpoll
+      summary: Block until one or more changes are available, then receive the envelope.
+      message:
+        $ref: '#/components/messages/ChangesEnvelope'
+
+  '{db}/_changes#feed=continuous':
+    description: |
+      Continuous mode. The HTTP response stays open. Each change is emitted as
+      a single line of JSON (newline-delimited JSON, NDJSON). Heartbeats are
+      sent as empty lines on the `heartbeat` interval. After the configured
+      `timeout`, the server emits a `last_seq` line and closes.
+    parameters:
+      db:
+        $ref: '#/components/parameters/db'
+    bindings:
+      http:
+        type: request
+        method: GET
+        query:
+          type: object
+          properties:
+            feed:
+              type: string
+              const: continuous
+            since:
+              $ref: '#/components/schemas/SequenceId'
+            limit:
+              type: integer
+              minimum: 0
+            heartbeat:
+              type: integer
+              minimum: 0
+              description: Milliseconds between empty heartbeat lines on the open connection.
+            timeout:
+              type: integer
+              minimum: 0
+              description: Maximum milliseconds the server will hold the connection waiting for a change.
+            include_docs:
+              type: boolean
+              default: false
+            attachments:
+              type: boolean
+              default: false
+            att_encoding_info:
+              type: boolean
+              default: false
+            conflicts:
+              type: boolean
+              default: false
+            descending:
+              type: boolean
+              default: false
+            filter:
+              type: string
+            doc_ids:
+              type: array
+              items:
+                type: string
+            style:
+              type: string
+              enum:
+                - main_only
+                - all_docs
+              default: main_only
+            view:
+              type: string
+            seq_interval:
+              type: integer
+              minimum: 1
+    subscribe:
+      operationId: receiveChangesContinuous
+      summary: Stream NDJSON change rows on a long-lived HTTP response.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ChangeRowLine'
+          - $ref: '#/components/messages/LastSeqLine'
+          - $ref: '#/components/messages/HeartbeatLine'
+
+  '{db}/_changes#feed=eventsource':
+    description: |
+      EventSource mode. Same semantics as `continuous` but framed as Server-Sent
+      Events (`text/event-stream`). Each change is delivered as an `event: ` /
+      `data: ` block, with `id:` set to the row's `seq`. Heartbeats are emitted
+      as SSE comment lines. The endpoint honors the `Last-Event-ID` header for
+      reconnects.
+    parameters:
+      db:
+        $ref: '#/components/parameters/db'
+    bindings:
+      http:
+        type: request
+        method: GET
+        headers:
+          type: object
+          properties:
+            Accept:
+              type: string
+              const: text/event-stream
+            Last-Event-ID:
+              type: string
+              description: Resume from this update sequence on reconnect.
+        query:
+          type: object
+          properties:
+            feed:
+              type: string
+              const: eventsource
+            since:
+              $ref: '#/components/schemas/SequenceId'
+            limit:
+              type: integer
+              minimum: 0
+            heartbeat:
+              type: integer
+              minimum: 0
+            timeout:
+              type: integer
+              minimum: 0
+            include_docs:
+              type: boolean
+              default: false
+            attachments:
+              type: boolean
+              default: false
+            att_encoding_info:
+              type: boolean
+              default: false
+            conflicts:
+              type: boolean
+              default: false
+            descending:
+              type: boolean
+              default: false
+            filter:
+              type: string
+            doc_ids:
+              type: array
+              items:
+                type: string
+            style:
+              type: string
+              enum:
+                - main_only
+                - all_docs
+              default: main_only
+            view:
+              type: string
+            seq_interval:
+              type: integer
+              minimum: 1
+    subscribe:
+      operationId: receiveChangesEventSource
+      summary: Stream SSE-framed change events on a long-lived HTTP response.
+      bindings:
+        http:
+          type: response
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: text/event-stream
+              Cache-Control:
+                type: string
+                const: no-cache
+      message:
+        $ref: '#/components/messages/ChangeRowSSE'
+
+components:
+  parameters:
+    db:
+      description: Target database name.
+      schema:
+        type: string
+
+  securitySchemes:
+    basic:
+      type: userPassword
+      description: HTTP Basic authentication against CouchDB's `_users` database.
+    cookie:
+      type: httpApiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session obtained via POST /_session.
+    proxy:
+      type: apiKey
+      in: header
+      description: Proxy authentication using X-Auth-CouchDB-* headers when configured.
+
+  schemas:
+    SequenceId:
+      description: |
+        Update sequence identifier. CouchDB sequences are opaque strings (e.g.
+        `"5000-g1AAAA..."`); the value `0` is accepted as a starting sentinel
+        and the literal string `"now"` requests only future changes.
+      oneOf:
+        - type: string
+        - type: integer
+      example: '5000-abc123'
+
+    Revision:
+      type: object
+      description: A single leaf revision identifier.
+      required:
+        - rev
+      properties:
+        rev:
+          type: string
+          description: Document revision token in `<n>-<hash>` format.
+          example: 2-def456
+
+    Document:
+      type: object
+      description: |
+        Full document body, present only when `include_docs=true`. Contains the
+        document's own fields plus CouchDB-managed `_id`, `_rev`, and optional
+        `_deleted`, `_attachments`, `_conflicts`, etc.
+      additionalProperties: true
+      properties:
+        _id:
+          type: string
+        _rev:
+          type: string
+        _deleted:
+          type: boolean
+
+    ChangeRow:
+      type: object
+      description: A single row in the changes feed.
+      required:
+        - seq
+        - id
+        - changes
+      properties:
+        seq:
+          $ref: '#/components/schemas/SequenceId'
+        id:
+          type: string
+          description: Document ID that was changed.
+          example: doc001
+        changes:
+          type: array
+          description: List of leaf revisions affected by this update.
+          items:
+            $ref: '#/components/schemas/Revision'
+        deleted:
+          type: boolean
+          description: True when the change represents a document deletion.
+          default: false
+        doc:
+          $ref: '#/components/schemas/Document'
+
+    ChangesEnvelope:
+      type: object
+      description: Envelope returned by `normal` and `longpoll` feeds.
+      required:
+        - results
+        - last_seq
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeRow'
+        last_seq:
+          $ref: '#/components/schemas/SequenceId'
+        pending:
+          type: integer
+          description: Count of remaining items in the feed (not always populated for clustered databases).
+          minimum: 0
+
+    LastSeqLine:
+      type: object
+      description: Terminal NDJSON line emitted by `continuous` mode when the connection closes.
+      required:
+        - last_seq
+      properties:
+        last_seq:
+          $ref: '#/components/schemas/SequenceId'
+        pending:
+          type: integer
+          minimum: 0
+
+    Heartbeat:
+      type: string
+      description: |
+        Heartbeat frame. In `continuous` mode this is an empty line; in
+        `eventsource` mode it is an SSE comment line (e.g. `: heartbeat`).
+      example: ''
+
+  messages:
+    ChangesEnvelope:
+      name: ChangesEnvelope
+      title: Changes Feed Envelope
+      summary: Wrapped JSON response for `normal` and `longpoll` feeds.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ChangesEnvelope'
+      examples:
+        - name: oneChange
+          summary: One change row with include_docs.
+          payload:
+            last_seq: '5000-abc123'
+            pending: 0
+            results:
+              - seq: '5000-abc123'
+                id: doc001
+                changes:
+                  - rev: 2-def456
+                deleted: false
+                doc:
+                  _id: doc001
+                  _rev: 2-def456
+
+    ChangeRowLine:
+      name: ChangeRowLine
+      title: Continuous Change Row
+      summary: A single NDJSON line emitted by `feed=continuous`.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ChangeRow'
+      examples:
+        - name: liveChange
+          payload:
+            seq: '5000-abc123'
+            id: doc001
+            changes:
+              - rev: 2-def456
+            deleted: false
+
+    LastSeqLine:
+      name: LastSeqLine
+      title: Continuous Last Seq Line
+      summary: Final NDJSON line emitted when the continuous feed closes.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/LastSeqLine'
+      examples:
+        - name: close
+          payload:
+            last_seq: '5000-abc123'
+            pending: 0
+
+    HeartbeatLine:
+      name: HeartbeatLine
+      title: Heartbeat
+      summary: Empty line (continuous) or SSE comment line (eventsource) keeping the connection alive.
+      contentType: text/plain
+      payload:
+        $ref: '#/components/schemas/Heartbeat'
+
+    ChangeRowSSE:
+      name: ChangeRowSSE
+      title: EventSource Change Event
+      summary: A change row delivered as an SSE event frame.
+      contentType: text/event-stream
+      headers:
+        type: object
+        properties:
+          event:
+            type: string
+            const: change
+            description: SSE event name. CouchDB emits `change` for change rows.
+          id:
+            type: string
+            description: SSE event id; carries the row's update `seq` for `Last-Event-ID` resume.
+      payload:
+        $ref: '#/components/schemas/ChangeRow'
+      examples:
+        - name: sseChange
+          summary: SSE frame body (JSON of the change row).
+          payload:
+            seq: '5000-abc123'
+            id: doc001
+            changes:
+              - rev: 2-def456
+            deleted: false
