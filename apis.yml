@@ -48,13 +48,13 @@ apis:
       url: https://docs.couchdb.org/en/stable/api/
     - type: GitHubRepository
       url: https://github.com/apache/couchdb
-    - type: SDK
+    - type: SDKs
       url: https://www.npmjs.com/package/nano
       title: Node.js SDK (Nano)
-    - type: SDK
+    - type: SDKs
       url: https://pypi.org/project/couchdb/
       title: Python SDK
-    - type: SDK
+    - type: SDKs
       url: https://pypi.org/project/aiocouch/
       title: Python Async SDK (aiocouch)
     - type: Tools
@@ -66,7 +66,7 @@ apis:
     - type: Tools
       url: https://github.com/apache/couchdb-helm
       title: Helm Chart
-    - type: SDK
+    - type: SDKs
       url: https://github.com/apache/pouchdb
       title: PouchDB (Browser/Mobile Sync)
     - type: OpenAPI
@@ -196,53 +196,53 @@ apis:
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
     - type: JSONLD
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
-    - type: Example
+    - type: Examples
       url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
 maintainers:
   - FN: Kin Lane
@@ -314,7 +314,7 @@ common:
       description: CouchDB clusters are typically fronted by Nginx or HAProxy for SSL termination and load balancing.
   - type: SpectralRules
     url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/rules/apache-couchdb-spectral-rules.yml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/capabilities/couchdb-document-management.yaml
     title: CouchDB Document Management
   - type: Vocabulary
