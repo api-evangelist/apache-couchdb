@@ -248,6 +248,12 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 common:
+  - type: VulnerabilityDisclosure
+    url: security/apache-couchdb-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/apache-couchdb-domain-security.yml
+  - type: Authentication
+    url: authentication/apache-couchdb-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/apache-couchdb
   - type: Portal

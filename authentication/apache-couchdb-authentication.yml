@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/apache-couchdb-http-api-openapi.yaml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - cookie
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using CouchDB admin credentials
+  sources:
+  - openapi/apache-couchdb-http-api-openapi.yaml
+- name: cookieAuth
+  type: apiKey
+  in: cookie
+  parameter: AuthSession
+  description: Cookie-based session authentication obtained via POST /_session
+  sources:
+  - openapi/apache-couchdb-http-api-openapi.yaml
