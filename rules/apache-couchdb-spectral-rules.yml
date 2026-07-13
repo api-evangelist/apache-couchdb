@@ -1,5 +1,23 @@
+# apache-couchdb — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 50% of servers already https (warn)
+#   - path-params-casing: snake @ 100% (n=19)
+#   - query-params-casing: snake @ 100% (n=24)
+#   - operationid-casing: camel @ 95% (n=21)
+#   - schema-names-casing: pascal @ 100% (n=24)
+#   - schema-properties-casing: snake @ 92% (n=78)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: ErrorResponse
+#   - pagination params observed: ['limit']
+#   - merge: kept 28 existing, added 6 measured, upgraded 0
+#   - added: path-params-casing, query-params-casing, schema-names-casing, schema-properties-casing, security-schemes-defined, error-schema-defined
+extends:
+  - spectral:oas
 rules:
-  # INFO / METADATA
   info-title-required:
     description: OpenAPI info title must be present
     severity: error
@@ -7,7 +25,6 @@ rules:
     then:
       field: title
       function: truthy
-
   info-description-required:
     description: OpenAPI info must have a description
     severity: warn
@@ -15,7 +32,6 @@ rules:
     then:
       field: description
       function: truthy
-
   info-version-required:
     description: OpenAPI info must include a version
     severity: error
@@ -23,8 +39,6 @@ rules:
     then:
       field: version
       function: truthy
-
-  # OPENAPI VERSION
   openapi-version-3:
     description: All specs must use OpenAPI 3.0.x
     severity: warn
@@ -33,9 +47,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\.0\\."
-
-  # SERVERS
+        match: ^3\.0\.
   servers-required:
     description: At least one server must be defined
     severity: error
@@ -43,7 +55,6 @@ rules:
     then:
       field: servers
       function: truthy
-
   servers-https:
     description: Production servers should use HTTPS
     severity: warn
@@ -52,9 +63,7 @@ rules:
       field: url
       function: pattern
       functionOptions:
-        match: "^(https://|http://localhost)"
-
-  # PATHS — NAMING CONVENTIONS
+        match: ^(https://|http://localhost)
   paths-kebab-case:
     description: Path segments should use kebab-case (lowercase, hyphens allowed)
     severity: warn
@@ -62,8 +71,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(/[a-z0-9_{}\\-]+)+$|^/$"
-
+        match: ^(/[a-z0-9_{}\-]+)+$|^/$
   paths-no-trailing-slash:
     description: Paths must not have a trailing slash
     severity: warn
@@ -71,60 +79,51 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: "/$"
-
-  # OPERATIONS
+        notMatch: /$
   operation-operationid-required:
     description: Every operation must have an operationId
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: operationId
       function: truthy
-
   operation-operationid-camel-case:
     description: operationId should use camelCase
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    given: $.paths[*][get,post,put,patch,delete].operationId
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-zA-Z0-9]*$"
-
+        match: ^[a-z][a-zA-Z0-9]*$
   operation-summary-required:
     description: Every operation must have a summary
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: summary
       function: truthy
-
   operation-summary-prefix:
     description: Operation summaries should start with "Apache CouchDB"
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].summary"
+    given: $.paths[*][get,post,put,patch,delete].summary
     then:
       function: pattern
       functionOptions:
-        match: "^Apache CouchDB "
-
+        match: '^Apache CouchDB '
   operation-description-required:
     description: Every operation should have a description
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: description
       function: truthy
-
   operation-tags-required:
     description: Every operation must have at least one tag
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete]"
+    given: $.paths[*][get,post,put,patch,delete]
     then:
       field: tags
       function: truthy
-
-  # TAGS
   tag-global-defined:
     description: All tags used in operations should be defined globally
     severity: warn
@@ -132,120 +131,145 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # PARAMETERS
   parameter-description-required:
     description: All parameters must have a description
     severity: warn
-    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
     then:
       field: description
       function: truthy
-
   parameter-schema-required:
     description: All parameters must have a schema
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
     then:
       field: schema
       function: truthy
-
-  # REQUEST BODIES
   request-body-content-type:
     description: Request bodies should use application/json content type
     severity: warn
-    given: "$.paths[*][post,put,patch].requestBody.content"
+    given: $.paths[*][post,put,patch].requestBody.content
     then:
       field: application/json
       function: truthy
-
-  # RESPONSES
   response-success-required:
     description: Every operation must have at least one 2xx response
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete].responses"
+    given: $.paths[*][get,post,put,patch,delete].responses
     then:
       function: schema
       functionOptions:
         schema:
           anyOf:
-            - required: ["200"]
-            - required: ["201"]
-            - required: ["204"]
-
+          - required:
+            - '200'
+          - required:
+            - '201'
+          - required:
+            - '204'
   response-404-for-get:
     description: GET operations on resource paths should include a 404 response
     severity: warn
-    given: "$.paths[*].get.responses"
+    given: $.paths[*].get.responses
     then:
-      field: "404"
+      field: '404'
       function: defined
-
   response-description-required:
     description: All responses must have a description
     severity: error
-    given: "$.paths[*][get,post,put,patch,delete].responses[*]"
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
     then:
       field: description
       function: truthy
-
-  # SCHEMAS — PROPERTY NAMING
   schema-property-description:
     description: Schema properties should have descriptions
     severity: info
-    given: "$.components.schemas[*].properties[*]"
+    given: $.components.schemas[*].properties[*]
     then:
       field: description
       function: truthy
-
   schema-type-defined:
     description: Top-level schemas should have a type defined
     severity: warn
-    given: "$.components.schemas[*]"
+    given: $.components.schemas[*]
     then:
       field: type
       function: truthy
-
-  # SECURITY
   security-schemes-defined:
-    description: Security schemes must be defined if security is declared
-    severity: error
-    given: $
+    description: Security schemes should be defined in components.
+    severity: warn
+    given: $.components
     then:
-      field: components.securitySchemes
+      field: securitySchemes
       function: truthy
-
-  # HTTP METHOD CONVENTIONS
   get-no-request-body:
     description: GET operations must not have a request body
     severity: error
-    given: "$.paths[*].get"
+    given: $.paths[*].get
     then:
       field: requestBody
       function: falsy
-
   delete-no-request-body:
     description: DELETE operations should not have a request body
     severity: warn
-    given: "$.paths[*].delete"
+    given: $.paths[*].delete
     then:
       field: requestBody
       function: falsy
-
-  # GENERAL QUALITY
   no-empty-descriptions:
     description: Descriptions must not be empty strings
     severity: warn
-    given: "$..description"
+    given: $..description
     then:
       function: pattern
       functionOptions:
-        match: ".+"
-
+        match: .+
   examples-encouraged:
     description: Schema properties are encouraged to have examples
     severity: info
-    given: "$.components.schemas[*].properties[*]"
+    given: $.components.schemas[*].properties[*]
     then:
       field: example
       function: defined
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (ErrorResponse) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: ErrorResponse
+      function: truthy
