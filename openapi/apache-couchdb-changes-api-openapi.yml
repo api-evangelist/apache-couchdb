@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication Changes API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Changes
+  description: Database changes feed
+paths:
+  /{db}/_changes:
+    get:
+      operationId: getChanges
+      summary: Apache CouchDB Get Database Changes
+      description: Returns a sorted list of changes made to documents in the database, including design documents. The changes feed supports long-polling, continuous, and event-source modes.
+      tags:
+      - Changes
+      parameters:
+      - $ref: '#/components/parameters/db'
+      - name: feed
+        in: query
+        description: Type of changes feed to use.
+        schema:
+          type: string
+          enum:
+          - normal
+          - longpoll
+          - continuous
+          - eventsource
+          default: normal
+        example: normal
+      - name: since
+        in: query
+        description: Start sequence number or 'now' for only new changes.
+        schema:
+          type: string
+        example: '0'
+      - name: limit
+        in: query
+        description: Maximum number of changes to return.
+        schema:
+          type: integer
+        example: 25
+      - name: include_docs
+        in: query
+        description: Include the document body for each change row.
+        schema:
+          type: boolean
+          default: false
+        example: false
+      - name: filter
+        in: query
+        description: Filter function name (e.g., _doc_ids, _design).
+        schema:
+          type: string
+        example: _doc_ids
+      responses:
+        '200':
+          description: Changes feed results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangesResponse'
+              examples:
+                GetChanges200Example:
+                  summary: Default getChanges 200 response
+                  x-microcks-default: true
+                  value:
+                    last_seq: 5000-abc123
+                    pending: 0
+                    results:
+                    - seq: 5000-abc123
+                      id: doc001
+                      changes:
+                      - rev: 2-def456
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+    ChangeRow:
+      title: ChangeRow
+      type: object
+      description: A single change record in the changes feed
+      properties:
+        seq:
+          type: string
+          description: Update sequence number
+          example: 5000-abc123
+        id:
+          type: string
+          description: Document ID that was changed
+          example: doc001
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              rev:
+                type: string
+                example: 2-def456
+        deleted:
+          type: boolean
+          description: True if this change is a deletion
+          example: false
+        doc:
+          $ref: '#/components/schemas/Document'
+    ChangesResponse:
+      title: ChangesResponse
+      type: object
+      description: Database changes feed response
+      properties:
+        last_seq:
+          type: string
+          description: Last sequence number in this response
+          example: 5000-abc123
+        pending:
+          type: integer
+          description: Number of changes still pending
+          example: 0
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeRow'
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session

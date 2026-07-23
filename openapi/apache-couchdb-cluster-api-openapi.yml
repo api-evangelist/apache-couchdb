@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication Cluster API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Cluster
+  description: Cluster membership and configuration
+paths:
+  /_cluster_setup:
+    get:
+      operationId: getClusterSetup
+      summary: Apache CouchDB Get Cluster Setup Status
+      description: Returns the current status of the cluster setup process.
+      tags:
+      - Cluster
+      responses:
+        '200':
+          description: Cluster setup state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterSetupResponse'
+              examples:
+                GetClusterSetup200Example:
+                  summary: Default getClusterSetup 200 response
+                  x-microcks-default: true
+                  value:
+                    state: cluster_enabled
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ClusterSetupResponse:
+      title: ClusterSetupResponse
+      type: object
+      description: Cluster setup status
+      properties:
+        state:
+          type: string
+          description: Cluster setup state
+          enum:
+          - cluster_disabled
+          - single_node_disabled
+          - single_node_enabled
+          - cluster_enabled
+          - cluster_finished
+          example: cluster_enabled
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session

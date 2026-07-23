@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication Design Documents API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Design Documents
+  description: Design documents, views, and indexes
+paths:
+  /{db}/_design/{ddoc}/_view/{view}:
+    get:
+      operationId: getView
+      summary: Apache CouchDB Get View Results
+      description: Executes a MapReduce view defined in a design document and returns the results.
+      tags:
+      - Design Documents
+      parameters:
+      - $ref: '#/components/parameters/db'
+      - name: ddoc
+        in: path
+        required: true
+        description: Design document name (without _design/ prefix).
+        schema:
+          type: string
+        example: products
+      - name: view
+        in: path
+        required: true
+        description: View name within the design document.
+        schema:
+          type: string
+        example: by_status
+      - name: include_docs
+        in: query
+        description: Include the full document body for each row.
+        schema:
+          type: boolean
+          default: false
+        example: false
+      - name: limit
+        in: query
+        description: Maximum number of rows to return.
+        schema:
+          type: integer
+        example: 25
+      - name: key
+        in: query
+        description: Return only rows matching the specified key.
+        schema:
+          type: string
+        example: '"active"'
+      - name: reduce
+        in: query
+        description: Execute the reduce function.
+        schema:
+          type: boolean
+        example: false
+      responses:
+        '200':
+          description: View results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewResponse'
+              examples:
+                GetView200Example:
+                  summary: Default getView 200 response
+                  x-microcks-default: true
+                  value:
+                    total_rows: 150
+                    offset: 0
+                    rows:
+                    - id: doc001
+                      key: active
+                      value: 1
+        '404':
+          description: Design document or view not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+    ViewResponse:
+      title: ViewResponse
+      type: object
+      description: MapReduce view query results
+      properties:
+        total_rows:
+          type: integer
+          description: Total number of rows in the view
+          example: 150
+        offset:
+          type: integer
+          description: Number of skipped rows
+          example: 0
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: doc001
+              key:
+                description: Emitted key from the map function
+                example: active
+              value:
+                description: Emitted value from the map or reduce function
+                example: 1
+              doc:
+                $ref: '#/components/schemas/Document'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session

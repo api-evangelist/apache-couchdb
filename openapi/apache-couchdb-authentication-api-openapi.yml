@@ -1,0 +1,208 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Authentication
+  description: Session and authentication management
+paths:
+  /_session:
+    get:
+      operationId: getSession
+      summary: Apache CouchDB Get Session Information
+      description: Returns information about the current user's authentication session.
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: Session information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+              examples:
+                GetSession200Example:
+                  summary: Default getSession 200 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    userCtx:
+                      name: admin
+                      roles:
+                      - _admin
+                    info:
+                      authentication_handlers:
+                      - cookie
+                      - default
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSession
+      summary: Apache CouchDB Create Authentication Session
+      description: Creates a new authentication session cookie. Equivalent to HTTP Basic Auth login.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionRequest'
+            examples:
+              CreateSessionRequestExample:
+                summary: Default createSession request
+                x-microcks-default: true
+                value:
+                  name: admin
+                  password: secretpassword
+      responses:
+        '200':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+              examples:
+                CreateSession200Example:
+                  summary: Default createSession 200 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    name: admin
+                    roles:
+                    - _admin
+        '401':
+          description: Unauthorized — invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSession
+      summary: Apache CouchDB Delete Authentication Session
+      description: Ends the current authentication session (logout).
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: Session deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    OkResponse:
+      title: OkResponse
+      type: object
+      description: Simple success acknowledgement
+      properties:
+        ok:
+          type: boolean
+          example: true
+        name:
+          type: string
+          description: Username (for session responses)
+          example: admin
+        roles:
+          type: array
+          items:
+            type: string
+          example:
+          - _admin
+    SessionRequest:
+      title: SessionRequest
+      type: object
+      description: Authentication credentials for session creation
+      properties:
+        name:
+          type: string
+          description: CouchDB username
+          example: admin
+        password:
+          type: string
+          description: CouchDB password
+          example: secretpassword
+      required:
+      - name
+      - password
+    SessionInfo:
+      title: SessionInfo
+      type: object
+      description: Current session information
+      properties:
+        ok:
+          type: boolean
+          example: true
+        userCtx:
+          type: object
+          properties:
+            name:
+              type: string
+              example: admin
+            roles:
+              type: array
+              items:
+                type: string
+              example:
+              - _admin
+        info:
+          type: object
+          properties:
+            authentication_handlers:
+              type: array
+              items:
+                type: string
+              example:
+              - cookie
+              - default
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session

@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication Replication API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Replication
+  description: Replication management
+paths:
+  /_replicate:
+    post:
+      operationId: replicate
+      summary: Apache CouchDB Replicate Database
+      description: Initiates a replication task between a source and target database. Can be transient (one-time) or persistent (via _replicator database).
+      tags:
+      - Replication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplicationRequest'
+            examples:
+              ReplicateRequestExample:
+                summary: Default replicate request
+                x-microcks-default: true
+                value:
+                  source: http://localhost:5984/sourcedb
+                  target: http://remotehost:5984/targetdb
+                  continuous: false
+                  create_target: true
+      responses:
+        '200':
+          description: Replication completed or started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationResponse'
+              examples:
+                Replicate200Example:
+                  summary: Default replicate 200 response
+                  x-microcks-default: true
+                  value:
+                    ok: true
+                    session_id: abc123def456
+                    source_last_seq: 5000-abc123
+                    replication_id_version: 4
+                    history:
+                    - session_id: abc123def456
+                      docs_written: 1250
+                      doc_write_failures: 0
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ReplicationResponse:
+      title: ReplicationResponse
+      type: object
+      description: Result of a replication request
+      properties:
+        ok:
+          type: boolean
+          example: true
+        session_id:
+          type: string
+          example: abc123def456
+        source_last_seq:
+          type: string
+          example: 5000-abc123
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              session_id:
+                type: string
+              docs_written:
+                type: integer
+              doc_write_failures:
+                type: integer
+    ReplicationRequest:
+      title: ReplicationRequest
+      type: object
+      description: Replication task parameters
+      properties:
+        source:
+          type: string
+          description: Source database URL or name
+          example: http://localhost:5984/sourcedb
+        target:
+          type: string
+          description: Target database URL or name
+          example: http://remotehost:5984/targetdb
+        continuous:
+          type: boolean
+          description: Keep the replication running continuously
+          default: false
+          example: false
+        create_target:
+          type: boolean
+          description: Create the target database if it does not exist
+          default: false
+          example: true
+        filter:
+          type: string
+          description: Filter function name to limit replicated documents
+          example: myapp/by_type
+        doc_ids:
+          type: array
+          items:
+            type: string
+          description: List of document IDs to replicate
+      required:
+      - source
+      - target
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session

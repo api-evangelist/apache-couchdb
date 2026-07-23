@@ -1,0 +1,340 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication Mango API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Mango
+  description: Mango declarative JSON query API
+paths:
+  /{db}/_find:
+    post:
+      operationId: findDocuments
+      summary: Apache CouchDB Find Documents (Mango Query)
+      description: Executes a Mango (declarative JSON) query against the database to find documents matching specified criteria.
+      tags:
+      - Mango
+      parameters:
+      - $ref: '#/components/parameters/db'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindRequest'
+            examples:
+              FindDocumentsRequestExample:
+                summary: Default findDocuments request
+                x-microcks-default: true
+                value:
+                  selector:
+                    type: product
+                    status: active
+                  fields:
+                  - _id
+                  - name
+                  - status
+                  limit: 25
+                  sort:
+                  - name: asc
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindResponse'
+              examples:
+                FindDocuments200Example:
+                  summary: Default findDocuments 200 response
+                  x-microcks-default: true
+                  value:
+                    docs:
+                    - _id: doc001
+                      name: Example Product
+                      status: active
+                    bookmark: g1AAAABleJzLYWBg
+                    warning: null
+        '400':
+          description: Invalid query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{db}/_index:
+    get:
+      operationId: getIndexes
+      summary: Apache CouchDB Get Mango Indexes
+      description: Returns a list of all indexes defined for the database.
+      tags:
+      - Mango
+      parameters:
+      - $ref: '#/components/parameters/db'
+      responses:
+        '200':
+          description: List of indexes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexesResponse'
+              examples:
+                GetIndexes200Example:
+                  summary: Default getIndexes 200 response
+                  x-microcks-default: true
+                  value:
+                    total_rows: 2
+                    indexes:
+                    - ddoc: _design/idx-status
+                      name: idx-status
+                      type: json
+                      def:
+                        fields:
+                        - status: asc
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createIndex
+      summary: Apache CouchDB Create Mango Index
+      description: Creates a new Mango index on the specified fields to optimize query performance.
+      tags:
+      - Mango
+      parameters:
+      - $ref: '#/components/parameters/db'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIndexRequest'
+            examples:
+              CreateIndexRequestExample:
+                summary: Default createIndex request
+                x-microcks-default: true
+                value:
+                  index:
+                    fields:
+                    - status
+                    - type
+                  name: idx-status-type
+                  type: json
+      responses:
+        '200':
+          description: Index created or exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIndexResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    FindRequest:
+      title: FindRequest
+      type: object
+      description: Mango query request
+      properties:
+        selector:
+          type: object
+          description: Mango selector (JSON query expression)
+          example:
+            type: product
+            status: active
+        fields:
+          type: array
+          items:
+            type: string
+          description: Fields to return in results
+          example:
+          - _id
+          - name
+        limit:
+          type: integer
+          description: Maximum number of results
+          default: 25
+          example: 25
+        skip:
+          type: integer
+          description: Number of results to skip
+          default: 0
+          example: 0
+        sort:
+          type: array
+          items:
+            type: object
+          description: Sort order specification
+          example:
+          - name: asc
+        bookmark:
+          type: string
+          description: Bookmark for pagination from previous query
+          example: g1AAAABleJzLYWBg
+      required:
+      - selector
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+    IndexesResponse:
+      title: IndexesResponse
+      type: object
+      description: List of Mango indexes for a database
+      properties:
+        total_rows:
+          type: integer
+          description: Number of indexes
+          example: 2
+        indexes:
+          type: array
+          items:
+            type: object
+            properties:
+              ddoc:
+                type: string
+                example: _design/idx-status
+              name:
+                type: string
+                example: idx-status
+              type:
+                type: string
+                example: json
+              def:
+                type: object
+    CreateIndexResponse:
+      title: CreateIndexResponse
+      type: object
+      description: Response from creating a Mango index
+      properties:
+        result:
+          type: string
+          description: created or exists
+          enum:
+          - created
+          - exists
+          example: created
+        id:
+          type: string
+          description: Design document ID
+          example: _design/idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+    FindResponse:
+      title: FindResponse
+      type: object
+      description: Mango query results
+      properties:
+        docs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: Array of matching documents
+        bookmark:
+          type: string
+          description: Bookmark for retrieving the next set of results
+          example: g1AAAABleJzLYWBg
+        warning:
+          type: string
+          description: Warning if query is not optimally indexed
+          example: No matching index found, create an index to optimize query time.
+    CreateIndexRequest:
+      title: CreateIndexRequest
+      type: object
+      description: Request to create a Mango index
+      properties:
+        index:
+          type: object
+          description: Index definition
+          properties:
+            fields:
+              type: array
+              items:
+                oneOf:
+                - type: string
+                - type: object
+              description: Fields to index
+        ddoc:
+          type: string
+          description: Design document name to use for the index
+          example: idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+        type:
+          type: string
+          description: Index type
+          enum:
+          - json
+          - text
+          default: json
+          example: json
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session

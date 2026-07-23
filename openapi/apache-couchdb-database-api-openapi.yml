@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: Apache CouchDB HTTP Authentication Database API
+  description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
+  version: 3.5.1
+  contact:
+    name: Apache CouchDB Community
+    url: https://couchdb.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-generated-from: documentation
+servers:
+- url: http://localhost:5984
+  description: Local CouchDB instance (default port)
+- url: https://{host}:6984
+  description: Remote CouchDB instance (HTTPS)
+  variables:
+    host:
+      default: couchdb.example.com
+      description: CouchDB server hostname
+security:
+- basicAuth: []
+- cookieAuth: []
+tags:
+- name: Database
+  description: Database management operations
+paths:
+  /{db}:
+    get:
+      operationId: getDatabaseInfo
+      summary: Apache CouchDB Get Database Information
+      description: Returns information about the named database including document count, disk size, and update sequence.
+      tags:
+      - Database
+      parameters:
+      - $ref: '#/components/parameters/db'
+      responses:
+        '200':
+          description: Database information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseInfo'
+              examples:
+                GetDatabaseInfo200Example:
+                  summary: Default getDatabaseInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    db_name: mydb
+                    doc_count: 1250
+                    doc_del_count: 42
+                    update_seq: 5000-abc123
+                    sizes:
+                      file: 4096000
+                      external: 2048000
+                      active: 3000000
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createDatabase
+      summary: Apache CouchDB Create Database
+      description: Creates a new database with the given name.
+      tags:
+      - Database
+      parameters:
+      - $ref: '#/components/parameters/db'
+      - name: q
+        in: query
+        description: Number of shards for this database.
+        schema:
+          type: integer
+          default: 8
+        example: 8
+      - name: n
+        in: query
+        description: Number of replicas for each shard.
+        schema:
+          type: integer
+          default: 3
+        example: 3
+      responses:
+        '201':
+          description: Database created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: Invalid database name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '412':
+          description: Database already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDatabase
+      summary: Apache CouchDB Delete Database
+      description: Deletes the specified database and all documents within it.
+      tags:
+      - Database
+      parameters:
+      - $ref: '#/components/parameters/db'
+      responses:
+        '200':
+          description: Database deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DatabaseInfo:
+      title: DatabaseInfo
+      type: object
+      description: Information about a CouchDB database
+      properties:
+        db_name:
+          type: string
+          description: Database name
+          example: mydb
+        doc_count:
+          type: integer
+          description: Number of non-deleted documents
+          example: 1250
+        doc_del_count:
+          type: integer
+          description: Number of deleted documents (tombstones)
+          example: 42
+        update_seq:
+          type: string
+          description: Current update sequence
+          example: 5000-abc123
+        sizes:
+          type: object
+          properties:
+            file:
+              type: integer
+              description: Disk file size in bytes
+              example: 4096000
+            external:
+              type: integer
+              description: Uncompressed data size in bytes
+              example: 2048000
+            active:
+              type: integer
+              description: Active data size in bytes
+              example: 3000000
+    OkResponse:
+      title: OkResponse
+      type: object
+      description: Simple success acknowledgement
+      properties:
+        ok:
+          type: boolean
+          example: true
+        name:
+          type: string
+          description: Username (for session responses)
+          example: admin
+        roles:
+          type: array
+          items:
+            type: string
+          example:
+          - _admin
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CouchDB admin credentials
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: AuthSession
+      description: Cookie-based session authentication obtained via POST /_session
