@@ -4,9 +4,22 @@ description: >-
   Apache CouchDB is an open-source distributed document-oriented NoSQL database governed by the Apache Software Foundation. It uses JSON for data storage, a RESTful HTTP/JSON API for all database operations,
   and the Couch Replication Protocol for multi-primary synchronization across servers, mobile devices, and browsers. CouchDB supports Mango queries, MapReduce views, and offline-first application architectures.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-couchdb.png
 tags:
   - Apache
   - Database
@@ -22,232 +35,2289 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: apache-couchdb:apache-couchdb-http-api
-    name: Apache CouchDB HTTP API
-    description: >-
-      CouchDB exposes a complete RESTful HTTP/JSON API covering server and database management, document CRUD operations, bulk operations, design documents with MapReduce views, Mango (declarative JSON) query
-      API, replication, changes feeds, authentication, and cluster administration.
-    humanURL: https://docs.couchdb.org/en/stable/api/index.html
-    tags:
-    - Cluster
-    - Database
-    - Document
-    - HTTP
-    - JSON
-    - Mango
-    - NoSQL
-    - Replication
-    - REST
-    - Views
-    properties:
-    - type: Documentation
-      url: https://docs.couchdb.org/en/stable/api/index.html
-    - type: GettingStarted
-      url: https://docs.couchdb.org/en/stable/intro/index.html
-    - type: APIReference
-      url: https://docs.couchdb.org/en/stable/api/
-    - type: GitHubRepository
-      url: https://github.com/apache/couchdb
-    - type: SDKs
-      url: https://www.npmjs.com/package/nano
-      title: Node.js SDK (Nano)
-    - type: SDKs
-      url: https://pypi.org/project/couchdb/
-      title: Python SDK
-    - type: SDKs
-      url: https://pypi.org/project/aiocouch/
-      title: Python Async SDK (aiocouch)
-    - type: Tools
-      url: https://github.com/apache/couchdb-fauxton
-      title: Fauxton Web UI
-    - type: Tools
-      url: https://github.com/apache/couchdb-docker
-      title: Docker Images
-    - type: Tools
-      url: https://github.com/apache/couchdb-helm
-      title: Helm Chart
-    - type: SDKs
-      url: https://github.com/apache/pouchdb
-      title: PouchDB (Browser/Mobile Sync)
-    - type: OpenAPI
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/openapi/apache-couchdb-http-api-openapi.yaml
-    - type: AsyncAPI
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
-      title: Changes Feed (longpoll, continuous, eventsource)
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
-      title: All Docs Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
-      title: Bulk Docs Request
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
-      title: Change Row
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
-      title: Changes Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
-      title: Cluster Setup Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
-      title: Create Index Request
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
-      title: Create Index Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
-      title: Database Info
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
-      title: Doc Row
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
-      title: Document Input
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
-      title: Document
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
-      title: Error Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
-      title: Find Request
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
-      title: Find Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
-      title: Indexes Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
-      title: Keys Request
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
-      title: Ok Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
-      title: Replication Request
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
-      title: Replication Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
-      title: Server Info
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
-      title: Session Info
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
-      title: Session Request
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
-      title: View Response
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
-      title: Write Response
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
-    - type: JSONLD
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
-    - type: Examples
-      url: https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-authentication-api
+  name: Apache CouchDB Authentication API
+  description: Session and authentication management
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-changes-api
+  name: Apache CouchDB Changes API
+  description: Database changes feed
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Changes
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-changes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-cluster-api
+  name: Apache CouchDB Cluster API
+  description: Cluster membership and configuration
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Cluster
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-cluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-database-api
+  name: Apache CouchDB Database API
+  description: Database management operations
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Database
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-database-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-design-documents-api
+  name: Apache CouchDB Design Documents API
+  description: Design documents, views, and indexes
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Design Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-design-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-documents-api
+  name: Apache CouchDB Documents API
+  description: Document CRUD and bulk operations
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-mango-api
+  name: Apache CouchDB Mango API
+  description: Mango declarative JSON query API
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Mango
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-mango-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-replication-api
+  name: Apache CouchDB Replication API
+  description: Replication management
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Replication
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-replication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
+- aid: apache-couchdb:apache-couchdb-server-api
+  name: Apache CouchDB Server API
+  description: Server-level information and utilities
+  humanURL: https://docs.couchdb.org/en/stable/api/index.html
+  tags:
+  - Server
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-couchdb-server-api-openapi.yml
+  - type: Documentation
+    url: https://docs.couchdb.org/en/stable/api/index.html
+  - type: GettingStarted
+    url: https://docs.couchdb.org/en/stable/intro/index.html
+  - type: APIReference
+    url: https://docs.couchdb.org/en/stable/api/
+  - type: GitHubRepository
+    url: https://github.com/apache/couchdb
+  - type: SDKs
+    url: https://www.npmjs.com/package/nano
+  - type: SDKs
+    url: https://pypi.org/project/couchdb/
+  - type: SDKs
+    url: https://pypi.org/project/aiocouch/
+  - type: Tools
+    url: https://github.com/apache/couchdb-fauxton
+  - type: Tools
+    url: https://github.com/apache/couchdb-docker
+  - type: Tools
+    url: https://github.com/apache/couchdb-helm
+  - type: SDKs
+    url: https://github.com/apache/pouchdb
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/asyncapi/apache-couchdb-changes-feed-asyncapi.yaml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/apache-couchdb/overview
   - type: AgenticAccess
     url: agentic-access/apache-couchdb-agentic-access.yml
   - type: VulnerabilityDisclosure
