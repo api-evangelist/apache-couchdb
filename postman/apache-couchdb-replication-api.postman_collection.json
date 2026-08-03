@@ -1,0 +1,145 @@
+{
+  "info": {
+    "_postman_id": "e6799f11-3ac3-4030-a24d-ac87344c9275",
+    "name": "Apache CouchDB HTTP Authentication Replication API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:46.000Z",
+    "updatedAt": "2026-07-28T01:01:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e6799f11-3ac3-4030-a24d-ac87344c9275"
+  },
+  "item": [
+    {
+      "name": "_replicate",
+      "item": [
+        {
+          "name": "Apache CouchDB Replicate Database",
+          "id": "212b72ee-d046-4d59-a923-41679102767e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"target\": \"<string>\",\n  \"continuous\": false,\n  \"create_target\": false,\n  \"filter\": \"<string>\",\n  \"doc_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/_replicate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "_replicate"
+              ]
+            },
+            "description": "Initiates a replication task between a source and target database. Can be transient (one-time) or persistent (via _replicator database)."
+          },
+          "response": [
+            {
+              "id": "dd5b8d53-a925-4adf-bee9-149ea3893ac2",
+              "name": "Replication completed or started",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"target\": \"<string>\",\n  \"continuous\": false,\n  \"create_target\": false,\n  \"filter\": \"<string>\",\n  \"doc_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/_replicate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_replicate"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\",\n  \"session_id\": \"<string>\",\n  \"source_last_seq\": \"<string>\",\n  \"history\": [\n    {\n      \"session_id\": \"<string>\",\n      \"docs_written\": \"<integer>\",\n      \"doc_write_failures\": \"<integer>\"\n    },\n    {\n      \"session_id\": \"<string>\",\n      \"docs_written\": \"<integer>\",\n      \"doc_write_failures\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:01:46.000Z",
+              "updatedAt": "2026-07-28T01:01:46.000Z",
+              "uid": "35240-dd5b8d53-a925-4adf-bee9-149ea3893ac2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:46.000Z",
+          "updatedAt": "2026-07-28T01:01:46.000Z",
+          "uid": "35240-212b72ee-d046-4d59-a923-41679102767e"
+        }
+      ],
+      "id": "c705ea74-ebd2-43c6-9cf4-ffcd2d231146",
+      "createdAt": "2026-07-28T01:01:46.000Z",
+      "updatedAt": "2026-07-28T01:01:46.000Z",
+      "uid": "35240-c705ea74-ebd2-43c6-9cf4-ffcd2d231146"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}

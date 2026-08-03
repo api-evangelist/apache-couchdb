@@ -1,0 +1,117 @@
+{
+  "info": {
+    "_postman_id": "0f116272-f823-4575-8bc0-ba58a066fdad",
+    "name": "Apache CouchDB HTTP Authentication Cluster API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:41.000Z",
+    "updatedAt": "2026-07-28T01:01:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f116272-f823-4575-8bc0-ba58a066fdad"
+  },
+  "item": [
+    {
+      "name": "_cluster_setup",
+      "item": [
+        {
+          "name": "Apache CouchDB Get Cluster Setup Status",
+          "id": "9075a678-799a-471f-9cfa-29b2440f19b5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/_cluster_setup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "_cluster_setup"
+              ]
+            },
+            "description": "Returns the current status of the cluster setup process."
+          },
+          "response": [
+            {
+              "id": "d1c0ee56-3539-45a8-bdc6-d28b780ee919",
+              "name": "Cluster setup state",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/_cluster_setup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_cluster_setup"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"state\": \"cluster_finished\"\n}",
+              "createdAt": "2026-07-28T01:01:42.000Z",
+              "updatedAt": "2026-07-28T01:01:42.000Z",
+              "uid": "35240-d1c0ee56-3539-45a8-bdc6-d28b780ee919"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:42.000Z",
+          "updatedAt": "2026-07-28T01:01:42.000Z",
+          "uid": "35240-9075a678-799a-471f-9cfa-29b2440f19b5"
+        }
+      ],
+      "id": "6a9eb648-5f83-49c0-90d4-7c82f7e960c3",
+      "createdAt": "2026-07-28T01:01:42.000Z",
+      "updatedAt": "2026-07-28T01:01:42.000Z",
+      "uid": "35240-6a9eb648-5f83-49c0-90d4-7c82f7e960c3"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}

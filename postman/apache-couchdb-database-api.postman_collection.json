@@ -1,0 +1,538 @@
+{
+  "info": {
+    "_postman_id": "9ccaf185-e1a0-4f11-97f0-f701fb459a44",
+    "name": "Apache CouchDB HTTP Authentication Database API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:42.000Z",
+    "updatedAt": "2026-07-28T01:01:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9ccaf185-e1a0-4f11-97f0-f701fb459a44"
+  },
+  "item": [
+    {
+      "name": "{db}",
+      "item": [
+        {
+          "name": "Apache CouchDB Get Database Information",
+          "id": "dc4af72f-9290-4c7a-8b66-5470830ecad2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:db",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":db"
+              ],
+              "variable": [
+                {
+                  "id": "4925b2bc-559e-47b2-8883-c40c1e6a0029",
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "description": "Returns information about the named database including document count, disk size, and update sequence."
+          },
+          "response": [
+            {
+              "id": "37bbecf3-da7f-4152-b887-d3584c06c609",
+              "name": "Database information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"db_name\": \"<string>\",\n  \"doc_count\": \"<integer>\",\n  \"doc_del_count\": \"<integer>\",\n  \"update_seq\": \"<string>\",\n  \"sizes\": {\n    \"file\": \"<integer>\",\n    \"external\": \"<integer>\",\n    \"active\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-37bbecf3-da7f-4152-b887-d3584c06c609"
+            },
+            {
+              "id": "f2173728-8cbc-49e6-9f44-b3369d81b554",
+              "name": "Database not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-f2173728-8cbc-49e6-9f44-b3369d81b554"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:43.000Z",
+          "updatedAt": "2026-07-28T01:01:43.000Z",
+          "uid": "35240-dc4af72f-9290-4c7a-8b66-5470830ecad2"
+        },
+        {
+          "name": "Apache CouchDB Create Database",
+          "id": "8400402f-d873-45c3-8ab8-04a8644bbe64",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:db?q=8&n=3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":db"
+              ],
+              "query": [
+                {
+                  "description": "Number of shards for this database.",
+                  "key": "q",
+                  "value": "8"
+                },
+                {
+                  "description": "Number of replicas for each shard.",
+                  "key": "n",
+                  "value": "3"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "2dd75201-e99d-4ba1-a328-164fd3e87272",
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "description": "Creates a new database with the given name."
+          },
+          "response": [
+            {
+              "id": "4da6b88a-5396-4295-a98d-d3c6bc27df27",
+              "name": "Database created",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db?q=8&n=3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of shards for this database.",
+                      "key": "q",
+                      "value": "8"
+                    },
+                    {
+                      "description": "Number of replicas for each shard.",
+                      "key": "n",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-4da6b88a-5396-4295-a98d-d3c6bc27df27"
+            },
+            {
+              "id": "5c8c53bf-1dae-4823-9db8-179bed692939",
+              "name": "Invalid database name",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db?q=8&n=3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of shards for this database.",
+                      "key": "q",
+                      "value": "8"
+                    },
+                    {
+                      "description": "Number of replicas for each shard.",
+                      "key": "n",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-5c8c53bf-1dae-4823-9db8-179bed692939"
+            },
+            {
+              "id": "0bea5055-24ca-4850-989c-8d6d35b51477",
+              "name": "Database already exists",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db?q=8&n=3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of shards for this database.",
+                      "key": "q",
+                      "value": "8"
+                    },
+                    {
+                      "description": "Number of replicas for each shard.",
+                      "key": "n",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-0bea5055-24ca-4850-989c-8d6d35b51477"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:43.000Z",
+          "updatedAt": "2026-07-28T01:01:43.000Z",
+          "uid": "35240-8400402f-d873-45c3-8ab8-04a8644bbe64"
+        },
+        {
+          "name": "Apache CouchDB Delete Database",
+          "id": "cac76aab-a095-466b-ab37-9091d880a2b8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:db",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":db"
+              ],
+              "variable": [
+                {
+                  "id": "65b6bf12-eb0a-4235-88ae-083dee44c6b9",
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "description": "Deletes the specified database and all documents within it."
+          },
+          "response": [
+            {
+              "id": "beb07d97-f742-4cf0-bbf5-0840fd220a9e",
+              "name": "Database deleted",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-beb07d97-f742-4cf0-bbf5-0840fd220a9e"
+            },
+            {
+              "id": "d0a34cb3-7faa-4f2c-886a-108913f87a50",
+              "name": "Database not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db"
+                  ],
+                  "variable": [
+                    {
+                      "key": "db"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-d0a34cb3-7faa-4f2c-886a-108913f87a50"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:43.000Z",
+          "updatedAt": "2026-07-28T01:01:43.000Z",
+          "uid": "35240-cac76aab-a095-466b-ab37-9091d880a2b8"
+        }
+      ],
+      "id": "5b0678b3-6150-43a1-9cdc-0bc433426503",
+      "createdAt": "2026-07-28T01:01:42.000Z",
+      "updatedAt": "2026-07-28T01:01:42.000Z",
+      "uid": "35240-5b0678b3-6150-43a1-9cdc-0bc433426503"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}

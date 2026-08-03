@@ -1,0 +1,347 @@
+{
+  "info": {
+    "_postman_id": "6c7fa3b9-18a9-4c3a-9230-f7f5e26abae9",
+    "name": "Apache CouchDB HTTP Authentication API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:39.000Z",
+    "updatedAt": "2026-07-28T01:01:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c7fa3b9-18a9-4c3a-9230-f7f5e26abae9"
+  },
+  "item": [
+    {
+      "name": "_session",
+      "item": [
+        {
+          "name": "Apache CouchDB Get Session Information",
+          "id": "98fe878b-44c4-470d-b378-08b95d1e60a8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/_session",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "_session"
+              ]
+            },
+            "description": "Returns information about the current user's authentication session."
+          },
+          "response": [
+            {
+              "id": "b6a09ab0-e11d-45f6-82ff-2a11ad3b48b1",
+              "name": "Session information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/_session",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_session"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\",\n  \"userCtx\": {\n    \"name\": \"<string>\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"info\": {\n    \"authentication_handlers\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T01:01:40.000Z",
+              "updatedAt": "2026-07-28T01:01:40.000Z",
+              "uid": "35240-b6a09ab0-e11d-45f6-82ff-2a11ad3b48b1"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:40.000Z",
+          "updatedAt": "2026-07-28T01:01:40.000Z",
+          "uid": "35240-98fe878b-44c4-470d-b378-08b95d1e60a8"
+        },
+        {
+          "name": "Apache CouchDB Create Authentication Session",
+          "id": "0c6990d8-85e8-40f3-b8a2-0e7cf4c5b3e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/_session",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "_session"
+              ]
+            },
+            "description": "Creates a new authentication session cookie. Equivalent to HTTP Basic Auth login."
+          },
+          "response": [
+            {
+              "id": "89b99f2b-b366-4507-81e6-93ba7077d881",
+              "name": "Session created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/_session",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_session"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T01:01:40.000Z",
+              "updatedAt": "2026-07-28T01:01:40.000Z",
+              "uid": "35240-89b99f2b-b366-4507-81e6-93ba7077d881"
+            },
+            {
+              "id": "f5dfdd26-fb84-42a1-b65d-fc9b85b44520",
+              "name": "Unauthorized \u2014 invalid credentials",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/_session",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_session"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:01:40.000Z",
+              "updatedAt": "2026-07-28T01:01:40.000Z",
+              "uid": "35240-f5dfdd26-fb84-42a1-b65d-fc9b85b44520"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:40.000Z",
+          "updatedAt": "2026-07-28T01:01:40.000Z",
+          "uid": "35240-0c6990d8-85e8-40f3-b8a2-0e7cf4c5b3e2"
+        },
+        {
+          "name": "Apache CouchDB Delete Authentication Session",
+          "id": "07e8f4c6-6ae7-4018-9eb9-5f9c93e9880c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/_session",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "_session"
+              ]
+            },
+            "description": "Ends the current authentication session (logout)."
+          },
+          "response": [
+            {
+              "id": "be7b4a86-d551-4006-8c02-f4fa08e0907c",
+              "name": "Session deleted",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/_session",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_session"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T01:01:40.000Z",
+              "updatedAt": "2026-07-28T01:01:40.000Z",
+              "uid": "35240-be7b4a86-d551-4006-8c02-f4fa08e0907c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:40.000Z",
+          "updatedAt": "2026-07-28T01:01:40.000Z",
+          "uid": "35240-07e8f4c6-6ae7-4018-9eb9-5f9c93e9880c"
+        }
+      ],
+      "id": "63e99533-fb90-4f41-a0b7-463b61a92461",
+      "createdAt": "2026-07-28T01:01:40.000Z",
+      "updatedAt": "2026-07-28T01:01:40.000Z",
+      "uid": "35240-63e99533-fb90-4f41-a0b7-463b61a92461"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}

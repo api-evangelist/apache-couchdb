@@ -1,0 +1,195 @@
+{
+  "info": {
+    "_postman_id": "133437d0-40b8-4562-b953-a14f0c4d80f1",
+    "name": "Apache CouchDB HTTP Authentication Changes API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:40.000Z",
+    "updatedAt": "2026-07-28T01:01:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-133437d0-40b8-4562-b953-a14f0c4d80f1"
+  },
+  "item": [
+    {
+      "name": "{db}",
+      "item": [
+        {
+          "name": "_changes",
+          "item": [
+            {
+              "name": "Apache CouchDB Get Database Changes",
+              "id": "c22ee10f-1f99-48c0-9ddc-f1d4dc728d2c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:db/_changes?feed=normal&since=<string>&limit=<integer>&include_docs=false&filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":db",
+                    "_changes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Type of changes feed to use.",
+                      "key": "feed",
+                      "value": "normal"
+                    },
+                    {
+                      "description": "Start sequence number or 'now' for only new changes.",
+                      "key": "since",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of changes to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Include the document body for each change row.",
+                      "key": "include_docs",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Filter function name (e.g., _doc_ids, _design).",
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "04237aef-46cc-488b-ac96-00a4c0addedc",
+                      "key": "db",
+                      "value": "<string>",
+                      "description": "(Required) Database name."
+                    }
+                  ]
+                },
+                "description": "Returns a sorted list of changes made to documents in the database, including design documents. The changes feed supports long-polling, continuous, and event-source modes."
+              },
+              "response": [
+                {
+                  "id": "17f12ba3-da7b-4933-b624-8dc02811cb0e",
+                  "name": "Changes feed results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:db/_changes?feed=normal&since=<string>&limit=<integer>&include_docs=false&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":db",
+                        "_changes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of changes feed to use.",
+                          "key": "feed",
+                          "value": "normal"
+                        },
+                        {
+                          "description": "Start sequence number or 'now' for only new changes.",
+                          "key": "since",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of changes to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Include the document body for each change row.",
+                          "key": "include_docs",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Filter function name (e.g., _doc_ids, _design).",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "db"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"last_seq\": \"<string>\",\n  \"pending\": \"<integer>\",\n  \"results\": [\n    {\n      \"seq\": \"<string>\",\n      \"id\": \"<string>\",\n      \"changes\": [\n        {\n          \"rev\": \"<string>\"\n        },\n        {\n          \"rev\": \"<string>\"\n        }\n      ],\n      \"deleted\": \"<boolean>\",\n      \"doc\": {\n        \"_id\": \"<string>\",\n        \"_rev\": \"<string>\",\n        \"_deleted\": \"<boolean>\"\n      }\n    },\n    {\n      \"seq\": \"<string>\",\n      \"id\": \"<string>\",\n      \"changes\": [\n        {\n          \"rev\": \"<string>\"\n        },\n        {\n          \"rev\": \"<string>\"\n        }\n      ],\n      \"deleted\": \"<boolean>\",\n      \"doc\": {\n        \"_id\": \"<string>\",\n        \"_rev\": \"<string>\",\n        \"_deleted\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:01:41.000Z",
+                  "updatedAt": "2026-07-28T01:01:41.000Z",
+                  "uid": "35240-17f12ba3-da7b-4933-b624-8dc02811cb0e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:01:41.000Z",
+              "updatedAt": "2026-07-28T01:01:41.000Z",
+              "uid": "35240-c22ee10f-1f99-48c0-9ddc-f1d4dc728d2c"
+            }
+          ],
+          "id": "61345ad4-4693-437d-8122-40ac265c6aa3",
+          "createdAt": "2026-07-28T01:01:41.000Z",
+          "updatedAt": "2026-07-28T01:01:41.000Z",
+          "uid": "35240-61345ad4-4693-437d-8122-40ac265c6aa3"
+        }
+      ],
+      "id": "55555dfe-89b3-402d-b596-c60ecbd5b2f7",
+      "createdAt": "2026-07-28T01:01:41.000Z",
+      "updatedAt": "2026-07-28T01:01:41.000Z",
+      "uid": "35240-55555dfe-89b3-402d-b596-c60ecbd5b2f7"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}

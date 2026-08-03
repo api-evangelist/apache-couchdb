@@ -1,0 +1,233 @@
+{
+  "info": {
+    "_postman_id": "fe3f3f61-f908-43db-812d-954add93b6fb",
+    "name": "Apache CouchDB HTTP Authentication Server API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:46.000Z",
+    "updatedAt": "2026-07-28T01:01:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fe3f3f61-f908-43db-812d-954add93b6fb"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Apache CouchDB Get Server Information",
+          "id": "e7e15481-3d25-4f16-ae6d-a58eb9e84ab2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Returns meta information about the CouchDB server instance including version, features, and vendor info."
+          },
+          "response": [
+            {
+              "id": "30051d14-1b9c-4f35-9c2e-d1990ac8045e",
+              "name": "Server information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"couchdb\": \"<string>\",\n  \"version\": \"<string>\",\n  \"git_sha\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"vendor\": {\n    \"name\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:01:47.000Z",
+              "updatedAt": "2026-07-28T01:01:47.000Z",
+              "uid": "35240-30051d14-1b9c-4f35-9c2e-d1990ac8045e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:47.000Z",
+          "updatedAt": "2026-07-28T01:01:47.000Z",
+          "uid": "35240-e7e15481-3d25-4f16-ae6d-a58eb9e84ab2"
+        }
+      ],
+      "id": "7a362cd8-8aab-4f6c-8ba7-90ba1c5d0b16",
+      "createdAt": "2026-07-28T01:01:47.000Z",
+      "updatedAt": "2026-07-28T01:01:47.000Z",
+      "uid": "35240-7a362cd8-8aab-4f6c-8ba7-90ba1c5d0b16"
+    },
+    {
+      "name": "_all_dbs",
+      "item": [
+        {
+          "name": "Apache CouchDB Get All Databases",
+          "id": "f1029738-dade-4320-9234-2a0da09ab861",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/_all_dbs?descending=false&limit=<integer>&skip=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "_all_dbs"
+              ],
+              "query": [
+                {
+                  "description": "Return databases in descending order.",
+                  "key": "descending",
+                  "value": "false"
+                },
+                {
+                  "description": "Maximum number of results to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Number of results to skip before returning.",
+                  "key": "skip",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a list of all databases in the CouchDB instance."
+          },
+          "response": [
+            {
+              "id": "33630fc2-41d7-4adb-a498-be453913959e",
+              "name": "List of database names",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/_all_dbs?descending=false&limit=<integer>&skip=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "_all_dbs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Return databases in descending order.",
+                      "key": "descending",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results to skip before returning.",
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "createdAt": "2026-07-28T01:01:47.000Z",
+              "updatedAt": "2026-07-28T01:01:47.000Z",
+              "uid": "35240-33630fc2-41d7-4adb-a498-be453913959e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:01:47.000Z",
+          "updatedAt": "2026-07-28T01:01:47.000Z",
+          "uid": "35240-f1029738-dade-4320-9234-2a0da09ab861"
+        }
+      ],
+      "id": "b32bcb98-0f6b-4d64-b5b8-91a6addf5603",
+      "createdAt": "2026-07-28T01:01:47.000Z",
+      "updatedAt": "2026-07-28T01:01:47.000Z",
+      "uid": "35240-b32bcb98-0f6b-4d64-b5b8-91a6addf5603"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}

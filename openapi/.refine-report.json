@@ -1,0 +1,30 @@
+{
+  "provider": "apache-couchdb",
+  "sources": [
+    "apache-couchdb-authentication-api-openapi.yml",
+    "apache-couchdb-changes-api-openapi.yml",
+    "apache-couchdb-cluster-api-openapi.yml",
+    "apache-couchdb-database-api-openapi.yml",
+    "apache-couchdb-design-documents-api-openapi.yml",
+    "apache-couchdb-documents-api-openapi.yml",
+    "apache-couchdb-mango-api-openapi.yml",
+    "apache-couchdb-replication-api-openapi.yml",
+    "apache-couchdb-server-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-couchdb-authentication-api-openapi.yml",
+    "apache-couchdb-changes-api-openapi.yml",
+    "apache-couchdb-cluster-api-openapi.yml",
+    "apache-couchdb-database-api-openapi.yml",
+    "apache-couchdb-design-documents-api-openapi.yml",
+    "apache-couchdb-documents-api-openapi.yml",
+    "apache-couchdb-mango-api-openapi.yml",
+    "apache-couchdb-replication-api-openapi.yml",
+    "apache-couchdb-server-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

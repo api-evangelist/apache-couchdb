@@ -1,0 +1,315 @@
+{
+  "info": {
+    "_postman_id": "a8cbbd69-9766-4cfc-9a24-9593a56520f6",
+    "name": "Apache CouchDB HTTP Authentication Design Documents API",
+    "description": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:01:43.000Z",
+    "updatedAt": "2026-07-28T01:01:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a8cbbd69-9766-4cfc-9a24-9593a56520f6"
+  },
+  "item": [
+    {
+      "name": "{db}",
+      "item": [
+        {
+          "name": "_design",
+          "item": [
+            {
+              "name": "{ddoc}",
+              "item": [
+                {
+                  "name": "_view",
+                  "item": [
+                    {
+                      "name": "{view}",
+                      "item": [
+                        {
+                          "name": "Apache CouchDB Get View Results",
+                          "id": "ec879acb-827f-4942-a536-f62fb007be08",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:db/_design/:ddoc/_view/:view?include_docs=false&limit=<integer>&key=<string>&reduce=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":db",
+                                "_design",
+                                ":ddoc",
+                                "_view",
+                                ":view"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Include the full document body for each row.",
+                                  "key": "include_docs",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Maximum number of rows to return.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Return only rows matching the specified key.",
+                                  "key": "key",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Execute the reduce function.",
+                                  "key": "reduce",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d0326991-d605-4280-aab6-26aabea33549",
+                                  "key": "db",
+                                  "value": "<string>",
+                                  "description": "(Required) Database name."
+                                },
+                                {
+                                  "id": "81733a9a-c82a-40ef-8a4e-dfb5b3960650",
+                                  "key": "ddoc",
+                                  "value": "<string>",
+                                  "description": "(Required) Design document name (without _design/ prefix)."
+                                },
+                                {
+                                  "id": "43a83707-daae-4425-bd2d-b4bd0020d053",
+                                  "key": "view",
+                                  "value": "<string>",
+                                  "description": "(Required) View name within the design document."
+                                }
+                              ]
+                            },
+                            "description": "Executes a MapReduce view defined in a design document and returns the results."
+                          },
+                          "response": [
+                            {
+                              "id": "818758b2-a183-4db8-9fcc-ea5398dc7921",
+                              "name": "View results",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:db/_design/:ddoc/_view/:view?include_docs=false&limit=<integer>&key=<string>&reduce=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":db",
+                                    "_design",
+                                    ":ddoc",
+                                    "_view",
+                                    ":view"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Include the full document body for each row.",
+                                      "key": "include_docs",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Maximum number of rows to return.",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Return only rows matching the specified key.",
+                                      "key": "key",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Execute the reduce function.",
+                                      "key": "reduce",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "db"
+                                    },
+                                    {
+                                      "key": "ddoc"
+                                    },
+                                    {
+                                      "key": "view"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"total_rows\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"rows\": [\n    {\n      \"id\": \"<string>\",\n      \"key\": {\n        \"description\": \"Emitted key from the map function\",\n        \"example\": \"active\"\n      },\n      \"value\": {\n        \"description\": \"Emitted value from the map or reduce function\",\n        \"example\": 1\n      },\n      \"doc\": {\n        \"_id\": \"<string>\",\n        \"_rev\": \"<string>\",\n        \"_deleted\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"key\": {\n        \"description\": \"Emitted key from the map function\",\n        \"example\": \"active\"\n      },\n      \"value\": {\n        \"description\": \"Emitted value from the map or reduce function\",\n        \"example\": 1\n      },\n      \"doc\": {\n        \"_id\": \"<string>\",\n        \"_rev\": \"<string>\",\n        \"_deleted\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:01:43.000Z",
+                              "updatedAt": "2026-07-28T01:01:43.000Z",
+                              "uid": "35240-818758b2-a183-4db8-9fcc-ea5398dc7921"
+                            },
+                            {
+                              "id": "db2337c1-736e-430f-8768-43c3c9a4292c",
+                              "name": "Design document or view not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:db/_design/:ddoc/_view/:view?include_docs=false&limit=<integer>&key=<string>&reduce=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":db",
+                                    "_design",
+                                    ":ddoc",
+                                    "_view",
+                                    ":view"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Include the full document body for each row.",
+                                      "key": "include_docs",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Maximum number of rows to return.",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Return only rows matching the specified key.",
+                                      "key": "key",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Execute the reduce function.",
+                                      "key": "reduce",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "db"
+                                    },
+                                    {
+                                      "key": "ddoc"
+                                    },
+                                    {
+                                      "key": "view"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:01:43.000Z",
+                              "updatedAt": "2026-07-28T01:01:43.000Z",
+                              "uid": "35240-db2337c1-736e-430f-8768-43c3c9a4292c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:01:43.000Z",
+                          "updatedAt": "2026-07-28T01:01:43.000Z",
+                          "uid": "35240-ec879acb-827f-4942-a536-f62fb007be08"
+                        }
+                      ],
+                      "id": "6be5fad0-c9a4-45ec-9674-b642970cb647",
+                      "createdAt": "2026-07-28T01:01:43.000Z",
+                      "updatedAt": "2026-07-28T01:01:43.000Z",
+                      "uid": "35240-6be5fad0-c9a4-45ec-9674-b642970cb647"
+                    }
+                  ],
+                  "id": "85e5624f-7a1e-491a-aa91-5ec5c5b84f76",
+                  "createdAt": "2026-07-28T01:01:43.000Z",
+                  "updatedAt": "2026-07-28T01:01:43.000Z",
+                  "uid": "35240-85e5624f-7a1e-491a-aa91-5ec5c5b84f76"
+                }
+              ],
+              "id": "740e100d-3ee4-433e-b7f0-01dfb54172e2",
+              "createdAt": "2026-07-28T01:01:43.000Z",
+              "updatedAt": "2026-07-28T01:01:43.000Z",
+              "uid": "35240-740e100d-3ee4-433e-b7f0-01dfb54172e2"
+            }
+          ],
+          "id": "bc76d4ed-9db4-40d8-bf8a-ea857106e571",
+          "createdAt": "2026-07-28T01:01:43.000Z",
+          "updatedAt": "2026-07-28T01:01:43.000Z",
+          "uid": "35240-bc76d4ed-9db4-40d8-bf8a-ea857106e571"
+        }
+      ],
+      "id": "864e5444-24ff-46c3-849c-aef2849a3e7d",
+      "createdAt": "2026-07-28T01:01:43.000Z",
+      "updatedAt": "2026-07-28T01:01:43.000Z",
+      "uid": "35240-864e5444-24ff-46c3-849c-aef2849a3e7d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5984"
+    }
+  ]
+}
