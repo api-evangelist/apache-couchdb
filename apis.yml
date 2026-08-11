@@ -2316,6 +2316,15 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 common:
+  - type: IssueTracker
+    url: https://github.com/apache/couchdb/issues
+  - type: CodeOfConduct
+    url: https://github.com/apache/.github/blob/main/.github/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/apache/couchdb/blob/main/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/apache/couchdb/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/apache-couchdb/overview
   - type: AgenticAccess
