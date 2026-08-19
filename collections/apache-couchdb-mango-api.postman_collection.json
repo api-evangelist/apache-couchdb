@@ -1,0 +1,435 @@
+{
+  "item": [
+    {
+      "id": "9c8a976e-140c-4d0c-8cd5-c708fc1825a8",
+      "name": "Mango",
+      "description": {
+        "content": "Mango declarative JSON query API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13f67109-48a0-4abb-a5ad-aae442419f65",
+          "name": "Apache CouchDB Find Documents (Mango Query)",
+          "request": {
+            "name": "Apache CouchDB Find Documents (Mango Query)",
+            "description": {
+              "content": "Executes a Mango (declarative JSON) query against the database to find documents matching specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":db",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "db",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"selector\": \"<object>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 25,\n  \"skip\": 0,\n  \"sort\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"bookmark\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea271abe-ae64-4eeb-865c-6f6e1592c987",
+              "name": "Query results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"selector\": {\n    \"type\": \"product\",\n    \"status\": \"active\"\n  },\n  \"fields\": [\n    \"_id\",\n    \"name\",\n    \"status\"\n  ],\n  \"limit\": 25,\n  \"sort\": [\n    {\n      \"name\": \"asc\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"docs\": [\n    {\n      \"_id\": \"doc001\",\n      \"name\": \"Example Product\",\n      \"status\": \"active\"\n    }\n  ],\n  \"bookmark\": \"g1AAAABleJzLYWBg\",\n  \"warning\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e88d562-d2c1-4921-9c06-92b47b40d543",
+              "name": "Invalid query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"selector\": {\n    \"type\": \"product\",\n    \"status\": \"active\"\n  },\n  \"fields\": [\n    \"_id\",\n    \"name\",\n    \"status\"\n  ],\n  \"limit\": 25,\n  \"sort\": [\n    {\n      \"name\": \"asc\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"reason\": \"Database does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae9b4b0e-1c81-479c-a616-f90b46348f2d",
+          "name": "Apache CouchDB Get Mango Indexes",
+          "request": {
+            "name": "Apache CouchDB Get Mango Indexes",
+            "description": {
+              "content": "Returns a list of all indexes defined for the database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":db",
+                "_index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "db",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d44cb6c-bc9f-42f5-8d1f-8d936edad48a",
+              "name": "List of indexes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_rows\": 2,\n  \"indexes\": [\n    {\n      \"ddoc\": \"_design/idx-status\",\n      \"name\": \"idx-status\",\n      \"type\": \"json\",\n      \"def\": {\n        \"fields\": [\n          {\n            \"status\": \"asc\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fab9c090-df09-46c8-a792-bf2a3049ca57",
+          "name": "Apache CouchDB Create Mango Index",
+          "request": {
+            "name": "Apache CouchDB Create Mango Index",
+            "description": {
+              "content": "Creates a new Mango index on the specified fields to optimize query performance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":db",
+                "_index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "db",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index\": {\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ddoc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"json\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7440bc6-8c71-4cc7-839a-9edc525ef854",
+              "name": "Index created or exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"index\": {\n    \"fields\": [\n      \"status\",\n      \"type\"\n    ]\n  },\n  \"name\": \"idx-status-type\",\n  \"type\": \"json\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"created\",\n  \"id\": \"_design/idx-status-type\",\n  \"name\": \"idx-status-type\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:5984",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84f03156-3ccd-46b8-98ca-8765401a04e4",
+    "name": "Apache CouchDB HTTP Authentication Mango API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache CouchDB HTTP Authentication Mango API",
+    "version": "3.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mango",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache CouchDB Find Documents (Mango Query)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:5984/:db/_find",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Mango (declarative JSON) query against the database to find documents matching specified criteria."
+        },
+        {
+          "info": {
+            "name": "Apache CouchDB Get Mango Indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:5984/:db/_index",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              }
+            ]
+          },
+          "docs": "Returns a list of all indexes defined for the database."
+        },
+        {
+          "info": {
+            "name": "Apache CouchDB Create Mango Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:5984/:db/_index",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Mango index on the specified fields to optimize query performance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

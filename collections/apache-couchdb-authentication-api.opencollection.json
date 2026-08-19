@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache CouchDB HTTP Authentication API",
+    "version": "3.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache CouchDB Get Session Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:5984/_session"
+          },
+          "docs": "Returns information about the current user's authentication session."
+        },
+        {
+          "info": {
+            "name": "Apache CouchDB Create Authentication Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:5984/_session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new authentication session cookie. Equivalent to HTTP Basic Auth login."
+        },
+        {
+          "info": {
+            "name": "Apache CouchDB Delete Authentication Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:5984/_session"
+          },
+          "docs": "Ends the current authentication session (logout)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

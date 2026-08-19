@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache CouchDB HTTP Authentication Database API",
+    "version": "3.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Database",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache CouchDB Get Database Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:5984/:db",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              }
+            ]
+          },
+          "docs": "Returns information about the named database including document count, disk size, and update sequence."
+        },
+        {
+          "info": {
+            "name": "Apache CouchDB Create Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:5984/:db",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              },
+              {
+                "name": "q",
+                "value": "8",
+                "type": "query",
+                "description": "Number of shards for this database."
+              },
+              {
+                "name": "n",
+                "value": "3",
+                "type": "query",
+                "description": "Number of replicas for each shard."
+              }
+            ]
+          },
+          "docs": "Creates a new database with the given name."
+        },
+        {
+          "info": {
+            "name": "Apache CouchDB Delete Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:5984/:db",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified database and all documents within it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

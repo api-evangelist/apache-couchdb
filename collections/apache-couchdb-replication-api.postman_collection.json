@@ -1,0 +1,144 @@
+{
+  "item": [
+    {
+      "id": "91e7cd8e-04d1-4022-a6c0-69d822372ce0",
+      "name": "Replication",
+      "description": {
+        "content": "Replication management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0695e2ff-35aa-4243-8eb8-3f5e06c863a2",
+          "name": "Apache CouchDB Replicate Database",
+          "request": {
+            "name": "Apache CouchDB Replicate Database",
+            "description": {
+              "content": "Initiates a replication task between a source and target database. Can be transient (one-time) or persistent (via _replicator database).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_replicate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"target\": \"<string>\",\n  \"continuous\": false,\n  \"create_target\": false,\n  \"filter\": \"<string>\",\n  \"doc_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f63af37-aa2d-40b6-81b9-b4b6de8dacab",
+              "name": "Replication completed or started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_replicate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"http://localhost:5984/sourcedb\",\n  \"target\": \"http://remotehost:5984/targetdb\",\n  \"continuous\": false,\n  \"create_target\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"session_id\": \"abc123def456\",\n  \"source_last_seq\": \"5000-abc123\",\n  \"replication_id_version\": 4,\n  \"history\": [\n    {\n      \"session_id\": \"abc123def456\",\n      \"docs_written\": 1250,\n      \"doc_write_failures\": 0\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:5984",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3530acf1-d1a9-42f7-8bba-98f89c4a5720",
+    "name": "Apache CouchDB HTTP Authentication Replication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+      "type": "text/plain"
+    }
+  }
+}

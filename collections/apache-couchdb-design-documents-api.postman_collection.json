@@ -1,0 +1,303 @@
+{
+  "item": [
+    {
+      "id": "51702810-91cd-4f2c-9bcd-bd861899e40c",
+      "name": "Design Documents",
+      "description": {
+        "content": "Design documents, views, and indexes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bab8feaa-d5c6-4a77-b77e-f6568338b48e",
+          "name": "Apache CouchDB Get View Results",
+          "request": {
+            "name": "Apache CouchDB Get View Results",
+            "description": {
+              "content": "Executes a MapReduce view defined in a design document and returns the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":db",
+                "_design",
+                ":ddoc",
+                "_view",
+                ":view"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_docs",
+                  "value": "false",
+                  "description": "Include the full document body for each row."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of rows to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Return only rows matching the specified key."
+                },
+                {
+                  "disabled": false,
+                  "key": "reduce",
+                  "value": "<boolean>",
+                  "description": "Execute the reduce function."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "db",
+                  "description": "(Required) Database name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ddoc",
+                  "description": "(Required) Design document name (without _design/ prefix)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view",
+                  "description": "(Required) View name within the design document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ff9c31d-decb-4365-9fa9-15f75080aa39",
+              "name": "View results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_design",
+                    ":ddoc",
+                    "_view",
+                    ":view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_docs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "key",
+                      "value": "\"active\""
+                    },
+                    {
+                      "key": "reduce",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ddoc",
+                      "description": "(Required) Design document name (without _design/ prefix)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view",
+                      "description": "(Required) View name within the design document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_rows\": 150,\n  \"offset\": 0,\n  \"rows\": [\n    {\n      \"id\": \"doc001\",\n      \"key\": \"active\",\n      \"value\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd4dd0dc-f6c1-4926-ba5a-16c33a480e1d",
+              "name": "Design document or view not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_design",
+                    ":ddoc",
+                    "_view",
+                    ":view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_docs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "key",
+                      "value": "\"active\""
+                    },
+                    {
+                      "key": "reduce",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ddoc",
+                      "description": "(Required) Design document name (without _design/ prefix)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view",
+                      "description": "(Required) View name within the design document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"reason\": \"Database does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:5984",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c96b465-6c0c-4dcc-8dcd-b46aef048632",
+    "name": "Apache CouchDB HTTP Authentication Design Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+      "type": "text/plain"
+    }
+  }
+}

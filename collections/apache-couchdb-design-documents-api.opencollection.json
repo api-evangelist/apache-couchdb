@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache CouchDB HTTP Authentication Design Documents API",
+    "version": "3.5.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Design Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache CouchDB Get View Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:5984/:db/_design/:ddoc/_view/:view",
+            "params": [
+              {
+                "name": "db",
+                "value": "mydb",
+                "type": "path",
+                "description": "Database name."
+              },
+              {
+                "name": "ddoc",
+                "value": "products",
+                "type": "path",
+                "description": "Design document name (without _design/ prefix)."
+              },
+              {
+                "name": "view",
+                "value": "by_status",
+                "type": "path",
+                "description": "View name within the design document."
+              },
+              {
+                "name": "include_docs",
+                "value": "false",
+                "type": "query",
+                "description": "Include the full document body for each row."
+              },
+              {
+                "name": "limit",
+                "value": "25",
+                "type": "query",
+                "description": "Maximum number of rows to return."
+              },
+              {
+                "name": "key",
+                "value": "\"active\"",
+                "type": "query",
+                "description": "Return only rows matching the specified key."
+              },
+              {
+                "name": "reduce",
+                "value": "false",
+                "type": "query",
+                "description": "Execute the reduce function."
+              }
+            ]
+          },
+          "docs": "Executes a MapReduce view defined in a design document and returns the results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

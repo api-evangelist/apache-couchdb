@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "18c97640-50f7-41a8-80ec-28c872eb889e",
+      "name": "Changes",
+      "description": {
+        "content": "Database changes feed",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43b71dfa-4795-47bd-83ad-7695db475994",
+          "name": "Apache CouchDB Get Database Changes",
+          "request": {
+            "name": "Apache CouchDB Get Database Changes",
+            "description": {
+              "content": "Returns a sorted list of changes made to documents in the database, including design documents. The changes feed supports long-polling, continuous, and event-source modes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":db",
+                "_changes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "feed",
+                  "value": "normal",
+                  "description": "Type of changes feed to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>",
+                  "description": "Start sequence number or 'now' for only new changes."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of changes to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_docs",
+                  "value": "false",
+                  "description": "Include the document body for each change row."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter function name (e.g., _doc_ids, _design)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "db",
+                  "description": "(Required) Database name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd13bf62-745d-4f6d-8fdc-29a1cf4b3267",
+              "name": "Changes feed results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":db",
+                    "_changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feed",
+                      "value": "normal"
+                    },
+                    {
+                      "key": "since",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "include_docs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "_doc_ids"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "db",
+                      "description": "(Required) Database name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"last_seq\": \"5000-abc123\",\n  \"pending\": 0,\n  \"results\": [\n    {\n      \"seq\": \"5000-abc123\",\n      \"id\": \"doc001\",\n      \"changes\": [\n        {\n          \"rev\": \"2-def456\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:5984",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d89bf8c7-7c1f-45f4-ac93-bd64f4617c97",
+    "name": "Apache CouchDB HTTP Authentication Changes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.\n\nContact Support:\n Name: Apache CouchDB Community",
+      "type": "text/plain"
+    }
+  }
+}
