@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apache CouchDB HTTP Authentication Mango API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
@@ -194,36 +194,6 @@ components:
           example: g1AAAABleJzLYWBg
       required:
       - selector
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
-    Document:
-      title: Document
-      type: object
-      description: A CouchDB document with system fields and user-defined fields
-      properties:
-        _id:
-          type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
     IndexesResponse:
       title: IndexesResponse
       type: object
@@ -249,26 +219,23 @@ components:
                 example: json
               def:
                 type: object
-    CreateIndexResponse:
-      title: CreateIndexResponse
+    Document:
+      title: Document
       type: object
-      description: Response from creating a Mango index
+      description: A CouchDB document with system fields and user-defined fields
       properties:
-        result:
+        _id:
           type: string
-          description: created or exists
-          enum:
-          - created
-          - exists
-          example: created
-        id:
+          description: Document ID
+          example: doc001
+        _rev:
           type: string
-          description: Design document ID
-          example: _design/idx-status-type
-        name:
-          type: string
-          description: Index name
-          example: idx-status-type
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
     FindResponse:
       title: FindResponse
       type: object
@@ -319,6 +286,39 @@ components:
           - text
           default: json
           example: json
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+    CreateIndexResponse:
+      title: CreateIndexResponse
+      type: object
+      description: Response from creating a Mango index
+      properties:
+        result:
+          type: string
+          description: created or exists
+          enum:
+          - created
+          - exists
+          example: created
+        id:
+          type: string
+          description: Design document ID
+          example: _design/idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
   parameters:
     db:
       name: db

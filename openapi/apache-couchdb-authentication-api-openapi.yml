@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apache CouchDB HTTP Authentication API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
@@ -119,6 +119,49 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+    SessionInfo:
+      title: SessionInfo
+      type: object
+      description: Current session information
+      properties:
+        ok:
+          type: boolean
+          example: true
+        userCtx:
+          type: object
+          properties:
+            name:
+              type: string
+              example: admin
+            roles:
+              type: array
+              items:
+                type: string
+              example:
+              - _admin
+        info:
+          type: object
+          properties:
+            authentication_handlers:
+              type: array
+              items:
+                type: string
+              example:
+              - cookie
+              - default
     OkResponse:
       title: OkResponse
       type: object
@@ -153,49 +196,6 @@ components:
       required:
       - name
       - password
-    SessionInfo:
-      title: SessionInfo
-      type: object
-      description: Current session information
-      properties:
-        ok:
-          type: boolean
-          example: true
-        userCtx:
-          type: object
-          properties:
-            name:
-              type: string
-              example: admin
-            roles:
-              type: array
-              items:
-                type: string
-              example:
-              - _admin
-        info:
-          type: object
-          properties:
-            authentication_handlers:
-              type: array
-              items:
-                type: string
-              example:
-              - cookie
-              - default
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
   securitySchemes:
     basicAuth:
       type: http

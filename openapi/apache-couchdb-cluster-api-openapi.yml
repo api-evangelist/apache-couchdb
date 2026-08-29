@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apache CouchDB HTTP Authentication Cluster API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
