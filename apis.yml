@@ -2087,6 +2087,8 @@ apis:
   description: Server-level information and utilities
   humanURL: https://docs.couchdb.org/en/stable/api/index.html
   tags:
+  - Servers
+  tags_raw:
   - Server
   properties:
   - type: OpenAPI
