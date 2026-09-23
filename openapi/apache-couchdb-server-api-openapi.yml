@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache CouchDB HTTP Authentication Server API
+  title: Apache CouchDB HTTP Server API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
   version: 3.5.1
   contact:

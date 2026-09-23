@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache CouchDB HTTP Authentication Documents API
+  title: Apache CouchDB HTTP Documents API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
   version: 3.5.1
   contact:
@@ -322,6 +322,48 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+    WriteResponse:
+      title: WriteResponse
+      type: object
+      description: Response from a document write operation
+      properties:
+        ok:
+          type: boolean
+          example: true
+        id:
+          type: string
+          description: Document ID
+          example: doc001
+        rev:
+          type: string
+          description: New revision ID
+          example: 1-abc123def456
+    KeysRequest:
+      title: KeysRequest
+      type: object
+      description: Request body for POST _all_docs with specific keys
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          description: Array of document IDs to retrieve
+          example:
+          - doc001
+          - doc002
     Document:
       title: Document
       type: object
@@ -339,19 +381,6 @@ components:
           type: boolean
           description: Present and true for deleted (tombstone) documents
           example: false
-    DocumentInput:
-      title: DocumentInput
-      type: object
-      description: Input for creating or updating a CouchDB document
-      properties:
-        _id:
-          type: string
-          description: Optional document ID (auto-generated if omitted for POST)
-          example: doc001
-        _rev:
-          type: string
-          description: Required for updates — current revision ID
-          example: 1-abc123def456
     AllDocsResponse:
       title: AllDocsResponse
       type: object
@@ -384,48 +413,6 @@ components:
           description: If false, allow insertion of conflicting revisions (for replication)
           default: true
           example: true
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
-    KeysRequest:
-      title: KeysRequest
-      type: object
-      description: Request body for POST _all_docs with specific keys
-      properties:
-        keys:
-          type: array
-          items:
-            type: string
-          description: Array of document IDs to retrieve
-          example:
-          - doc001
-          - doc002
-    WriteResponse:
-      title: WriteResponse
-      type: object
-      description: Response from a document write operation
-      properties:
-        ok:
-          type: boolean
-          example: true
-        id:
-          type: string
-          description: Document ID
-          example: doc001
-        rev:
-          type: string
-          description: New revision ID
-          example: 1-abc123def456
     DocRow:
       title: DocRow
       type: object
@@ -448,6 +435,19 @@ components:
               example: 1-abc123
         doc:
           $ref: '#/components/schemas/Document'
+    DocumentInput:
+      title: DocumentInput
+      type: object
+      description: Input for creating or updating a CouchDB document
+      properties:
+        _id:
+          type: string
+          description: Optional document ID (auto-generated if omitted for POST)
+          example: doc001
+        _rev:
+          type: string
+          description: Required for updates — current revision ID
+          example: 1-abc123def456
   parameters:
     docid:
       name: docid

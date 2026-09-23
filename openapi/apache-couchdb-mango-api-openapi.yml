@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache CouchDB HTTP Authentication Mango API
+  title: Apache CouchDB HTTP Mango API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
   version: 3.5.1
   contact:
@@ -152,6 +152,131 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    IndexesResponse:
+      title: IndexesResponse
+      type: object
+      description: List of Mango indexes for a database
+      properties:
+        total_rows:
+          type: integer
+          description: Number of indexes
+          example: 2
+        indexes:
+          type: array
+          items:
+            type: object
+            properties:
+              ddoc:
+                type: string
+                example: _design/idx-status
+              name:
+                type: string
+                example: idx-status
+              type:
+                type: string
+                example: json
+              def:
+                type: object
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
+    CreateIndexRequest:
+      title: CreateIndexRequest
+      type: object
+      description: Request to create a Mango index
+      properties:
+        index:
+          type: object
+          description: Index definition
+          properties:
+            fields:
+              type: array
+              items:
+                oneOf:
+                - type: string
+                - type: object
+              description: Fields to index
+        ddoc:
+          type: string
+          description: Design document name to use for the index
+          example: idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+        type:
+          type: string
+          description: Index type
+          enum:
+          - json
+          - text
+          default: json
+          example: json
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+    CreateIndexResponse:
+      title: CreateIndexResponse
+      type: object
+      description: Response from creating a Mango index
+      properties:
+        result:
+          type: string
+          description: created or exists
+          enum:
+          - created
+          - exists
+          example: created
+        id:
+          type: string
+          description: Design document ID
+          example: _design/idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+    FindResponse:
+      title: FindResponse
+      type: object
+      description: Mango query results
+      properties:
+        docs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: Array of matching documents
+        bookmark:
+          type: string
+          description: Bookmark for retrieving the next set of results
+          example: g1AAAABleJzLYWBg
+        warning:
+          type: string
+          description: Warning if query is not optimally indexed
+          example: No matching index found, create an index to optimize query time.
     FindRequest:
       title: FindRequest
       type: object
@@ -194,131 +319,6 @@ components:
           example: g1AAAABleJzLYWBg
       required:
       - selector
-    IndexesResponse:
-      title: IndexesResponse
-      type: object
-      description: List of Mango indexes for a database
-      properties:
-        total_rows:
-          type: integer
-          description: Number of indexes
-          example: 2
-        indexes:
-          type: array
-          items:
-            type: object
-            properties:
-              ddoc:
-                type: string
-                example: _design/idx-status
-              name:
-                type: string
-                example: idx-status
-              type:
-                type: string
-                example: json
-              def:
-                type: object
-    Document:
-      title: Document
-      type: object
-      description: A CouchDB document with system fields and user-defined fields
-      properties:
-        _id:
-          type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
-    FindResponse:
-      title: FindResponse
-      type: object
-      description: Mango query results
-      properties:
-        docs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-          description: Array of matching documents
-        bookmark:
-          type: string
-          description: Bookmark for retrieving the next set of results
-          example: g1AAAABleJzLYWBg
-        warning:
-          type: string
-          description: Warning if query is not optimally indexed
-          example: No matching index found, create an index to optimize query time.
-    CreateIndexRequest:
-      title: CreateIndexRequest
-      type: object
-      description: Request to create a Mango index
-      properties:
-        index:
-          type: object
-          description: Index definition
-          properties:
-            fields:
-              type: array
-              items:
-                oneOf:
-                - type: string
-                - type: object
-              description: Fields to index
-        ddoc:
-          type: string
-          description: Design document name to use for the index
-          example: idx-status-type
-        name:
-          type: string
-          description: Index name
-          example: idx-status-type
-        type:
-          type: string
-          description: Index type
-          enum:
-          - json
-          - text
-          default: json
-          example: json
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
-    CreateIndexResponse:
-      title: CreateIndexResponse
-      type: object
-      description: Response from creating a Mango index
-      properties:
-        result:
-          type: string
-          description: created or exists
-          enum:
-          - created
-          - exists
-          example: created
-        id:
-          type: string
-          description: Design document ID
-          example: _design/idx-status-type
-        name:
-          type: string
-          description: Index name
-          example: idx-status-type
   parameters:
     db:
       name: db

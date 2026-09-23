@@ -1,15 +1,7 @@
 {
   "provider": "apache-couchdb",
   "sources": [
-    "apache-couchdb-authentication-api-openapi.yml",
-    "apache-couchdb-changes-api-openapi.yml",
-    "apache-couchdb-cluster-api-openapi.yml",
-    "apache-couchdb-database-api-openapi.yml",
-    "apache-couchdb-design-documents-api-openapi.yml",
-    "apache-couchdb-documents-api-openapi.yml",
-    "apache-couchdb-mango-api-openapi.yml",
-    "apache-couchdb-replication-api-openapi.yml",
-    "apache-couchdb-server-api-openapi.yml"
+    "_ae-authored/apache-couchdb-http-api-openapi.yaml"
   ],
   "outputs": [
     "apache-couchdb-authentication-api-openapi.yml",
@@ -26,16 +18,19 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "apache-couchdb-authentication-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-changes-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-cluster-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-database-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-design-documents-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-documents-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-mango-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-replication-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apache-couchdb-server-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apache-couchdb-http-api-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "apache-couchdb-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-changes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-cluster-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-database-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-design-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-mango-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-replication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-couchdb-server-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

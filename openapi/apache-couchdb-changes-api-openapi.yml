@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Apache CouchDB HTTP Authentication Changes API
+  title: Apache CouchDB HTTP Changes API
   description: Apache CouchDB exposes a complete RESTful HTTP/JSON API for all database operations including server management, database CRUD, document CRUD, bulk operations, Mango queries, MapReduce views, replication, changes feeds, authentication, and cluster administration. All requests and responses use JSON.
   version: 3.5.1
   contact:
@@ -95,24 +95,33 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
   schemas:
-    Document:
-      title: Document
+    ChangesResponse:
+      title: ChangesResponse
       type: object
-      description: A CouchDB document with system fields and user-defined fields
+      description: Database changes feed response
       properties:
-        _id:
+        last_seq:
           type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
+          description: Last sequence number in this response
+          example: 5000-abc123
+        pending:
+          type: integer
+          description: Number of changes still pending
+          example: 0
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeRow'
     ChangeRow:
       title: ChangeRow
       type: object
@@ -140,32 +149,23 @@ components:
           example: false
         doc:
           $ref: '#/components/schemas/Document'
-    ChangesResponse:
-      title: ChangesResponse
+    Document:
+      title: Document
       type: object
-      description: Database changes feed response
+      description: A CouchDB document with system fields and user-defined fields
       properties:
-        last_seq:
+        _id:
           type: string
-          description: Last sequence number in this response
-          example: 5000-abc123
-        pending:
-          type: integer
-          description: Number of changes still pending
-          example: 0
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChangeRow'
-  parameters:
-    db:
-      name: db
-      in: path
-      required: true
-      description: Database name.
-      schema:
-        type: string
-      example: mydb
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
   securitySchemes:
     basicAuth:
       type: http
