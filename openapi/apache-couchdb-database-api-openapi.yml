@@ -133,20 +133,34 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
+    OkResponse:
+      title: OkResponse
       type: object
-      description: Standard CouchDB error response
+      description: Simple success acknowledgement
       properties:
-        error:
+        ok:
+          type: boolean
+          example: true
+        name:
           type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
+          description: Username (for session responses)
+          example: admin
+        roles:
+          type: array
+          items:
+            type: string
+          example:
+          - _admin
     DatabaseInfo:
       title: DatabaseInfo
       type: object
@@ -183,33 +197,19 @@ components:
               type: integer
               description: Active data size in bytes
               example: 3000000
-    OkResponse:
-      title: OkResponse
+    ErrorResponse:
+      title: ErrorResponse
       type: object
-      description: Simple success acknowledgement
+      description: Standard CouchDB error response
       properties:
-        ok:
-          type: boolean
-          example: true
-        name:
+        error:
           type: string
-          description: Username (for session responses)
-          example: admin
-        roles:
-          type: array
-          items:
-            type: string
-          example:
-          - _admin
-  parameters:
-    db:
-      name: db
-      in: path
-      required: true
-      description: Database name.
-      schema:
-        type: string
-      example: mydb
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
   securitySchemes:
     basicAuth:
       type: http

@@ -102,37 +102,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
-    Document:
-      title: Document
-      type: object
-      description: A CouchDB document with system fields and user-defined fields
-      properties:
-        _id:
-          type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
     ViewResponse:
       title: ViewResponse
       type: object
@@ -162,15 +141,36 @@ components:
                 example: 1
               doc:
                 $ref: '#/components/schemas/Document'
-  parameters:
-    db:
-      name: db
-      in: path
-      required: true
-      description: Database name.
-      schema:
-        type: string
-      example: mydb
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
   securitySchemes:
     basicAuth:
       type: http

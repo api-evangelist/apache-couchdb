@@ -177,19 +177,41 @@ components:
                 example: json
               def:
                 type: object
-    ErrorResponse:
-      title: ErrorResponse
+    FindResponse:
+      title: FindResponse
       type: object
-      description: Standard CouchDB error response
+      description: Mango query results
       properties:
-        error:
+        docs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: Array of matching documents
+        bookmark:
           type: string
-          description: Error type code
-          example: not_found
-        reason:
+          description: Bookmark for retrieving the next set of results
+          example: g1AAAABleJzLYWBg
+        warning:
           type: string
-          description: Human-readable error description
-          example: Database does not exist.
+          description: Warning if query is not optimally indexed
+          example: No matching index found, create an index to optimize query time.
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
     CreateIndexRequest:
       title: CreateIndexRequest
       type: object
@@ -222,61 +244,6 @@ components:
           - text
           default: json
           example: json
-    Document:
-      title: Document
-      type: object
-      description: A CouchDB document with system fields and user-defined fields
-      properties:
-        _id:
-          type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
-    CreateIndexResponse:
-      title: CreateIndexResponse
-      type: object
-      description: Response from creating a Mango index
-      properties:
-        result:
-          type: string
-          description: created or exists
-          enum:
-          - created
-          - exists
-          example: created
-        id:
-          type: string
-          description: Design document ID
-          example: _design/idx-status-type
-        name:
-          type: string
-          description: Index name
-          example: idx-status-type
-    FindResponse:
-      title: FindResponse
-      type: object
-      description: Mango query results
-      properties:
-        docs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-          description: Array of matching documents
-        bookmark:
-          type: string
-          description: Bookmark for retrieving the next set of results
-          example: g1AAAABleJzLYWBg
-        warning:
-          type: string
-          description: Warning if query is not optimally indexed
-          example: No matching index found, create an index to optimize query time.
     FindRequest:
       title: FindRequest
       type: object
@@ -319,6 +286,39 @@ components:
           example: g1AAAABleJzLYWBg
       required:
       - selector
+    CreateIndexResponse:
+      title: CreateIndexResponse
+      type: object
+      description: Response from creating a Mango index
+      properties:
+        result:
+          type: string
+          description: created or exists
+          enum:
+          - created
+          - exists
+          example: created
+        id:
+          type: string
+          description: Design document ID
+          example: _design/idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
   parameters:
     db:
       name: db

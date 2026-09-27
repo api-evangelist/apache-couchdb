@@ -73,31 +73,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReplicationResponse:
-      title: ReplicationResponse
-      type: object
-      description: Result of a replication request
-      properties:
-        ok:
-          type: boolean
-          example: true
-        session_id:
-          type: string
-          example: abc123def456
-        source_last_seq:
-          type: string
-          example: 5000-abc123
-        history:
-          type: array
-          items:
-            type: object
-            properties:
-              session_id:
-                type: string
-              docs_written:
-                type: integer
-              doc_write_failures:
-                type: integer
     ReplicationRequest:
       title: ReplicationRequest
       type: object
@@ -133,6 +108,31 @@ components:
       required:
       - source
       - target
+    ReplicationResponse:
+      title: ReplicationResponse
+      type: object
+      description: Result of a replication request
+      properties:
+        ok:
+          type: boolean
+          example: true
+        session_id:
+          type: string
+          example: abc123def456
+        source_last_seq:
+          type: string
+          example: 5000-abc123
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              session_id:
+                type: string
+              docs_written:
+                type: integer
+              doc_write_failures:
+                type: integer
   securitySchemes:
     basicAuth:
       type: http

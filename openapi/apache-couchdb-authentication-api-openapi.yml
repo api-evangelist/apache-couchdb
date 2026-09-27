@@ -119,35 +119,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
-    SessionRequest:
-      title: SessionRequest
-      type: object
-      description: Authentication credentials for session creation
-      properties:
-        name:
-          type: string
-          description: CouchDB username
-          example: admin
-        password:
-          type: string
-          description: CouchDB password
-          example: secretpassword
-      required:
-      - name
-      - password
     SessionInfo:
       title: SessionInfo
       type: object
@@ -178,6 +149,22 @@ components:
               example:
               - cookie
               - default
+    SessionRequest:
+      title: SessionRequest
+      type: object
+      description: Authentication credentials for session creation
+      properties:
+        name:
+          type: string
+          description: CouchDB username
+          example: admin
+        password:
+          type: string
+          description: CouchDB password
+          example: secretpassword
+      required:
+      - name
+      - password
     OkResponse:
       title: OkResponse
       type: object
@@ -196,6 +183,19 @@ components:
             type: string
           example:
           - _admin
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
   securitySchemes:
     basicAuth:
       type: http
