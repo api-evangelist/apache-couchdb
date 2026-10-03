@@ -152,6 +152,39 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CreateIndexResponse:
+      title: CreateIndexResponse
+      type: object
+      description: Response from creating a Mango index
+      properties:
+        result:
+          type: string
+          description: created or exists
+          enum:
+          - created
+          - exists
+          example: created
+        id:
+          type: string
+          description: Design document ID
+          example: _design/idx-status-type
+        name:
+          type: string
+          description: Index name
+          example: idx-status-type
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
     IndexesResponse:
       title: IndexesResponse
       type: object
@@ -195,6 +228,48 @@ components:
           type: string
           description: Warning if query is not optimally indexed
           example: No matching index found, create an index to optimize query time.
+    FindRequest:
+      title: FindRequest
+      type: object
+      description: Mango query request
+      properties:
+        selector:
+          type: object
+          description: Mango selector (JSON query expression)
+          example:
+            type: product
+            status: active
+        fields:
+          type: array
+          items:
+            type: string
+          description: Fields to return in results
+          example:
+          - _id
+          - name
+        limit:
+          type: integer
+          description: Maximum number of results
+          default: 25
+          example: 25
+        skip:
+          type: integer
+          description: Number of results to skip
+          default: 0
+          example: 0
+        sort:
+          type: array
+          items:
+            type: object
+          description: Sort order specification
+          example:
+          - name: asc
+        bookmark:
+          type: string
+          description: Bookmark for pagination from previous query
+          example: g1AAAABleJzLYWBg
+      required:
+      - selector
     Document:
       title: Document
       type: object
@@ -244,81 +319,6 @@ components:
           - text
           default: json
           example: json
-    FindRequest:
-      title: FindRequest
-      type: object
-      description: Mango query request
-      properties:
-        selector:
-          type: object
-          description: Mango selector (JSON query expression)
-          example:
-            type: product
-            status: active
-        fields:
-          type: array
-          items:
-            type: string
-          description: Fields to return in results
-          example:
-          - _id
-          - name
-        limit:
-          type: integer
-          description: Maximum number of results
-          default: 25
-          example: 25
-        skip:
-          type: integer
-          description: Number of results to skip
-          default: 0
-          example: 0
-        sort:
-          type: array
-          items:
-            type: object
-          description: Sort order specification
-          example:
-          - name: asc
-        bookmark:
-          type: string
-          description: Bookmark for pagination from previous query
-          example: g1AAAABleJzLYWBg
-      required:
-      - selector
-    CreateIndexResponse:
-      title: CreateIndexResponse
-      type: object
-      description: Response from creating a Mango index
-      properties:
-        result:
-          type: string
-          description: created or exists
-          enum:
-          - created
-          - exists
-          example: created
-        id:
-          type: string
-          description: Design document ID
-          example: _design/idx-status-type
-        name:
-          type: string
-          description: Index name
-          example: idx-status-type
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
   parameters:
     db:
       name: db

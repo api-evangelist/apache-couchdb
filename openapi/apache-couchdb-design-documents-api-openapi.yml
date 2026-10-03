@@ -102,16 +102,20 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    db:
-      name: db
-      in: path
-      required: true
-      description: Database name.
-      schema:
-        type: string
-      example: mydb
   schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard CouchDB error response
+      properties:
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
     ViewResponse:
       title: ViewResponse
       type: object
@@ -158,19 +162,15 @@ components:
           type: boolean
           description: Present and true for deleted (tombstone) documents
           example: false
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard CouchDB error response
-      properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
+  parameters:
+    db:
+      name: db
+      in: path
+      required: true
+      description: Database name.
+      schema:
+        type: string
+      example: mydb
   securitySchemes:
     basicAuth:
       type: http

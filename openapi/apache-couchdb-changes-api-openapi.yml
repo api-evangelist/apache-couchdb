@@ -96,6 +96,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ChangeRow:
+      title: ChangeRow
+      type: object
+      description: A single change record in the changes feed
+      properties:
+        seq:
+          type: string
+          description: Update sequence number
+          example: 5000-abc123
+        id:
+          type: string
+          description: Document ID that was changed
+          example: doc001
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              rev:
+                type: string
+                example: 2-def456
+        deleted:
+          type: boolean
+          description: True if this change is a deletion
+          example: false
+        doc:
+          $ref: '#/components/schemas/Document'
     Document:
       title: Document
       type: object
@@ -130,33 +157,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChangeRow'
-    ChangeRow:
-      title: ChangeRow
-      type: object
-      description: A single change record in the changes feed
-      properties:
-        seq:
-          type: string
-          description: Update sequence number
-          example: 5000-abc123
-        id:
-          type: string
-          description: Document ID that was changed
-          example: doc001
-        changes:
-          type: array
-          items:
-            type: object
-            properties:
-              rev:
-                type: string
-                example: 2-def456
-        deleted:
-          type: boolean
-          description: True if this change is a deletion
-          example: false
-        doc:
-          $ref: '#/components/schemas/Document'
   parameters:
     db:
       name: db

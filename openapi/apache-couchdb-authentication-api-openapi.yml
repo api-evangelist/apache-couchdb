@@ -119,36 +119,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SessionInfo:
-      title: SessionInfo
+    ErrorResponse:
+      title: ErrorResponse
       type: object
-      description: Current session information
+      description: Standard CouchDB error response
       properties:
-        ok:
-          type: boolean
-          example: true
-        userCtx:
-          type: object
-          properties:
-            name:
-              type: string
-              example: admin
-            roles:
-              type: array
-              items:
-                type: string
-              example:
-              - _admin
-        info:
-          type: object
-          properties:
-            authentication_handlers:
-              type: array
-              items:
-                type: string
-              example:
-              - cookie
-              - default
+        error:
+          type: string
+          description: Error type code
+          example: not_found
+        reason:
+          type: string
+          description: Human-readable error description
+          example: Database does not exist.
     SessionRequest:
       title: SessionRequest
       type: object
@@ -183,19 +166,36 @@ components:
             type: string
           example:
           - _admin
-    ErrorResponse:
-      title: ErrorResponse
+    SessionInfo:
+      title: SessionInfo
       type: object
-      description: Standard CouchDB error response
+      description: Current session information
       properties:
-        error:
-          type: string
-          description: Error type code
-          example: not_found
-        reason:
-          type: string
-          description: Human-readable error description
-          example: Database does not exist.
+        ok:
+          type: boolean
+          example: true
+        userCtx:
+          type: object
+          properties:
+            name:
+              type: string
+              example: admin
+            roles:
+              type: array
+              items:
+                type: string
+              example:
+              - _admin
+        info:
+          type: object
+          properties:
+            authentication_handlers:
+              type: array
+              items:
+                type: string
+              example:
+              - cookie
+              - default
   securitySchemes:
     basicAuth:
       type: http
