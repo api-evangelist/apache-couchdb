@@ -123,23 +123,6 @@ components:
           example: false
         doc:
           $ref: '#/components/schemas/Document'
-    Document:
-      title: Document
-      type: object
-      description: A CouchDB document with system fields and user-defined fields
-      properties:
-        _id:
-          type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
     ChangesResponse:
       title: ChangesResponse
       type: object
@@ -157,6 +140,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChangeRow'
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
   parameters:
     db:
       name: db

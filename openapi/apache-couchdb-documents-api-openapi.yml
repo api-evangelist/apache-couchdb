@@ -322,19 +322,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DocumentInput:
-      title: DocumentInput
-      type: object
-      description: Input for creating or updating a CouchDB document
-      properties:
-        _id:
-          type: string
-          description: Optional document ID (auto-generated if omitted for POST)
-          example: doc001
-        _rev:
-          type: string
-          description: Required for updates — current revision ID
-          example: 1-abc123def456
     BulkDocsRequest:
       title: BulkDocsRequest
       type: object
@@ -350,6 +337,65 @@ components:
           description: If false, allow insertion of conflicting revisions (for replication)
           default: true
           example: true
+    WriteResponse:
+      title: WriteResponse
+      type: object
+      description: Response from a document write operation
+      properties:
+        ok:
+          type: boolean
+          example: true
+        id:
+          type: string
+          description: Document ID
+          example: doc001
+        rev:
+          type: string
+          description: New revision ID
+          example: 1-abc123def456
+    Document:
+      title: Document
+      type: object
+      description: A CouchDB document with system fields and user-defined fields
+      properties:
+        _id:
+          type: string
+          description: Document ID
+          example: doc001
+        _rev:
+          type: string
+          description: Current revision ID (major-hash format)
+          example: 1-abc123def456
+        _deleted:
+          type: boolean
+          description: Present and true for deleted (tombstone) documents
+          example: false
+    KeysRequest:
+      title: KeysRequest
+      type: object
+      description: Request body for POST _all_docs with specific keys
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          description: Array of document IDs to retrieve
+          example:
+          - doc001
+          - doc002
+    DocumentInput:
+      title: DocumentInput
+      type: object
+      description: Input for creating or updating a CouchDB document
+      properties:
+        _id:
+          type: string
+          description: Optional document ID (auto-generated if omitted for POST)
+          example: doc001
+        _rev:
+          type: string
+          description: Required for updates — current revision ID
+          example: 1-abc123def456
     DocRow:
       title: DocRow
       type: object
@@ -372,22 +418,6 @@ components:
               example: 1-abc123
         doc:
           $ref: '#/components/schemas/Document'
-    WriteResponse:
-      title: WriteResponse
-      type: object
-      description: Response from a document write operation
-      properties:
-        ok:
-          type: boolean
-          example: true
-        id:
-          type: string
-          description: Document ID
-          example: doc001
-        rev:
-          type: string
-          description: New revision ID
-          example: 1-abc123def456
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -418,36 +448,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DocRow'
-    KeysRequest:
-      title: KeysRequest
-      type: object
-      description: Request body for POST _all_docs with specific keys
-      properties:
-        keys:
-          type: array
-          items:
-            type: string
-          description: Array of document IDs to retrieve
-          example:
-          - doc001
-          - doc002
-    Document:
-      title: Document
-      type: object
-      description: A CouchDB document with system fields and user-defined fields
-      properties:
-        _id:
-          type: string
-          description: Document ID
-          example: doc001
-        _rev:
-          type: string
-          description: Current revision ID (major-hash format)
-          example: 1-abc123def456
-        _deleted:
-          type: boolean
-          description: Present and true for deleted (tombstone) documents
-          example: false
   parameters:
     docid:
       name: docid

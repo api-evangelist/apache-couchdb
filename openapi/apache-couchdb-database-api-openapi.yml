@@ -147,24 +147,6 @@ components:
           type: string
           description: Human-readable error description
           example: Database does not exist.
-    OkResponse:
-      title: OkResponse
-      type: object
-      description: Simple success acknowledgement
-      properties:
-        ok:
-          type: boolean
-          example: true
-        name:
-          type: string
-          description: Username (for session responses)
-          example: admin
-        roles:
-          type: array
-          items:
-            type: string
-          example:
-          - _admin
     DatabaseInfo:
       title: DatabaseInfo
       type: object
@@ -201,6 +183,24 @@ components:
               type: integer
               description: Active data size in bytes
               example: 3000000
+    OkResponse:
+      title: OkResponse
+      type: object
+      description: Simple success acknowledgement
+      properties:
+        ok:
+          type: boolean
+          example: true
+        name:
+          type: string
+          description: Username (for session responses)
+          example: admin
+        roles:
+          type: array
+          items:
+            type: string
+          example:
+          - _admin
   parameters:
     db:
       name: db
