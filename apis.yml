@@ -2345,6 +2345,12 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 common:
+  - type: Plans
+    url: plans/apache-couchdb-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/apache-couchdb-rate-limits.yml
+  - type: FinOps
+    url: finops/apache-couchdb-finops.yml
   - type: IssueTracker
     url: https://github.com/apache/couchdb/issues
   - type: CodeOfConduct
