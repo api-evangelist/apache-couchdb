@@ -119,22 +119,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SessionRequest:
-      title: SessionRequest
-      type: object
-      description: Authentication credentials for session creation
-      properties:
-        name:
-          type: string
-          description: CouchDB username
-          example: admin
-        password:
-          type: string
-          description: CouchDB password
-          example: secretpassword
-      required:
-      - name
-      - password
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -196,6 +180,22 @@ components:
             type: string
           example:
           - _admin
+    SessionRequest:
+      title: SessionRequest
+      type: object
+      description: Authentication credentials for session creation
+      properties:
+        name:
+          type: string
+          description: CouchDB username
+          example: admin
+        password:
+          type: string
+          description: CouchDB password
+          example: secretpassword
+      required:
+      - name
+      - password
   securitySchemes:
     basicAuth:
       type: http
