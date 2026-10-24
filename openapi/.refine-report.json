@@ -1,9 +1,12 @@
 {
   "provider": "apache-couchdb",
   "sources": [
+    "_original/apache-couchdb-openapi.json",
     "_ae-authored/apache-couchdb-http-api-openapi.yaml"
   ],
   "outputs": [
+    "apache-couchdb-queues-api-openapi.yml",
+    "apache-couchdb-status-api-openapi.yml",
     "apache-couchdb-authentication-api-openapi.yml",
     "apache-couchdb-changes-api-openapi.yml",
     "apache-couchdb-cluster-api-openapi.yml",
@@ -18,9 +21,10 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apache-couchdb-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "apache-couchdb-http-api-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "apis.yml register: written (+2 apis, 11 total)"
   ],
   "skipped": [
     "apache-couchdb-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
