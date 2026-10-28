@@ -1,4 +1,4 @@
-# Apache CouchDB (apache-couchdb)
+# Apache CouchDB
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,284 +66,229 @@
 
 Apache CouchDB is an open-source distributed document-oriented NoSQL database governed by the Apache Software Foundation. It uses JSON for data storage, a RESTful HTTP/JSON API for all database operations, and the Couch Replication Protocol for multi-primary synchronization across servers, mobile devices, and browsers. CouchDB supports Mango queries, MapReduce views, and offline-first application architectures.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/apis.yml)
+**Areas:** Apache · Database · Document Store · JSON · NoSQL · Open Source · Replication · REST
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Apache CouchDB on APIs.io
 
-## Tags:
+Everything profiled for Apache CouchDB is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apache-couchdb/](https://apis.io/providers/apache-couchdb/)** — or go straight to one of the APIs or properties below.
 
- - Apache, Database, Document Store, JSON, NoSQL, Open Source, Replication, REST
+### APIs (9)
 
-## Timestamps
+- [Apache CouchDB Authentication API](https://apis.io/apis/apache-couchdb/apache-couchdb-authentication-api/) — Session and authentication management
+- [Apache CouchDB Changes API](https://apis.io/apis/apache-couchdb/apache-couchdb-changes-api/) — Database changes feed
+- [Apache CouchDB Cluster API](https://apis.io/apis/apache-couchdb/apache-couchdb-cluster-api/) — Cluster membership and configuration
+- [Apache CouchDB Database API](https://apis.io/apis/apache-couchdb/apache-couchdb-database-api/) — Database management operations
+- [Apache CouchDB Design Documents API](https://apis.io/apis/apache-couchdb/apache-couchdb-design-documents-api/) — Design documents, views, and indexes
+- [Apache CouchDB Documents API](https://apis.io/apis/apache-couchdb/apache-couchdb-documents-api/) — Document CRUD and bulk operations
+- [Apache CouchDB Mango API](https://apis.io/apis/apache-couchdb/apache-couchdb-mango-api/) — Mango declarative JSON query API
+- [Apache CouchDB Replication API](https://apis.io/apis/apache-couchdb/apache-couchdb-replication-api/) — Replication management
+- [Apache CouchDB Server API](https://apis.io/apis/apache-couchdb/apache-couchdb-server-api/) — Server-level information and utilities
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Apache CouchDB HTTP API
-CouchDB exposes a complete RESTful HTTP/JSON API covering server and database management, document CRUD operations, bulk operations, design documents with MapReduce views, Mango (declarative JSON) query API, replication, changes feeds, authentication, and cluster administration.
+#### AsyncAPI (1)
 
-**Human URL:** [https://docs.couchdb.org/en/stable/api/index.html](https://docs.couchdb.org/en/stable/api/index.html)
+Event-driven and webhook contracts.
 
-#### Tags:
+- [Apache CouchDB _changes Feed](https://apis.io/asyncapis/apache-couchdb/apache-couchdb-changes-feed-asyncapi/)
 
- - Cluster, Database, Document, HTTP, JSON, Mango, NoSQL, Replication, REST, Views
+#### Event channels (4)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://docs.couchdb.org/en/stable/api/index.html)
-- [GettingStarted](https://docs.couchdb.org/en/stable/intro/index.html)
-- [APIReference](https://docs.couchdb.org/en/stable/api/)
-- [GitHubRepository](https://github.com/apache/couchdb)
-- [Node.js SDK (Nano)](https://www.npmjs.com/package/nano)
-- [Python SDK](https://pypi.org/project/couchdb/)
-- [Python Async SDK (aiocouch)](https://pypi.org/project/aiocouch/)
-- [Fauxton Web UI](https://github.com/apache/couchdb-fauxton)
-- [Docker Images](https://github.com/apache/couchdb-docker)
-- [Helm Chart](https://github.com/apache/couchdb-helm)
-- [PouchDB (Browser/Mobile Sync)](https://github.com/apache/pouchdb)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/openapi/apache-couchdb-http-api-openapi.yaml)
-- [All Docs Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-all-docs-response-schema.json)
-- [Bulk Docs Request](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-bulk-docs-request-schema.json)
-- [Change Row](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-change-row-schema.json)
-- [Changes Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-changes-response-schema.json)
-- [Cluster Setup Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-cluster-setup-response-schema.json)
-- [Create Index Request](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-request-schema.json)
-- [Create Index Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-create-index-response-schema.json)
-- [Database Info](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-database-info-schema.json)
-- [Doc Row](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-doc-row-schema.json)
-- [Document Input](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-input-schema.json)
-- [Document](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-document-schema.json)
-- [Error Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-error-response-schema.json)
-- [Find Request](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-request-schema.json)
-- [Find Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-find-response-schema.json)
-- [Indexes Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-indexes-response-schema.json)
-- [Keys Request](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-keys-request-schema.json)
-- [Ok Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-ok-response-schema.json)
-- [Replication Request](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-request-schema.json)
-- [Replication Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-replication-response-schema.json)
-- [Server Info](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-server-info-schema.json)
-- [Session Info](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-info-schema.json)
-- [Session Request](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-session-request-schema.json)
-- [View Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-view-response-schema.json)
-- [Write Response](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-schema/apache-couchdb-write-response-schema.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-all-docs-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-bulk-docs-request-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-change-row-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-changes-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-cluster-setup-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-request-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-create-index-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-database-info-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-doc-row-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-input-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-document-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-error-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-request-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-find-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-indexes-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-keys-request-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-ok-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-request-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-replication-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-server-info-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-info-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-session-request-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-view-response-structure.json)
-- [JSONStructure](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-structure/apache-couchdb-write-response-structure.json)
-- [JSONLD](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/json-ld/apache-couchdb-http-api-context.jsonld)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-all-docs-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-bulk-docs-request-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-change-row-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-changes-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-cluster-setup-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-request-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-create-index-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-database-info-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-doc-row-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-document-input-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-error-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-request-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-find-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-indexes-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-keys-request-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-ok-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-request-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-replication-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-server-info-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-info-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-session-request-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-view-response-example.json)
-- [Example](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/examples/apache-couchdb-write-response-example.json)
+- [{db}/_changes#feed=continuous](https://apis.io/channels/apache-couchdb/db-changes-feed-continuous/)
+- [{db}/_changes#feed=eventsource](https://apis.io/channels/apache-couchdb/db-changes-feed-eventsource/)
+- [{db}/_changes#feed=longpoll](https://apis.io/channels/apache-couchdb/db-changes-feed-longpoll/)
+- [{db}/_changes#feed=normal](https://apis.io/channels/apache-couchdb/db-changes-feed-normal/)
 
-## Common Properties
+#### Agentic access (1)
 
-- [Portal](https://couchdb.apache.org/)
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Apache Couchdb Agentic Access](https://apis.io/agentic-access/apache-couchdb/apache-couchdb-agentic-access/)
+
+#### JSON Schema (24)
+
+The data models the API reads and writes.
+
+- [AllDocsResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-all-docs-response/)
+- [BulkDocsRequest](https://apis.io/schemas/apache-couchdb/apache-couchdb-bulk-docs-request/)
+- [ChangeRow](https://apis.io/schemas/apache-couchdb/apache-couchdb-change-row/)
+- [ChangesResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-changes-response/)
+- [ClusterSetupResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-cluster-setup-response/)
+- [CreateIndexRequest](https://apis.io/schemas/apache-couchdb/apache-couchdb-create-index-request/)
+- [CreateIndexResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-create-index-response/)
+- [DatabaseInfo](https://apis.io/schemas/apache-couchdb/apache-couchdb-database-info/)
+- [DocRow](https://apis.io/schemas/apache-couchdb/apache-couchdb-doc-row/)
+- [Document](https://apis.io/schemas/apache-couchdb/apache-couchdb-document/)
+- [DocumentInput](https://apis.io/schemas/apache-couchdb/apache-couchdb-document-input/)
+- [ErrorResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-error-response/)
+- [FindRequest](https://apis.io/schemas/apache-couchdb/apache-couchdb-find-request/)
+- [FindResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-find-response/)
+- [IndexesResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-indexes-response/)
+- [KeysRequest](https://apis.io/schemas/apache-couchdb/apache-couchdb-keys-request/)
+- [OkResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-ok-response/)
+- [ReplicationRequest](https://apis.io/schemas/apache-couchdb/apache-couchdb-replication-request/)
+- [ReplicationResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-replication-response/)
+- [ServerInfo](https://apis.io/schemas/apache-couchdb/apache-couchdb-server-info/)
+- [SessionInfo](https://apis.io/schemas/apache-couchdb/apache-couchdb-session-info/)
+- [SessionRequest](https://apis.io/schemas/apache-couchdb/apache-couchdb-session-request/)
+- [ViewResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-view-response/)
+- [WriteResponse](https://apis.io/schemas/apache-couchdb/apache-couchdb-write-response/)
+
+#### JSON Structure (24)
+
+Data models expressed in JSON Structure.
+
+- [Apache Couchdb All Docs Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-all-docs-response-structure/)
+- [Apache Couchdb Bulk Docs Request Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-bulk-docs-request-structure/)
+- [Apache Couchdb Change Row Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-change-row-structure/)
+- [Apache Couchdb Changes Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-changes-response-structure/)
+- [Apache Couchdb Cluster Setup Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-cluster-setup-response-structure/)
+- [Apache Couchdb Create Index Request Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-create-index-request-structure/)
+- [Apache Couchdb Create Index Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-create-index-response-structure/)
+- [Apache Couchdb Database Info Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-database-info-structure/)
+- [Apache Couchdb Doc Row Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-doc-row-structure/)
+- [Apache Couchdb Document Input Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-document-input-structure/)
+- [Apache Couchdb Document Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-document-structure/)
+- [Apache Couchdb Error Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-error-response-structure/)
+- [Apache Couchdb Find Request Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-find-request-structure/)
+- [Apache Couchdb Find Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-find-response-structure/)
+- [Apache Couchdb Indexes Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-indexes-response-structure/)
+- [Apache Couchdb Keys Request Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-keys-request-structure/)
+- [Apache Couchdb Ok Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-ok-response-structure/)
+- [Apache Couchdb Replication Request Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-replication-request-structure/)
+- [Apache Couchdb Replication Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-replication-response-structure/)
+- [Apache Couchdb Server Info Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-server-info-structure/)
+- [Apache Couchdb Session Info Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-session-info-structure/)
+- [Apache Couchdb Session Request Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-session-request-structure/)
+- [Apache Couchdb View Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-view-response-structure/)
+- [Apache Couchdb Write Response Structure](https://apis.io/json-structure/apache-couchdb/apache-couchdb-write-response-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apache Couchdb Http Api Context](https://apis.io/jsonld/apache-couchdb/apache-couchdb-http-api-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Apache Couchdb Vocabulary](https://apis.io/vocabularies/apache-couchdb/apache-couchdb-vocabulary/)
+
+#### Examples (24)
+
+Example requests and responses.
+
+- [Apache Couchdb All Docs Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-all-docs-response-example/)
+- [Apache Couchdb Bulk Docs Request Example](https://apis.io/examples/apache-couchdb/apache-couchdb-bulk-docs-request-example/)
+- [Apache Couchdb Change Row Example](https://apis.io/examples/apache-couchdb/apache-couchdb-change-row-example/)
+- [Apache Couchdb Changes Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-changes-response-example/)
+- [Apache Couchdb Cluster Setup Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-cluster-setup-response-example/)
+- [Apache Couchdb Create Index Request Example](https://apis.io/examples/apache-couchdb/apache-couchdb-create-index-request-example/)
+- [Apache Couchdb Create Index Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-create-index-response-example/)
+- [Apache Couchdb Database Info Example](https://apis.io/examples/apache-couchdb/apache-couchdb-database-info-example/)
+- [Apache Couchdb Doc Row Example](https://apis.io/examples/apache-couchdb/apache-couchdb-doc-row-example/)
+- [Apache Couchdb Document Example](https://apis.io/examples/apache-couchdb/apache-couchdb-document-example/)
+- [Apache Couchdb Document Input Example](https://apis.io/examples/apache-couchdb/apache-couchdb-document-input-example/)
+- [Apache Couchdb Error Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-error-response-example/)
+- [Apache Couchdb Find Request Example](https://apis.io/examples/apache-couchdb/apache-couchdb-find-request-example/)
+- [Apache Couchdb Find Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-find-response-example/)
+- [Apache Couchdb Indexes Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-indexes-response-example/)
+- [Apache Couchdb Keys Request Example](https://apis.io/examples/apache-couchdb/apache-couchdb-keys-request-example/)
+- [Apache Couchdb Ok Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-ok-response-example/)
+- [Apache Couchdb Replication Request Example](https://apis.io/examples/apache-couchdb/apache-couchdb-replication-request-example/)
+- [Apache Couchdb Replication Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-replication-response-example/)
+- [Apache Couchdb Server Info Example](https://apis.io/examples/apache-couchdb/apache-couchdb-server-info-example/)
+- [Apache Couchdb Session Info Example](https://apis.io/examples/apache-couchdb/apache-couchdb-session-info-example/)
+- [Apache Couchdb Session Request Example](https://apis.io/examples/apache-couchdb/apache-couchdb-session-request-example/)
+- [Apache Couchdb View Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-view-response-example/)
+- [Apache Couchdb Write Response Example](https://apis.io/examples/apache-couchdb/apache-couchdb-write-response-example/)
+
+#### Collections (18)
+
+Postman and Open Collection request collections.
+
+- [Apache CouchDB HTTP Authentication API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-authentication-api/)
+- [Apache CouchDB HTTP Authentication Changes API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-changes-api/)
+- [Apache CouchDB HTTP Authentication Cluster API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-cluster-api/)
+- [Apache CouchDB HTTP Authentication Database API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-database-api/)
+- [Apache CouchDB HTTP Authentication Design Documents API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-design-documents-api/)
+- [Apache CouchDB HTTP Authentication Documents API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-documents-api/)
+- [Apache CouchDB HTTP Authentication Mango API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-mango-api/)
+- [Apache CouchDB HTTP Authentication Replication API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-replication-api/)
+- [Apache CouchDB HTTP Authentication Server API](https://apis.io/collections/apache-couchdb/open-apache-couchdb-server-api/)
+- [Apache CouchDB HTTP Authentication API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-authentication-api/)
+- [Apache CouchDB HTTP Authentication Changes API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-changes-api/)
+- [Apache CouchDB HTTP Authentication Cluster API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-cluster-api/)
+- [Apache CouchDB HTTP Authentication Database API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-database-api/)
+- [Apache CouchDB HTTP Authentication Design Documents API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-design-documents-api/)
+- [Apache CouchDB HTTP Authentication Documents API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-documents-api/)
+- [Apache CouchDB HTTP Authentication Mango API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-mango-api/)
+- [Apache CouchDB HTTP Authentication Replication API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-replication-api/)
+- [Apache CouchDB HTTP Authentication Server API](https://apis.io/collections/apache-couchdb/postman-apache-couchdb-server-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Apache CouchDB — asyncapi rules](https://apis.io/rules/apache-couchdb/apache-couchdb-asyncapi-spectral-rules/)
+- [Apache CouchDB — jsonschema rules](https://apis.io/rules/apache-couchdb/apache-couchdb-jsonschema-spectral-rules/)
+- [Apache CouchDB API Rules](https://apis.io/rules/apache-couchdb/apache-couchdb-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apache Couchdb Authentication](https://apis.io/security/apache-couchdb/apache-couchdb-authentication/)
+- [Apache Couchdb Domain Security](https://apis.io/security/apache-couchdb/apache-couchdb-domain-security/)
+- [Apache Couchdb Vulnerability Disclosure](https://apis.io/security/apache-couchdb/apache-couchdb-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apache Couchdb Plans Pricing](https://apis.io/plans/apache-couchdb/apache-couchdb-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apache Couchdb Rate Limits](https://apis.io/rate-limits/apache-couchdb/apache-couchdb-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apache Couchdb Finops](https://apis.io/finops/apache-couchdb/apache-couchdb-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Documentation](https://docs.couchdb.org/en/stable/)
-- [GettingStarted](https://docs.couchdb.org/en/stable/intro/)
-- [Blog](https://blog.couchdb.org/)
-- [ReleaseNotes](https://docs.couchdb.org/en/stable/whatsnew/)
+- [Getting started](https://docs.couchdb.org/en/stable/intro/)
 - [Support](https://couchdb.apache.org/#mailing-list)
-- [GitHubOrganization](https://github.com/apache)
-- [StackOverflow](https://stackoverflow.com/questions/tagged/couchdb)
-- [SpectralRules](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/rules/apache-couchdb-spectral-rules.yml)
-- [CouchDB Document Management](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/capabilities/couchdb-document-management.yaml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/apache-couchdb/refs/heads/main/vocabulary/apache-couchdb-vocabulary.yaml)
+- [Blog](https://blog.couchdb.org/)
+- [GitHub](https://github.com/apache)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| RESTful HTTP/JSON API | All database operations are performed via a clean HTTP API using JSON, making it accessible from any HTTP-capable client. |
-| Multi-Primary Replication | The Couch Replication Protocol enables seamless bidirectional synchronization across servers, mobile, and browser environments. |
-| Offline-First Architecture | Applications can operate fully offline and sync changes when connectivity is restored, enabled by conflict-aware replication. |
-| Mango Query Language | Declarative JSON-based query language for ad-hoc document queries with index support, similar to MongoDB query syntax. |
-| MapReduce Views | Persistent, incrementally updated secondary indexes defined via JavaScript MapReduce functions stored as design documents. |
-| Changes Feed | Real-time notification feed of all database changes, supporting long-polling, continuous, and event-source modes. |
-| Cluster Support | Built-in clustering with consistent hashing for horizontal scaling and high availability across multiple nodes. |
-| MVCC and ACID | Multi-Version Concurrency Control ensures non-blocking reads; document updates are ACID-compliant at the document level. |
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
 
-## Use Cases
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
 
-| Name | Description |
-|------|-------------|
-| Mobile Sync Applications | Sync data between a CouchDB server and PouchDB in mobile/browser apps, supporting offline-first user experiences. |
-| Content Management | Store and retrieve rich JSON documents for CMS, blogs, catalogs, and document management systems. |
-| IoT Data Collection | Edge devices write data locally to CouchDB and replicate to central servers when connected. |
-| Multi-Region Replication | Replicate database contents across geographic regions for low-latency reads and disaster recovery. |
-| User Data Storage | Per-user database pattern for storing isolated user data with built-in CouchDB authentication. |
-| Event Sourcing | Use the changes feed as an event stream for event-driven architectures and audit logging. |
+## How this profile is made
 
-## Integrations
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-| Name | Description |
-|------|-------------|
-| PouchDB | Browser and Node.js database that syncs with CouchDB via the Couch Replication Protocol. |
-| IBM Cloudant | IBM Cloudant is a fully managed cloud database service based on Apache CouchDB, API-compatible. |
-| Docker | Official CouchDB Docker images for container-based deployments. |
-| Kubernetes / Helm | Official Helm chart for deploying CouchDB clusters on Kubernetes. |
-| Apache Kafka | CouchDB changes feed can be consumed and bridged to Kafka for event streaming pipelines. |
-| Nginx / Load Balancers | CouchDB clusters are typically fronted by Nginx or HAProxy for SSL termination and load balancing. |
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache CouchDB: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-## Artifacts
+## Open an issue
 
-Machine-readable API specifications and schemas.
-
-### OpenAPI
-
-- [Http Api](openapi/apache-couchdb-http-api-openapi.yaml)
-
-### JSON Schema
-
-- [All Docs Response](json-schema/apache-couchdb-all-docs-response-schema.json)
-- [Bulk Docs Request](json-schema/apache-couchdb-bulk-docs-request-schema.json)
-- [Change Row](json-schema/apache-couchdb-change-row-schema.json)
-- [Changes Response](json-schema/apache-couchdb-changes-response-schema.json)
-- [Cluster Setup Response](json-schema/apache-couchdb-cluster-setup-response-schema.json)
-- [Create Index Request](json-schema/apache-couchdb-create-index-request-schema.json)
-- [Create Index Response](json-schema/apache-couchdb-create-index-response-schema.json)
-- [Database Info](json-schema/apache-couchdb-database-info-schema.json)
-- [Doc Row](json-schema/apache-couchdb-doc-row-schema.json)
-- [Document Input](json-schema/apache-couchdb-document-input-schema.json)
-- [Document](json-schema/apache-couchdb-document-schema.json)
-- [Error Response](json-schema/apache-couchdb-error-response-schema.json)
-- [Find Request](json-schema/apache-couchdb-find-request-schema.json)
-- [Find Response](json-schema/apache-couchdb-find-response-schema.json)
-- [Indexes Response](json-schema/apache-couchdb-indexes-response-schema.json)
-- [Keys Request](json-schema/apache-couchdb-keys-request-schema.json)
-- [Ok Response](json-schema/apache-couchdb-ok-response-schema.json)
-- [Replication Request](json-schema/apache-couchdb-replication-request-schema.json)
-- [Replication Response](json-schema/apache-couchdb-replication-response-schema.json)
-- [Server Info](json-schema/apache-couchdb-server-info-schema.json)
-- [Session Info](json-schema/apache-couchdb-session-info-schema.json)
-- [Session Request](json-schema/apache-couchdb-session-request-schema.json)
-- [View Response](json-schema/apache-couchdb-view-response-schema.json)
-- [Write Response](json-schema/apache-couchdb-write-response-schema.json)
-
-### JSON Structure
-
-- [All Docs Response](json-structure/apache-couchdb-all-docs-response-structure.json)
-- [Bulk Docs Request](json-structure/apache-couchdb-bulk-docs-request-structure.json)
-- [Change Row](json-structure/apache-couchdb-change-row-structure.json)
-- [Changes Response](json-structure/apache-couchdb-changes-response-structure.json)
-- [Cluster Setup Response](json-structure/apache-couchdb-cluster-setup-response-structure.json)
-- [Create Index Request](json-structure/apache-couchdb-create-index-request-structure.json)
-- [Create Index Response](json-structure/apache-couchdb-create-index-response-structure.json)
-- [Database Info](json-structure/apache-couchdb-database-info-structure.json)
-- [Doc Row](json-structure/apache-couchdb-doc-row-structure.json)
-- [Document Input](json-structure/apache-couchdb-document-input-structure.json)
-- [Document](json-structure/apache-couchdb-document-structure.json)
-- [Error Response](json-structure/apache-couchdb-error-response-structure.json)
-- [Find Request](json-structure/apache-couchdb-find-request-structure.json)
-- [Find Response](json-structure/apache-couchdb-find-response-structure.json)
-- [Indexes Response](json-structure/apache-couchdb-indexes-response-structure.json)
-- [Keys Request](json-structure/apache-couchdb-keys-request-structure.json)
-- [Ok Response](json-structure/apache-couchdb-ok-response-structure.json)
-- [Replication Request](json-structure/apache-couchdb-replication-request-structure.json)
-- [Replication Response](json-structure/apache-couchdb-replication-response-structure.json)
-- [Server Info](json-structure/apache-couchdb-server-info-structure.json)
-- [Session Info](json-structure/apache-couchdb-session-info-structure.json)
-- [Session Request](json-structure/apache-couchdb-session-request-structure.json)
-- [View Response](json-structure/apache-couchdb-view-response-structure.json)
-- [Write Response](json-structure/apache-couchdb-write-response-structure.json)
-
-### JSON-LD
-
-- [Http Api](json-ld/apache-couchdb-http-api-context.jsonld)
-
-### Examples
-
-- [All Docs Response](examples/apache-couchdb-all-docs-response-example.json)
-- [Bulk Docs Request](examples/apache-couchdb-bulk-docs-request-example.json)
-- [Change Row](examples/apache-couchdb-change-row-example.json)
-- [Changes Response](examples/apache-couchdb-changes-response-example.json)
-- [Cluster Setup Response](examples/apache-couchdb-cluster-setup-response-example.json)
-- [Create Index Request](examples/apache-couchdb-create-index-request-example.json)
-- [Create Index Response](examples/apache-couchdb-create-index-response-example.json)
-- [Database Info](examples/apache-couchdb-database-info-example.json)
-- [Doc Row](examples/apache-couchdb-doc-row-example.json)
-- [Document](examples/apache-couchdb-document-example.json)
-- [Document Input](examples/apache-couchdb-document-input-example.json)
-- [Error Response](examples/apache-couchdb-error-response-example.json)
-- [Find Request](examples/apache-couchdb-find-request-example.json)
-- [Find Response](examples/apache-couchdb-find-response-example.json)
-- [Indexes Response](examples/apache-couchdb-indexes-response-example.json)
-- [Keys Request](examples/apache-couchdb-keys-request-example.json)
-- [Ok Response](examples/apache-couchdb-ok-response-example.json)
-- [Replication Request](examples/apache-couchdb-replication-request-example.json)
-- [Replication Response](examples/apache-couchdb-replication-response-example.json)
-- [Server Info](examples/apache-couchdb-server-info-example.json)
-- [Session Info](examples/apache-couchdb-session-info-example.json)
-- [Session Request](examples/apache-couchdb-session-request-example.json)
-- [View Response](examples/apache-couchdb-view-response-example.json)
-- [Write Response](examples/apache-couchdb-write-response-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Couchdb Http Api](capabilities/shared/couchdb-http-api.yaml)
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [CouchDB Document Management](capabilities/couchdb-document-management.yaml) | CouchDB HTTP API | 13 | Developer, Data Engineer |
-
-## Vocabulary
-
-- [Apache CouchDB Vocabulary](vocabulary/apache-couchdb-vocabulary.yaml) — Unified taxonomy mapping 9 resources, 8 actions, 1 workflow, and 3 personas across the CouchDB REST API
-
-## Rules
-
-- [Apache Couchdb Spectral Rules](rules/apache-couchdb-spectral-rules.yml) — 26 rules across 13 categories enforcing Apache CouchDB HTTP API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** info@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apache-couchdb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
